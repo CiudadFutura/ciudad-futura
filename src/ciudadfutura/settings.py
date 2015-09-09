@@ -112,8 +112,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
 
-print STATIC_ROOT
-
-
-
+# Auth
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
