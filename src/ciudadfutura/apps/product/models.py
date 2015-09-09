@@ -15,8 +15,8 @@ class Packaging(models.Model):
 class PriceChange(models.Model):
     product = models.ForeignKey('ciudadfutura_product.Product')
     created_at = models.DateTimeField(auto_now_add=True)
-    price = models.FloatField()
-    market_price = models.FloatField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    market_price = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
         ordering = ['-created_at']

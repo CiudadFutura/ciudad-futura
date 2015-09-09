@@ -21,8 +21,8 @@ class Item(models.Model):
 
     sku = models.CharField(max_length=255, null=True, blank=False)
     name = models.CharField(max_length=255, null=True, blank=False)
-    price = models.FloatField()
-    market_price = models.FloatField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    market_price = models.DecimalField(max_digits=8, decimal_places=2)
     cart = models.ForeignKey('ciudadfutura_cart.Cart', related_name='items')
     quantity = models.IntegerField(default=0)
 
