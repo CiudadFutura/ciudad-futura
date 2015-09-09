@@ -110,6 +110,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/Users/damian/Workspace/CiudadFutura/ciudadfutura-py/pub/static'
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
+
+print STATIC_ROOT
+
+
 
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
