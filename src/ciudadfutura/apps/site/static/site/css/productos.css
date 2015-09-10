@@ -1,0 +1,83 @@
+.icon-czrt {
+  margin-right: 5px;
+}
+#productos {
+  min-height: 450px;
+}
+#productos .item {
+  position: relative;
+  font-family: "Fjalla One";
+}
+#productos .item .thumbnail {
+  padding: 0px 0px 10px 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  text-transform: uppercase;
+}
+#productos .item .thumbnail .list-group-image {
+  max-width: 100%;
+  max-height: 220px;
+}
+#productos .item .thumbnail .list-group-image img {
+  border: none;
+}
+#productos .item .thumbnail .btn-group .admin {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#productos .item .thumbnail .btn {
+  background: #bd4640;
+  color: #ffffff;
+}
+#productos .item .thumbnail .red {
+  background: #bd4640;
+  border-bottom: 1px solid #ffffff;
+  font-family: "Fjalla One";
+  box-shadow: 0px 4px 8px 0 #444 inset;
+  height: 28px;
+  max-height: 32px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  color: #fff;
+}
+#productos .item .thumbnail .brown {
+  font-family: "Fjalla One";
+  background: #b9a981;
+  border-bottom: 1px solid #ffffff;
+  height: 28px;
+  max-height: 32px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  color: #fff;
+}
+#productos .item .thumbnail .caption {
+  padding: 3px 5px ;
+}
+#productos .item .thumbnail .caption h4 {
+  color: #fff;
+  font-size: 12px;
+}
+#productos .item .thumbnail .precio {
+  padding-top: 5px;
+  font-size: 18px;
+}
+#productos .item .thumbnail .ahorro {
+  margin-bottom: 15px;
+  padding-top: 5px;
+  font-size: 16px;
+}
+#productos .item .thumbnail .precio-super {
+  padding-top: 5px;
+  font-size: 14px;
+}
+#productos .item .oculto {
+  position: absolute;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+}
+#productos .item .oculto span {
+  color: #bd4640;
+  font-size: 18px;
+}

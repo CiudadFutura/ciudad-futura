@@ -34,7 +34,6 @@ class Person(models.Model):
 
 
 class User(AbstractBaseUser):
-
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
 
@@ -43,7 +42,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
-    person = models.OneToOneField('ciudadfutura_auth.Person')
+    person = models.OneToOneField('ciudadfutura_auth.Person', null=True, default=None)
 
     objects = UserManager()
 

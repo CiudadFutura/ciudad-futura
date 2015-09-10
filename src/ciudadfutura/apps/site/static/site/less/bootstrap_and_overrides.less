@@ -1,0 +1,256 @@
+//@import "twitter/bootstrap/bootstrap";
+/*@import url("//fonts.googleapis.com/css?family=Fjalla+One");*/
+
+// Set the correct sprite paths
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
+
+// Font Awesome
+//@import "fontawesome/font-awesome";
+
+@import  'fonts.less';
+
+// Glyphicons
+//@import "twitter/bootstrap/glyphicons.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @link-color: #ff0000;
+
+@rojo:#BD3B2F;
+@font-bold: 'liberation_sansbold';
+@font-reg: 'liberation_sansregular';
+@font-titles: 'liberation_sansregular';
+@font-others: 'Kreon', 'serif';
+@lila: #9B6185;
+
+
+
+body {
+  background-image: image-url('../img/bg.png');
+}
+
+.navbar {
+  div.usuario {
+    background: #333;
+    color:#fff;
+    ul{
+      li{
+        display: inline-block;
+        a{
+          color: #fff;
+          font-size: 13px;
+          padding: 15px;
+          display: inline-block;
+          text-transform: uppercase;
+          span{
+            padding-right: 8px;
+            font-size: 18px;
+          }
+          &:hover{
+            background: @rojo;
+          }
+        }
+      }
+    }
+  }
+  .carrito {
+    font-family: @font-reg;
+    overflow: hidden;
+    background:#5E5E5E;
+    -webkit-box-shadow: 1px 1px 2px #5E5E5E; // multiple: comma-delimited
+    ul{
+      li{
+        list-style-type: none;
+        border-left: 2px solid #fff;
+        
+        height: 70px;
+        display: block;
+        color: #FFF;
+        font-size: 22px;
+        padding: 10px 10px 10px 60px;
+        cursor: default;
+        
+        &:nth-child(1) {
+          background: image-url('../img/datos-compras.png') no-repeat left center;
+          &:first-child {
+            border-left: none;
+          }
+          padding-top:30px;
+        }
+
+        &:nth-child(2) {
+          background: image-url('../img/ahorro.png') 5% center no-repeat;
+          padding-top:30px;
+        }
+        &:nth-child(3) {
+          // background: url(/assets/gastos.png) 5% center no-repeat;
+          padding: 10px 10px 10px 10px;
+          span.cart-cantidad {
+            color: #fff;
+            font-size: 12px;
+          }
+        }
+        &:nth-child(4) {
+          padding: 0px 0px 0px 10px;
+          width: 210px;
+          .cart-in{
+            background: image-url('../img/completa.png') center center no-repeat;
+          }
+          .prod-list{
+            color: #fff;
+            padding: 30px 0px 0px 10px;
+            i{
+              margin-right: 10px;
+            }
+            a:hover {
+              color: @rojo;
+              background-color:#5E5E5E ;
+
+            }
+          }
+          a {
+            height: 70px;
+            display: block;
+            // color: none;
+            font-size: 20px;
+            padding: 0px 0px 0px 20px;
+            cursor: pointer;
+            span {
+              display: none;
+            }
+          }
+          a:hover {
+            color: @rojo;
+            background-color:#5E5E5E ;
+          }
+
+        }
+      }
+    }
+  }
+  .menu-categorias {
+    background: #BD3B2F;
+    border:0px;
+    .submenu{
+      width: 900px;
+      ul {
+        li {
+          border-left: 2px solid #fff;
+          &:first-child {
+            border-left: none;
+          }
+          a {
+            font-family: @font-reg;
+            font-size:16px;
+            color: #fff;
+            &:hover {
+              background:#5E5E5E;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.home {
+  color: #6B6B6B;
+  font-family: 'Verdana';
+  text-align: center;
+
+  .titulo {
+    font-size: 30pt;
+  }
+
+  .explicacion {
+    font-size: 12pt;
+  }
+}
+
+.titulo, .explicacion {
+  color: #6B6B6B;
+  font-family: 'Verdana';
+  text-align: center;
+}
+.titulo {
+  font-size: 30pt;
+}
+
+.explicacion {
+  font-size: 12pt;
+  margin-bottom: 40px;
+}
+
+
+.cart {
+  table {
+    width: 900px;
+    margin: 0px auto 30px auto;
+    thead {
+      tr th {
+        color: #fff;
+        background-color: #C84D47;
+        font-weight: normal;
+      }
+    }
+  }
+  .checkout-totales {
+    font-weight: bold;
+    font-style: italic;
+  }
+  .row {
+    text-align: center;
+  }
+  .checkout {
+    color: #fff;
+    background-color: #C84D47;
+  }
+}
+
+.login{
+  min-height: 450px;
+  text-align: center;
+}
+
+.dropdown-menu {
+  background-color: #333333;
+}
+
+.strong {
+  font-weight: bold;
+}
+.circulos, .categorias, .usuarios, .pedidos, .mycart{
+  min-height:450px;
+}
+
+.csocial{
+  font-weight: bold;
+  font-size: 18px;
+  span{
+    font-size: 14px;
+  }
+}
+
+.table{
+  tfoot{
+    td{
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}

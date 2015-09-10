@@ -1,0 +1,27 @@
+{
+  "name": "ciudad-futura",
+  "version": "1.0.0",
+  "description": "Ciudad Futura",
+  "main": "index.js",
+  "engines": {
+    "iojs": "3.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CiudadFutura/ciudad-futura.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CiudadFutura/ciudad-futura/issues"
+  },
+  "homepage": "https://github.com/CiudadFutura/ciudad-futura#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "gulp-util": "^3.0.6"
+  }
+}
