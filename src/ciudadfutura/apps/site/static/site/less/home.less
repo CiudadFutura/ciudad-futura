@@ -51,7 +51,7 @@
 }
 
 body{
-  background: image-url('../img/bg.png') repeat;
+  background: url('../img/bg.png') repeat;
 }
 a, a:hover{
   text-decoration: none;
@@ -59,91 +59,74 @@ a, a:hover{
 .col-lg-12{
   padding: 0px;
 }
-.col-4{
-  width: 33.3333%;
-  float: left;
-}
-#wrapper {
-  position: relative;
-  z-index: 8888;
-  #header {
-    position: absolute;
-    z-index: 8888;
-    text-align: center;
-    min-height: 462px;
-    top: 0px;
-    width: 100%;
-    .header-bar {
-      height: 77px;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      padding-top: 20px;
-      a.logo {
-        width: 201px;
-        height: 76px;
-        background: image-url('../img/logo-mia.jpg') no-repeat;
-        background-size:cover;
-        display:none;
-        span {
-          display: none;
-        }
-      }
-      a.logo-monteverde {
-        width: 259px;
-        height: 76px;
-        background: image-url('../img/logo.png') no-repeat;
-        background-size:cover;
-        display: inline-block;
-        span {
-          display: none;
-        }
-      }
-    }
-    a.join {
-      position: relative;
-      top: 310px;
-      .bt-1();
-      text-shadow: 0px 0px 2px #000, 0px 0px 6px #000, 0px 0px 6px #000;
-    }
-    a.loginbtn {
-      .bt-1();
-      top:290px;
-      position: absolute;
-      left:42%;
-    }
-    #lm-home-social {
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
-      .lm-facebook {
-        &:hover {
-          color: @facebook;
-          background-color: transparent;
-        }
-      }
-      .lm-twitter{
-        &:hover {
-          color: #ccc;
-          background-color: transparent;
-        }
-      }
-      .lm-social-icons {
-        color: #fff;
-        font-size: 28px;
-        display: inline-block;
-        &:first-child {
-          margin-right: 10px;
-        }
-        &:hover {
-          text-shadow: 0 0 1px #ddd;
-          background-color: transparent;
-        }
-      }
 
+.pos-absolute{
+  position: absolute;
+}
+.margin-top{
+  margin-top: 10%;
+}
+
+.on-top{
+  z-index: 1000;
+  a.logo {
+    background: url('../img/logo-mia.jpg') no-repeat;
+    background-size:cover;
+    display:none;
+    span {
+      display: none;
+    }
+  }
+  a.logo-monteverde {
+    min-width: 286px;
+    min-height: 86px;
+    background: url('../img/logo.png') no-repeat;
+    background-size:cover;
+    display: inline-block;
+    span {
+      display: none;
     }
   }
 }
+a.loginbtn {
+  .bt-1();
+}
+a.join {
+  position: relative;
+  top: 310px;
+  .bt-1();
+  text-shadow: 0px 0px 2px #000, 0px 0px 6px #000, 0px 0px 6px #000;
+}
+
+.lm-facebook {
+  &:hover {
+    color: @facebook;
+    background-color: transparent;
+  }
+}
+.lm-twitter{
+  &:hover {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.lm-social-icons {
+  color: #fff;
+  font-size: 28px;
+  display: inline-block;
+  &:first-child {
+    margin-right: 10px;
+  }
+  &:hover {
+    text-shadow: 0 0 1px #ddd;
+    background-color: transparent;
+  }
+}
+
+
+
+
+
 
 .lee {
   margin-top: 30px;
@@ -176,18 +159,18 @@ a, a:hover{
 }
 
 #lm-dossier {
-  background: image-url('../img/icono_lee_el_dossier.png') center bottom no-repeat;
+  background: url('../img/icono_lee_el_dossier.png') center bottom no-repeat;
 }
 #lm-conoce {
-  background: image-url('../img/icono_conoce_mas.png') center bottom no-repeat;
+  background: url('../img/icono_conoce_mas.png') center bottom no-repeat;
 }
 
 #lm-activar {
-  background: image-url('../img/icono_activa_tu_circulo.png') center bottom no-repeat;
+  background: url('../img/icono_activa_tu_circulo.png') center bottom no-repeat;
 }
 #tigre {
   min-height: 280px;
-  background: image-url('../img/tigre.png') center 20px no-repeat;
+  background: url('../img/tigre.png') center 20px no-repeat;
   background-size: contain;
 }
 
@@ -360,7 +343,7 @@ a, a:hover{
   height: 100px;
 }
 #footer-info-home {
-  background: image-url('../img/taco_logo_foot.png')  center top no-repeat;
+  background: url('../img/taco_logo_foot.png')  center top no-repeat;
   //@include background-size(cover);
   height: 280px;
 }

@@ -9,80 +9,71 @@
 {% block content %}
 
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div id="wrapper" class="full">
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="row-fluid">
+	      <div class="col-lg-12 pos-absolute on-top text-center">
+	        <div class="col-lg-12 pull-left">
+		        <a class="logo" href="/home"><span>logo</span></a>
+			      <a class="logo-monteverde" href="/home"><span>logo</span></a>
+	        </div>
+		      <div class="col-lg-12 pull-left margin-top">
+		        <a class="loginbtn" href="#">Iniciar Sesion</a>
+		      </div>
+		      <div class="col-lg-12 pull-left margin-top">
+			      <a class="lm-social-icons lm-facebook" href="https://www.facebook.com/misionantiinflacion" target="_blank" title="facebook">
+					      <span class="icon-facebook2"></span>
+				    </a>
+		        <a class="lm-social-icons lm-twitter" href="mailto:mision@concejaldecalle.com.ar" title="twitter">
+			        <span class="icon-envelope"></span>
+			      </a>
+	          </div>
+	      </div>
 
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-              <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	        <ol class="carousel-indicators">
+	          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	          <li data-target="#myCarousel" data-slide-to="1"></li>
+	          <li data-target="#myCarousel" data-slide-to="2"></li>
+	          <li data-target="#myCarousel" data-slide-to="3"></li>
+	        </ol>
 
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-              <div class="active item">
-                <img src="{% static 'site/img/slide_1.jpg' %}" class="img-responsive">
-                <div class="carousel-caption">
-                  <span class="title">Más barato, más fácil, más justo.</span>
-                  <br>
-                  <span class="desc">Productores y consumidores vinculados de forma directa, eliminando intermediarios.</span>
-                </div>
-              </div>
-              <div class="item">
-                <img src="{% static 'site/img/slide_2_mision.jpg' %}" class="img-responsive">
-                <div class="carousel-caption">
-                  <span class="title"> Ahorrás hasta un 40%</span>
-                  <br>
-                  <span class="desc">Lo que en un hipermercado pagás $1255 con la misión lo conseguís por $835.</span>
-                </div>
-              </div>
-              <div class="item">
-                <img src="{% static 'site/img/slide_3.jpg' %}" class="img-responsive">
-                <div class="carousel-caption">
-                  <span class="title">La fuerza de la unión.</span>
-                  <br>
-                  <span class="desc">Cerca de tu casa, con gente de tu confianza y en un intercambio justo.</span>
-                </div>
-              </div>
-              <div class="item">
-                <img src="{% static 'site/img/slide_4.jpg' %}" class="img-responsive">
-                <div class="carousel-caption">
-                  <span class="title">Organizada, la vida es mejor.</span>
-                  <br>
-                  <span class="desc"> No más colas interminables, ofertas engañosas ni pérdidas de tiempo.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div id="header">
-            <div class="header-bar">
-              <div class="container">
-                <a class="logo" href="/home"><span>logo</span></a>
-                <a class="logo-monteverde" href="/home"><span>logo</span></a>
-              </div>
-            </div>
-            <div class="container">
-              <a class="loginbtn" href="#">Iniciar Sesion</a>
-            </div>
-            <div id="lm-home-social">
-              <a class="lm-social-icons lm-facebook" href="https://www.facebook.com/misionantiinflacion" target="_blank" title="facebook">
-                <span class="icon-facebook2"></span>
-              </a>
-              <a class="lm-social-icons lm-twitter" href="mailto:mision@concejaldecalle.com.ar" title="twitter">
-                <span class="icon-envelope"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          -->
-
-        </div>
-      </div>
+	        <!-- Carousel items -->
+	        <div class="carousel-inner">
+	          <div class="active item">
+	            <img src="{% static 'site/img/slide_1.jpg' %}" class="img-responsive">
+	            <div class="carousel-caption">
+	              <span class="title">Más barato, más fácil, más justo.</span>
+	              <br>
+	              <span class="desc">Productores y consumidores vinculados de forma directa, eliminando intermediarios.</span>
+	            </div>
+	          </div>
+	          <div class="item">
+	            <img src="{% static 'site/img/slide_2_mision.jpg' %}" class="img-responsive">
+	            <div class="carousel-caption">
+	              <span class="title"> Ahorrás hasta un 40%</span>
+	              <br>
+	              <span class="desc">Lo que en un hipermercado pagás $1255 con la misión lo conseguís por $835.</span>
+	            </div>
+	          </div>
+	          <div class="item">
+	            <img src="{% static 'site/img/slide_3.jpg' %}" class="img-responsive">
+	            <div class="carousel-caption">
+	              <span class="title">La fuerza de la unión.</span>
+	              <br>
+	              <span class="desc">Cerca de tu casa, con gente de tu confianza y en un intercambio justo.</span>
+	            </div>
+	          </div>
+	          <div class="item">
+	            <img src="{% static 'site/img/slide_4.jpg' %}" class="img-responsive">
+	            <div class="carousel-caption">
+	              <span class="title">Organizada, la vida es mejor.</span>
+	              <br>
+	              <span class="desc"> No más colas interminables, ofertas engañosas ni pérdidas de tiempo.</span>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
     </div>
+
 
     <div class="row">
       <div class="container">
