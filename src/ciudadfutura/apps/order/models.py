@@ -14,6 +14,7 @@ class Order(models.Model):
     status = models.CharField(max_length=32)
     total = models.DecimalField(max_digits=8, decimal_places=2)
     invoice = models.CharField(max_digits=255)
+    user = models.ForeignKey('ciudadfutura_auth.User', related_name='user')
     create_at = models.DateField(default=timezone.now)
     update_at = models.AutoDateTimeField(default=timezone.now)
 
@@ -34,3 +35,5 @@ class OrderItem(models.Model):
     product_market_price = models.DecimalField(max_digits=8, decimal_places=2)
     qty = models.IntegerField()
     row_total = property(_get_row_total())
+    create_at = models.DateField(default=timezone.now)
+    update_at = models.AutoDateTimeField(default=timezone.now)
