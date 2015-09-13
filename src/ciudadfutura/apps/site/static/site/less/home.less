@@ -11,6 +11,7 @@
 ///////////////////////////////////
 
 @import  'fonts.less';
+@import 'home-slice';
 
 @font-bold: 'liberation_sansbold';
 @font-reg: 'liberation_sansregular';
@@ -27,7 +28,6 @@
   border: 1px solid @color;
   padding: 10px 15px 10px 15px;
   background: transparent;
-  //display: block;
   &:hover {
     color: @color;
     background-color: @hover;
@@ -65,28 +65,6 @@ a, a:hover{
 }
 .margin-top{
   margin-top: 10%;
-}
-
-.on-top{
-  z-index: 1000;
-  a.logo {
-    background: url('../img/logo-mia.jpg') no-repeat;
-    background-size:cover;
-    display:none;
-    span {
-      display: none;
-    }
-  }
-  a.logo-monteverde {
-    min-width: 286px;
-    min-height: 86px;
-    background: url('../img/logo.png') no-repeat;
-    background-size:cover;
-    display: inline-block;
-    span {
-      display: none;
-    }
-  }
 }
 a.loginbtn {
   .bt-1();
@@ -362,41 +340,3 @@ a.join {
   z-index: 55;
 }
 
-
-// Carousel
-///////////////////////////////////
-
-#myCarousel {
-
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-    width: 100%;
-  }
-
-  .carousel-caption {
-
-    position: absolute;
-    bottom: 150px;
-    z-index: 600;
-    font-family: liberation_sansregular;
-    font-weight: 300;
-    font-size: 20px;
-    text-align: center;
-    line-height: 32px;
-    color: white;
-    width: 100%;
-    left: 0;
-
-    .title {
-      font-size: 32px;
-      line-height: 38px;
-      text-shadow: 0px 0px 3px #000, 0px 0px 8px #000, 0px 0px 8px #000;
-      padding: 4px 15px 4px 10px;
-    }
-    .desc {
-      margin-top: 10px;
-      font-size: 19px;
-      text-shadow: 0px 0px 2px #000, 0px 0px 6px #000, 0px 0px 6px #000;
-    }
-  }
-}

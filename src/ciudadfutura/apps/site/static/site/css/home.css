@@ -202,6 +202,64 @@
   -moz-osx-font-smoothing: grayscale;
   content: "\e644";
 }
+.carousel {
+  text-align: center;
+}
+.carousel .logo {
+  position: absolute;
+  z-index: 500;
+  width: 100%;
+  margin-top: 10px;
+}
+.carousel .logo .img-responsive {
+  margin: 0 auto;
+}
+.carousel .login {
+  position: absolute;
+  z-index: 500;
+  bottom: 30%;
+  width: 100%;
+}
+.carousel .social-logos {
+  position: absolute;
+  z-index: 500;
+  bottom: 5%;
+  width: 100%;
+}
+.carousel .carousel-caption {
+  z-index: 500;
+  bottom: 35%;
+  font-family: 'liberation_sansregular';
+  font-weight: 300;
+}
+.carousel .carousel-caption .title {
+  font-size: 35px;
+  text-shadow: 0px 0px 3px #000, 0px 0px 8px #000, 0px 0px 8px #000;
+}
+.carousel .carousel-caption .desc {
+  text-shadow: 0px 0px 2px #000, 0px 0px 6px #000, 0px 0px 6px #000;
+}
+.carousel .carousel-inner > .item > img,
+.carousel .carousel-inner > .item > a > img {
+  width: 100%;
+}
+.carousel .item img {
+  position: absolute;
+}
+.carousel .item img:first-child {
+  position: static;
+  z-index: 100;
+}
+.carousel .carousel-indicators {
+  bottom: 15%;
+  margin-left: -31%;
+}
+.carousel .carousel-indicators .active {
+  color: #b4a79c;
+}
+.carousel .carousel-indicators > * {
+  cursor: pointer;
+}
 body {
   background: url('../img/bg.png') repeat;
 }
@@ -217,27 +275,6 @@ a:hover {
 }
 .margin-top {
   margin-top: 10%;
-}
-.on-top {
-  z-index: 1000;
-}
-.on-top a.logo {
-  background: url('../img/logo-mia.jpg') no-repeat;
-  background-size: cover;
-  display: none;
-}
-.on-top a.logo span {
-  display: none;
-}
-.on-top a.logo-monteverde {
-  min-width: 286px;
-  min-height: 86px;
-  background: url('../img/logo.png') no-repeat;
-  background-size: cover;
-  display: inline-block;
-}
-.on-top a.logo-monteverde span {
-  display: none;
 }
 a.loginbtn {
   font-size: 14px;
@@ -520,32 +557,4 @@ a.join:hover {
   right: 0;
   text-transform: uppercase;
   z-index: 55;
-}
-#myCarousel .carousel-inner > .item > img,
-#myCarousel .carousel-inner > .item > a > img {
-  width: 100%;
-}
-#myCarousel .carousel-caption {
-  position: absolute;
-  bottom: 150px;
-  z-index: 600;
-  font-family: liberation_sansregular;
-  font-weight: 300;
-  font-size: 20px;
-  text-align: center;
-  line-height: 32px;
-  color: white;
-  width: 100%;
-  left: 0;
-}
-#myCarousel .carousel-caption .title {
-  font-size: 32px;
-  line-height: 38px;
-  text-shadow: 0px 0px 3px #000, 0px 0px 8px #000, 0px 0px 8px #000;
-  padding: 4px 15px 4px 10px;
-}
-#myCarousel .carousel-caption .desc {
-  margin-top: 10px;
-  font-size: 19px;
-  text-shadow: 0px 0px 2px #000, 0px 0px 6px #000, 0px 0px 6px #000;
 }
