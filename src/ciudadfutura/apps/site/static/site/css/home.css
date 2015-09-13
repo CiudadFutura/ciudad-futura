@@ -368,13 +368,13 @@ a.join:hover {
 .lee a:hover {
   background-color: transparent;
 }
-#lm-dossier {
+.lm-dossier {
   background: url('../img/icono_lee_el_dossier.png') center bottom no-repeat;
 }
-#lm-conoce {
+.lm-conoce {
   background: url('../img/icono_conoce_mas.png') center bottom no-repeat;
 }
-#lm-activar {
+.lm-activar {
   background: url('../img/icono_activa_tu_circulo.png') center bottom no-repeat;
 }
 #tigre {
