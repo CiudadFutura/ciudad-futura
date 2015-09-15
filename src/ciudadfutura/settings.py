@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'ciudadfutura.apps.cart.Config',
     'ciudadfutura.apps.product.Config',
     'ciudadfutura.apps.mision.Config',
+    'ciudadfutura.apps.order.Config',
 )
 
 MIDDLEWARE_CLASSES = (
