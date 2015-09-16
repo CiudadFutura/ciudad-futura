@@ -3,9 +3,9 @@ from django.db import models
 
 class Circle(models.Model):
 
-    user = models.ForeignKey('ciudadfutura_auth.User', related_name='leader')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    active_cycle = models.ForeignKey('ciudadfutura_mision.Cycle', related_name='circles', null=True)
 
 
 class Cycle(models.Model):
@@ -18,4 +18,3 @@ class Cycle(models.Model):
     delivery_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    circle = models.ForeignKey('ciudadfutura_mision.Circle', related_name='circles')
