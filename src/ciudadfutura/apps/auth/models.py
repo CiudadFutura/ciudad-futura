@@ -47,6 +47,10 @@ class Person(models.Model):
         max_length=255, verbose_name=_('Address')
     )
 
+    @property
+    def full_name(self):
+        return '%s, %s' % (self.last_name, self.first_name)
+
 
 class User(AbstractBaseUser):
 
