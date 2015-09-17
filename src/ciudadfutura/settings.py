@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party apps
+    'bootstrap3',
+
     # Project apps
     'ciudadfutura.apps.auth.Config',
     'ciudadfutura.apps.site.Config',
@@ -114,4 +117,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
 
 # Auth
+from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
+LOGIN_URL = reverse_lazy('admin-login')
