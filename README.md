@@ -31,9 +31,7 @@ gulp
 ```
 python manage.py makemessages -l es_AR
 ```
-
 2. Edit messages in the `django.po` file
-
 3. Compile messages (`django.mo`)
 ```
 python manage.py compilemessages -l es_AR
