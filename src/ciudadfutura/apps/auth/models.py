@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.utils.translation import ugettext as _
 
 
 class UserManager(BaseUserManager):
@@ -31,17 +30,30 @@ class UserManager(BaseUserManager):
 
 
 class Person(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    dni = models.IntegerField()
+    birthdate = models.DateField()
+    postal_code = models.CharField(max_length=9)
+    city = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    telephone = models.CharField(max_length=32)
+    cellphone = models.CharField(max_length=32)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField('ciudadfutura_auth.Tag')
     address = models.CharField(
         max_length=255, verbose_name=_('Address')
     )
 
 
 class User(AbstractBaseUser):
+
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    legacy = models.TextField()
 
     USERNAME_FIELD = 'email'
 
@@ -57,6 +69,10 @@ class User(AbstractBaseUser):
 
     def get_short_name(self):
         return self.name or self.email
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
 
 
 class Profile(models.Model):
@@ -81,5 +97,5 @@ class Supplier(Profile):
 
 class MisionMember(Profile):
     user = models.ForeignKey('ciudadfutura_auth.User', related_name='member')
-    circle = models.ForeignKey('ciudadfutura_mision.Circle', null=True, blank=True)
+    circle = models.ForeignKey('ciudadfutura_mision.Circle', null=True, blank=True, related_name='member')
     is_lead = models.BooleanField(default=False)
