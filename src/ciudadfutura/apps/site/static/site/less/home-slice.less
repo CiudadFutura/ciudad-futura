@@ -1,0 +1,63 @@
+@zindex : 500;
+
+.carousel{
+  text-align: center;
+  .logo{
+    position: absolute;
+    z-index: @zindex;
+    width: 100%;
+    margin-top: 10px;
+    .img-responsive{
+      margin: 0 auto;
+    }
+  }
+  .login{
+    position: absolute;
+    z-index: @zindex;
+    bottom: 30%;
+    width: 100%;
+  }
+  .social-logos{
+    position: absolute;
+    z-index: @zindex;
+    bottom: 5%;
+    width: 100%;
+  }
+  .carousel-caption {
+    z-index: @zindex;
+    bottom: 35%;
+    font-family: 'liberation_sansregular';
+    font-weight: 300;
+    .title {
+      font-size: 35px;
+      text-shadow: 0px 0px 3px #000, 0px 0px 8px #000, 0px 0px 8px #000;
+    }
+    .desc {
+      text-shadow: 0px 0px 2px #000, 0px 0px 6px #000, 0px 0px 6px #000;
+    }
+  }
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 100%;
+  }
+  .item{
+    img {
+      position: absolute;
+      &:first-child {
+        position: static; z-index: 100;
+      }
+    }
+  }
+  .carousel-indicators {
+    bottom: 15%;
+    margin-left: -31%;
+    .active{
+      color:darken(#CAC1B9, 10%);
+    }
+    > * {
+      cursor: pointer;
+    }
+  }
+}
+
+
