@@ -67,7 +67,7 @@ msgstr "Ciudad Futura"
 
 #: ciudadfutura/apps/mision/templates/mision/base_admin.html:24
 msgid "People"
-msgstr "Persona"
+msgstr "Personass"
 
 #: ciudadfutura/apps/mision/templates/mision/base_admin.html:30
 msgid "Logout"
