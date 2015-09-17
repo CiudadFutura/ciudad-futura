@@ -35,13 +35,14 @@ class Person(models.Model):
     dni = models.IntegerField()
     birthdate = models.DateField()
     postal_code = models.CharField(max_length=9)
-    city = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
     telephone = models.CharField(max_length=32)
     cellphone = models.CharField(max_length=32)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField('ciudadfutura_auth.Tag')
+
+    city = models.CharField(max_length=255)
+    country = models.CharField(max_length=255, default='AR')
     address = models.CharField(
         max_length=255, verbose_name=_('Address')
     )
