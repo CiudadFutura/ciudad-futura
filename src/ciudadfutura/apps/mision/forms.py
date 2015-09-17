@@ -27,4 +27,4 @@ class PersonForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = ['address']
+        exclude = ['tags', 'created_at', 'updated_at']
