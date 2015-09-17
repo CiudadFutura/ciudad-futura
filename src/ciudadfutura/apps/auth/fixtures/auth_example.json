@@ -1,0 +1,35 @@
+[
+{
+    "pk": 1,
+    "model": "ciudadfutura_auth.Tag",
+    "fields": {
+        "name": "..."
+    }
+},
+{
+    "pk": 2,
+    "model": "ciudadfutura_auth.Tag",
+    "fields": {
+        "name": "..."
+    }
+},
+{
+    "pk": 1,
+    "model": "ciudadfutura_auth.Person",
+    "fields": {
+        "first_name": "...",
+        "last_name": "...",
+        "dni": 1234,
+        "birthdate": "YYYY-MM-DD",
+        "postal_code": "...",
+        "telephone": "...",
+        "cellphone": "...",
+        "created_at": "YYYY-MM-DDThh:mm:ssZ",
+        "updated_at": "YYYY-MM-DDThh:mm:ssZ",
+        "tags": [1, 2],
+        "city": "...",
+        "country": "AR",
+        "address": "..."
+    }
+},
+]
