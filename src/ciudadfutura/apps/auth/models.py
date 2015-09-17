@@ -34,7 +34,6 @@ class Person(models.Model):
     last_name = models.CharField(max_length=255)
     dni = models.IntegerField()
     birthdate = models.DateField()
-    address = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=9)
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
@@ -43,6 +42,9 @@ class Person(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField('ciudadfutura_auth.Tag')
+    address = models.CharField(
+        max_length=255, verbose_name=_('Address')
+    )
 
 
 class User(AbstractBaseUser):
