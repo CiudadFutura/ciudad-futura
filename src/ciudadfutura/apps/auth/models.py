@@ -31,11 +31,11 @@ class UserManager(BaseUserManager):
 
 class Person(models.Model):
     first_name = models.CharField(max_length=255)
-    second_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     dni = models.IntegerField()
-    birth_date = models.DateField()
+    birthdate = models.DateField()
     address = models.CharField(max_length=255)
-    zip_code = models.CharField(max_length=9)
+    postal_code = models.CharField(max_length=9)
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
     telephone = models.CharField(max_length=32)
@@ -51,17 +51,8 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    reset_password_token = models.CharField()
-    reset_password_sent_at = models.DateTimeField()
-    confirmed_at = models.DateTimeField()
-    confirmation_token = models.CharField()
-    confirmation_sent_at = models.DateTimeField()
-    unconfirmed_email = models.CharField()
-    sign_in_count = models.IntegerField()
-    current_sign_in_at = models.DateTimeField()
-    last_sign_in_at = models.DateTimeField()
-    current_sign_in_ip = models.CharField()
-    last_sign_in_ip = models.CharField()
+    last_login = models.DateTimeField()
+    legacy = models.TextField
 
     USERNAME_FIELD = 'email'
 
@@ -105,5 +96,5 @@ class Supplier(Profile):
 
 class MisionMember(Profile):
     user = models.ForeignKey('ciudadfutura_auth.User', related_name='member')
-    circle = models.ForeignKey('ciudadfutura_mision.Circle', related_name='circles')
+    circle = models.ForeignKey('ciudadfutura_mision.Circle', null=True, blank=True, related_name='member')
     is_lead = models.BooleanField(default=False)
