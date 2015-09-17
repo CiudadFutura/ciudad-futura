@@ -51,7 +51,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    legacy = models.TextField
+    legacy = models.TextField()
 
     USERNAME_FIELD = 'email'
 
