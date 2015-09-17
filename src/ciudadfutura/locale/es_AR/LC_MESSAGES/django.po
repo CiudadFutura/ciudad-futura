@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-17 17:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ciudadfutura/apps/auth/models.py:35
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:17
+msgid "Address"
+msgstr "Dirección"
+
+#: ciudadfutura/apps/mision/forms.py:12
+msgid "Email"
+msgstr "Email"
+
+#: ciudadfutura/apps/mision/forms.py:17
+msgid "Password"
+msgstr "Contraseña"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_login.html:9
+msgid "Login"
+msgstr "Login"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_login.html:12
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_form.html:9
+msgid "Save"
+msgstr "Guardar"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:9
+msgid "Create"
+msgstr "Crear"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:16
+msgid "ID"
+msgstr "ID"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:29
+msgid "Delete"
+msgstr "Borrar"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:34
+msgid "Edit"
+msgstr "Editar"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:40
+msgid "No people found."
+msgstr "No se encontraron personas."
+
+#: ciudadfutura/apps/mision/templates/mision/base_admin.html:18
+msgid "Ciudad Futura"
+msgstr "Ciudad Futura"
+
+#: ciudadfutura/apps/mision/templates/mision/base_admin.html:24
+msgid "People"
+msgstr "Persona"
+
+#: ciudadfutura/apps/mision/templates/mision/base_admin.html:30
+msgid "Logout"
+msgstr "Logout"
+
+#: ciudadfutura/apps/mision/templates/mision/base_public.html:6
+msgid "Register"
+msgstr "Registrarse"
+
+#: ciudadfutura/apps/mision/views.py:24
+msgid "You have successfully logged out."
+msgstr "Sesión finalizada exitosamente."
+
+#: ciudadfutura/apps/mision/views.py:42
+msgid "Authentication succeed."
+msgstr "Autenticación exitosa."
+
+#: ciudadfutura/apps/mision/views.py:45
+msgid "Authentication failed."
+msgstr "Error en la autenticación"
+
+#: ciudadfutura/apps/mision/views.py:80
+msgid "Person successfully saved."
+msgstr "La persona se guardo exitosamente."
+
+#: ciudadfutura/apps/mision/views.py:98
+msgid "Person successfully deleted."
+msgstr "La persona se eliminó exitosamente"
+
+#: ciudadfutura/apps/order/models.py:7
+msgid "Canceled"
+msgstr "Cancelada"
+
+#: ciudadfutura/apps/order/models.py:8
+msgid "Status #2"
+msgstr "Status #2"
+
+#: ciudadfutura/apps/order/models.py:9
+msgid "Status #1"
+msgstr "Status #1"
