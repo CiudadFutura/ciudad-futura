@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils.translation import ugettext as _
 
 
 class UserManager(BaseUserManager):
@@ -30,7 +31,9 @@ class UserManager(BaseUserManager):
 
 
 class Person(models.Model):
-    address = models.CharField(max_length=255)
+    address = models.CharField(
+        max_length=255, verbose_name=_('Address')
+    )
 
 
 class User(AbstractBaseUser):

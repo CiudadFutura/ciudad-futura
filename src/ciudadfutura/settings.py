@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party apps
+    'bootstrap3',
+
     # Project apps
     'ciudadfutura.apps.auth.Config',
     'ciudadfutura.apps.site.Config',
@@ -96,7 +99,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es_AR'
 
 TIME_ZONE = 'UTC'
 
@@ -106,6 +110,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'ciudadfutura', 'locale/'),
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -114,4 +122,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
 
 # Auth
+from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
+LOGIN_URL = reverse_lazy('admin-login')
