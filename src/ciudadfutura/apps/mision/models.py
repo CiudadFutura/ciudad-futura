@@ -5,7 +5,7 @@ class Circle(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    active_shopping_cycle = models.ForeignKey('ciudadfutura_mision.ShoppingCycle', related_name='circles', null=True)
+    shopping_cycle = models.ForeignKey('ciudadfutura_mision.ShoppingCycle', related_name='circles', null=True)
 
 
 class ShoppingCycle(models.Model):
