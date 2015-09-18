@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-17 17:45+0000\n"
+"POT-Creation-Date: 2015-09-18 19:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,16 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ciudadfutura/apps/auth/models.py:35
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:17
+#: ciudadfutura/apps/auth/models.py:46
 msgid "Address"
 msgstr "Dirección"
 
-#: ciudadfutura/apps/mision/forms.py:12
+#: ciudadfutura/apps/auth/models.py:49
+msgid "Contribution"
+msgstr "Aporte a ciudad futura"
+
+#: ciudadfutura/apps/auth/models.py:52
+msgid "Relationships"
+msgstr "Vinculos"
+
+#: ciudadfutura/apps/mision/forms.py:13
 msgid "Email"
 msgstr "Email"
 
-#: ciudadfutura/apps/mision/forms.py:17
+#: ciudadfutura/apps/mision/forms.py:18
 msgid "Password"
 msgstr "Contraseña"
 
@@ -46,18 +53,22 @@ msgid "Create"
 msgstr "Crear"
 
 #: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:16
-msgid "ID"
-msgstr "ID"
+msgid "DNI"
+msgstr ""
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:29
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:17
+msgid "Name"
+msgstr ""
+
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:28
 msgid "Delete"
 msgstr "Borrar"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:34
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:32
 msgid "Edit"
 msgstr "Editar"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:40
+#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:38
 msgid "No people found."
 msgstr "No se encontraron personas."
 
@@ -108,3 +119,6 @@ msgstr "Status #2"
 #: ciudadfutura/apps/order/models.py:9
 msgid "Status #1"
 msgstr "Status #1"
+
+#~ msgid "ID"
+#~ msgstr "ID"

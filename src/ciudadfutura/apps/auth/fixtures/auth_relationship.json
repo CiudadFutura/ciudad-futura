@@ -1,0 +1,30 @@
+[
+{
+    "pk": 1,
+    "model": "ciudadfutura_auth.Relationship",
+    "fields": {
+        "name": "Ciudadano"
+    }
+},
+{
+    "pk": 2,
+    "model": "ciudadfutura_auth.Relationship",
+    "fields": {
+        "name": "Mision"
+    }
+},
+{
+    "pk": 3,
+    "model": "ciudadfutura_auth.Relationship",
+    "fields": {
+        "name": "D7"
+    }
+},
+{
+    "pk": 4,
+    "model": "ciudadfutura_auth.Relationship",
+    "fields": {
+        "name": "Afiliado"
+    }
+}
+]

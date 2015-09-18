@@ -40,11 +40,16 @@ class Person(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField('ciudadfutura_auth.Tag')
-
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255, default='AR')
     address = models.CharField(
         max_length=255, verbose_name=_('Address')
+    )
+    contribution = models.TextField(
+        null=True, verbose_name=_('Contribution'), blank=True
+    )
+    relationships = models.ManyToManyField(
+        'ciudadfutura_auth.Relationship', verbose_name=_('Relationships')
     )
 
     @property
@@ -58,6 +63,8 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+
+    # json
     legacy = models.TextField()
 
     USERNAME_FIELD = 'email'
@@ -78,6 +85,13 @@ class User(AbstractBaseUser):
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
+
+
+class Relationship(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class Profile(models.Model):

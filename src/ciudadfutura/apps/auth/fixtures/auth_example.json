@@ -29,7 +29,9 @@
         "tags": [1, 2],
         "city": "...",
         "country": "AR",
-        "address": "..."
+        "address": "...",
+        "contribution": "...",
+        "relationships": [1, 2, 3, 4]
     }
 },
 ]

@@ -25,6 +25,12 @@ npm install -g gulp
 gulp
 ```
 
+## Load fixtures
+
+```
+python manage.py loaddata auth_relationship
+```
+
 ## i18n
 
 1. Make messages (`django.po`): Runs over the entire source tree of the current directory and pulls out all strings marked for translation.

@@ -40,5 +40,6 @@ class PersonForm(forms.ModelForm):
             'tags', 'created_at', 'updated_at', 'country'
         ]
         widgets = {
-            'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES)
+            'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
+            'relationships': forms.CheckboxSelectMultiple,
         }
