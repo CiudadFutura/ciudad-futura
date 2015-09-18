@@ -9,37 +9,61 @@
        {% trans 'Create' %}
     </a>
   </div>
-  <div class="table-responsive">
-    <table class="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th>{% trans 'DNI' %}</th>
-          <th>{% trans 'Name' %}</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for result in results %}
-        <tr>
-          <td>{{ result.dni }}</td>
-          <td>{{ result.full_name }}</td>
-          <td>
-            <a href="{% url 'admin-person-delete' result.id %}" class="btn btn-danger btn-xs">
-              <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
-            </a>
-            &nbsp;
-            <a href="{% url 'admin-person-edit' result.id %}" class="btn btn-default btn-xs">
-              <i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
-            </a>
-          </td>
-        </tr>
-        {% empty %}
-        <tr class="info">
-          <td colspan="4">{% trans 'No people found.' %}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-md-3">
+      <form method="get">
+        <ul class="list-group">
+          <input  class="btn btn-success btn-block" type="submit" value="{% trans 'Filter' %}">
+          {% for tag in tags %}
+          <li class="list-group-item">
+            <input {% if tag.id in selected %}checked="checked"{% endif %} type="checkbox" name="tags" value="{{ tag.id }}">&nbsp;{{ tag.name }}
+          </li>
+          {% endfor %}
+        </ul>
+      </form>
+    </div>
+    <div class="col-md-9">
+      <div class="table-responsive">
+
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>{% trans 'DNI' %}</th>
+              <th>{% trans 'Name' %}</th>
+              <th>{% trans 'Tags' %}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in results %}
+            <tr>
+              <td>{{ result.dni }}</td>
+              <td>{{ result.full_name }}</td>
+              <td>
+                {% for tag in result.tags.all %}
+                <span class="badge badge-primary">{{ tag.name }}</span>
+                {% endfor %}
+              </td>
+              <td>
+                <a href="{% url 'admin-person-delete' result.id %}" class="btn btn-danger btn-xs">
+                  <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
+                </a>
+                &nbsp;
+                <a href="{% url 'admin-person-edit' result.id %}" class="btn btn-default btn-xs">
+                  <i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr class="info">
+              <td colspan="4">{% trans 'No people found.' %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 

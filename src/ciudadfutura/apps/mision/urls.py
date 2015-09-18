@@ -18,6 +18,22 @@ urlpatterns = [
     url(r'^admin/logout/$',
         views.admin_logout,
         name='admin-logout'),
+
+    # Tags urls
+    url(r'^admin/tag/$',
+        views.admin_tag_list,
+        name='admin-tag-list'),
+    url(r'^admin/tag/create/$',
+        views.admin_tag_form,
+        name='admin-tag-create'),
+    url(r'^admin/tag/(?P<tag_id>\d+)/edit/$',
+        views.admin_tag_form,
+        name='admin-tag-edit'),
+    url(r'^admin/tag/(?P<tag_id>\d+)/delete/$',
+        views.admin_tag_delete,
+        name='admin-tag-delete'),
+
+    # Person urls
     url(r'^admin/person/$',
         views.admin_person_list,
         name='admin-person-list'),

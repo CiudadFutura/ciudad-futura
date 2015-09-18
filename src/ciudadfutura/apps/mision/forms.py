@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from ciudadfutura.apps.auth.models import Person
+from ciudadfutura.apps.auth.models import Person, Tag
 from django.utils import timezone
 
 class LoginForm(forms.Form):
@@ -37,9 +37,16 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         exclude = [
-            'tags', 'created_at', 'updated_at', 'country'
+            'created_at', 'updated_at', 'country'
         ]
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
             'relationships': forms.CheckboxSelectMultiple,
+            'tags': forms.CheckboxSelectMultiple,
         }
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        exclude = []

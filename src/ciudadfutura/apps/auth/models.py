@@ -39,7 +39,9 @@ class Person(models.Model):
     cellphone = models.CharField(max_length=32)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tags = models.ManyToManyField('ciudadfutura_auth.Tag')
+    tags = models.ManyToManyField(
+        'ciudadfutura_auth.Tag', verbose_name=_('Tags'), blank=True
+    )
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255, default='AR')
     address = models.CharField(
@@ -86,6 +88,8 @@ class User(AbstractBaseUser):
 class Tag(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
 
 class Relationship(models.Model):
     name = models.CharField(max_length=255)

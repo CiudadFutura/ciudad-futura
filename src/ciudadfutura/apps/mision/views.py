@@ -2,8 +2,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from ciudadfutura.decorators import staff_required
-from ciudadfutura.apps.auth.models import Person
-from .forms import LoginForm, PersonForm
+from ciudadfutura.mixins import StaffMixin
+from ciudadfutura.apps.auth.models import Person, Tag
+from .forms import LoginForm, PersonForm, TagForm
 
 
 def index(request):
@@ -60,8 +61,18 @@ def admin_dashboard(request):
 
 @staff_required
 def admin_person_list(request):
+    selected = [
+        int(tag_id) for tag_id in request.GET.getlist('tags')
+    ]
+
+    results = Person.objects.all()
+    if selected:
+        results = results.filter(tags__in=selected)
+
     return render(request, 'mision/admin_person_list.html', {
-        'results': Person.objects.all()
+        'results': results,
+        'tags': Tag.objects.all(),
+        'selected': selected
     })
 
 
@@ -97,3 +108,38 @@ def admin_person_delete(request, person_id):
     Person.objects.get(id=person_id).delete()
     messages.success(request, _('Person successfully deleted.'))
     return redirect('admin-person-list')
+
+
+@staff_required
+def admin_tag_list(request):
+    return render(request, 'mision/admin_tag_list.html', {
+        'results': Tag.objects.all()
+    })
+
+
+@staff_required
+def admin_tag_delete(request, tag_id):
+    Tag.objects.get(id=tag_id).delete()
+    messages.success(request, _('Tag successfully deleted.'))
+    return redirect('admin-tag-list')
+
+
+@staff_required
+def admin_tag_form(request, tag_id=None):
+    tag = None
+
+    if tag_id is not None:
+        tag = Tag.objects.get(id=tag_id)
+
+    if request.POST:
+        form = TagForm(request.POST, instance=tag)
+        if form.is_valid():
+            tag = form.save()
+            messages.success(request, _('Person successfully saved.'))
+            return redirect('admin-tag-list')
+    else:
+        form = TagForm(instance=tag)
+
+    return render(request, 'mision/admin_tag_form.html', {
+        'form': form,
+    })
