@@ -135,7 +135,7 @@ def admin_tag_form(request, tag_id=None):
         form = TagForm(request.POST, instance=tag)
         if form.is_valid():
             tag = form.save()
-            messages.success(request, _('Person successfully saved.'))
+            messages.success(request, _('Tag successfully saved.'))
             return redirect('admin-tag-list')
     else:
         form = TagForm(instance=tag)
