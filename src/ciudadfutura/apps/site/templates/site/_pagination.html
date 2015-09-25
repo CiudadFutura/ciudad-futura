@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<div class="text-center">
+  <ul class="pagination pagination-centered">
+    {% if results.has_previous %}
+      <li><a href="?page=1">&laquo;&laquo;</a></li>
+      <li><a href="?page={{ results.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><a>&laquo;&laquo;</a></li>
+      <li class="disabled"><a>&laquo;</a></li>
+    {% endif %}
+
+    <li class="disabled">
+      <a>
+        {% blocktrans with page=results.number total=results.paginator.num_pages %}
+          Page {{ page }} of {{ total }}
+        {% endblocktrans %}
+      </a>
+    </li>
+
+    {% if results.has_next %}
+      <li><a href="?page={{ results.next_page_number }}">&raquo;</a></li>
+      <li><a href="?page={{ results.paginator.num_pages }}">&raquo;&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><a>&raquo;</a></li>
+      <li class="disabled"><a>&raquo;&raquo;</a></li>
+    {% endif %}
+  </ul>
+</div>

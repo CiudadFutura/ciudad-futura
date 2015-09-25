@@ -1,27 +1,30 @@
+from uuid import uuid1 as generate_unique_username
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils.translation import ugettext as _
+from django.db.models.signals import pre_save
+
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password, **extra_fields):
-        user = self.model(email=email, **extra_fields)
+    def create_user(self, username, password, **extra_fields):
+        user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.is_staff = False
         user.is_admin = False
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password, **extra_fields):
-        user = self.model(email=email, **extra_fields)
+    def create_superuser(self, username, password, **extra_fields):
+        user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.is_staff = True
         user.is_admin = True
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, password, **extra_fields):
-        user = self.model(email=email, **extra_fields)
+    def create_staffuser(self, username, password, **extra_fields):
+        user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.is_staff = True
         user.is_admin = False
@@ -29,51 +32,60 @@ class UserManager(BaseUserManager):
         return user
 
 
-class Person(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    dni = models.IntegerField()
-    birthdate = models.DateField()
-    postal_code = models.CharField(max_length=9)
-    telephone = models.CharField(max_length=32)
-    cellphone = models.CharField(max_length=32)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+class User(AbstractBaseUser):
+
+    # General info
+    dni = models.IntegerField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    birthdate = models.DateField(null=True, blank=True)
+    postal_code = models.CharField(max_length=9, null=True, blank=True)
+    telephone = models.CharField(max_length=32, null=True, blank=True)
+    cellphone = models.CharField(max_length=32, null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    country = models.CharField(max_length=255, default='AR')
+    address = models.CharField(
+        max_length=255, verbose_name=_('Address'), null=True, blank=True
+    )
+
+    # Taxonomy
+    contribution = models.TextField(
+        verbose_name=_('Contribution'), null=True, blank=True
+    )
     tags = models.ManyToManyField(
         'ciudadfutura_auth.Tag', verbose_name=_('Tags'), blank=True
     )
-    city = models.CharField(max_length=255)
-    country = models.CharField(max_length=255, default='AR')
-    address = models.CharField(
-        max_length=255, verbose_name=_('Address')
-    )
-    contribution = models.TextField(
-        null=True, verbose_name=_('Contribution'), blank=True
-    )
     relationships = models.ManyToManyField(
-        'ciudadfutura_auth.Relationship', verbose_name=_('Relationships')
+        'ciudadfutura_auth.Relationship',
+        verbose_name=_('Relationships'),
+        blank=True
     )
 
-    @property
-    def full_name(self):
-        return '%s, %s' % (self.last_name, self.first_name)
-
-
-class User(AbstractBaseUser):
-
-    name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
+    # Authentication
+    username = models.CharField(unique=True, max_length=255)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
-    # json
+    # Changes tracking
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+
+    # Legacy data from old database (serialized as json)
     legacy = models.TextField()
 
-    USERNAME_FIELD = 'email'
-
-    person = models.OneToOneField('ciudadfutura_auth.Person', null=True, default=None)
+    USERNAME_FIELD = 'username'
 
     objects = UserManager()
+
+    @property
+    def full_name(self):
+        return ', '.join([
+            n for n in [self.last_name, self.first_name] if n
+        ]) or None
+
+    # Alias
+    name = full_name
 
     def has_module_perms(self, module):
         return self.is_admin
@@ -82,19 +94,20 @@ class User(AbstractBaseUser):
         return self.is_admin
 
     def get_short_name(self):
-        return self.name or self.email
+        return self.first_name or self.email
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
+
 
 class Relationship(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -120,5 +133,29 @@ class Supplier(Profile):
 
 class MisionMember(Profile):
     user = models.ForeignKey('ciudadfutura_auth.User', related_name='member')
-    circle = models.ForeignKey('ciudadfutura_mision.Circle', null=True, blank=True, related_name='member')
+    circle = models.ForeignKey(
+        'ciudadfutura_mision.Circle',
+        null=True,
+        blank=True,
+        related_name='member'
+    )
     is_lead = models.BooleanField(default=False)
+
+
+def set_username_and_email(sender, instance, **kwargs):
+
+    # Means that was created via username
+    if instance.username:
+        instance.email = instance.username
+
+    # Means that was created via email (no username)
+    elif instance.email:
+        instance.username = instance.email
+
+    # Means that was created without username nor email
+    elif not instance.email and not instance.username:
+        instance.username = generate_unique_username()
+
+
+# Attach signals
+pre_save.connect(set_username_and_email, sender='ciudadfutura_auth.User')

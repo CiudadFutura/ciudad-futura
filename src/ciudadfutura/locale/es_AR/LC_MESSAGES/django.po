@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-18 19:09+0000\n"
+"POT-Creation-Date: 2015-09-25 00:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,19 +16,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ciudadfutura/apps/auth/models.py:46
+#: ciudadfutura/apps/auth/models.py:49
 msgid "Address"
 msgstr "Dirección"
 
-#: ciudadfutura/apps/auth/models.py:49
+#: ciudadfutura/apps/auth/models.py:54
 msgid "Contribution"
 msgstr "Aporte a ciudad futura"
 
-#: ciudadfutura/apps/auth/models.py:52
+#: ciudadfutura/apps/auth/models.py:57
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:35
+#: ciudadfutura/apps/mision/templates/mision/base_admin.html:25
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: ciudadfutura/apps/auth/models.py:61
 msgid "Relationships"
 msgstr "Vinculos"
 
 #: ciudadfutura/apps/mision/forms.py:13
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:34
 msgid "Email"
 msgstr "Email"
 
@@ -44,43 +51,72 @@ msgstr "Login"
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_form.html:9
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_form.html:9
+#: ciudadfutura/apps/mision/templates/mision/admin_user_form.html:9
 msgid "Save"
 msgstr "Guardar"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:9
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:9
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:9
 msgid "Create"
 msgstr "Crear"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:16
-msgid "DNI"
-msgstr ""
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:16
+msgid "ID"
+msgstr "ID"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:17
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:17
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:33
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:28
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:28
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:52
 msgid "Delete"
 msgstr "Borrar"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:32
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:32
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:56
 msgid "Edit"
 msgstr "Editar"
 
-#: ciudadfutura/apps/mision/templates/mision/admin_person_list.html:38
-msgid "No people found."
-msgstr "No se encontraron personas."
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:38
+msgid "No tags found."
+msgstr "No se encontraron etiquetas."
+
+#: ciudadfutura/apps/mision/templates/mision/admin_tag_list.html:57
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:82
+#, python-format
+msgid ""
+"\n"
+"            Page %(page)s of %(total)s\n"
+"          "
+msgstr ""
+"\n"
+"            Página %(page)s de %(total)s\n"
+"          "
+
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:16
+msgid "Filter"
+msgstr "Filtro"
+
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:32
+msgid "DNI"
+msgstr ""
+
+#: ciudadfutura/apps/mision/templates/mision/admin_user_list.html:62
+msgid "No users found."
+msgstr "No se encontraron usuarios."
 
 #: ciudadfutura/apps/mision/templates/mision/base_admin.html:18
 msgid "Ciudad Futura"
 msgstr "Ciudad Futura"
 
 #: ciudadfutura/apps/mision/templates/mision/base_admin.html:24
-msgid "People"
-msgstr "Personas"
+msgid "Users"
+msgstr "Usuarios"
 
-#: ciudadfutura/apps/mision/templates/mision/base_admin.html:30
+#: ciudadfutura/apps/mision/templates/mision/base_admin.html:31
 msgid "Logout"
 msgstr "Logout"
 
@@ -88,25 +124,33 @@ msgstr "Logout"
 msgid "Register"
 msgstr "Registrarse"
 
-#: ciudadfutura/apps/mision/views.py:24
+#: ciudadfutura/apps/mision/views.py:25
 msgid "You have successfully logged out."
 msgstr "Sesión finalizada exitosamente."
 
-#: ciudadfutura/apps/mision/views.py:42
+#: ciudadfutura/apps/mision/views.py:43
 msgid "Authentication succeed."
 msgstr "Autenticación exitosa."
 
-#: ciudadfutura/apps/mision/views.py:45
+#: ciudadfutura/apps/mision/views.py:46
 msgid "Authentication failed."
 msgstr "Error en la autenticación"
 
-#: ciudadfutura/apps/mision/views.py:80
-msgid "Person successfully saved."
-msgstr "La persona se guardo exitosamente."
+#: ciudadfutura/apps/mision/views.py:91
+msgid "User successfully saved."
+msgstr "La usera se guardo exitosamente."
 
-#: ciudadfutura/apps/mision/views.py:98
-msgid "Person successfully deleted."
-msgstr "La persona se eliminó exitosamente"
+#: ciudadfutura/apps/mision/views.py:109
+msgid "User successfully deleted."
+msgstr "El usuario se eliminó exitosamente"
+
+#: ciudadfutura/apps/mision/views.py:123
+msgid "Tag successfully deleted."
+msgstr "La etiqueta se eliminó exitosamente"
+
+#: ciudadfutura/apps/mision/views.py:138
+msgid "Tag successfully saved."
+msgstr "La etiqueta se guardo exitosamente."
 
 #: ciudadfutura/apps/order/models.py:7
 msgid "Canceled"
@@ -120,5 +164,8 @@ msgstr "Status #2"
 msgid "Status #1"
 msgstr "Status #1"
 
-#~ msgid "ID"
-#~ msgstr "ID"
+#~ msgid "People"
+#~ msgstr "Users"
+
+#~ msgid "No people found."
+#~ msgstr "No se encontraron usuarios."

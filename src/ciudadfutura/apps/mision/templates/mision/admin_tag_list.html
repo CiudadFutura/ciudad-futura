@@ -1,5 +1,5 @@
 {% extends 'mision/base_admin.html' %}
-{% load i18n %}
+{% load i18n site_tags %}
 
 {% block content %}
 
@@ -41,6 +41,7 @@
       </tbody>
     </table>
   </div>
+  {% pagination results %}
 </div>
 
 

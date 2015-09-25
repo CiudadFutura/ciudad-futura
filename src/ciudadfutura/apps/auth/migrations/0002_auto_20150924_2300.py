@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='misionmember',
             name='circle',
-            field=models.ForeignKey(blank=True, to='ciudadfutura_mision.Circle', null=True),
+            field=models.ForeignKey(related_name='member', blank=True, to='ciudadfutura_mision.Circle', null=True),
         ),
         migrations.AddField(
             model_name='misionmember',
@@ -41,7 +41,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='user',
-            name='person',
-            field=models.OneToOneField(to='ciudadfutura_auth.Person'),
+            name='relationships',
+            field=models.ManyToManyField(to='ciudadfutura_auth.Relationship', verbose_name='Vinculos', blank=True),
+        ),
+        migrations.AddField(
+            model_name='user',
+            name='tags',
+            field=models.ManyToManyField(to='ciudadfutura_auth.Tag', verbose_name='Tags', blank=True),
         ),
     ]

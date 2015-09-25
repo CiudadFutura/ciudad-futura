@@ -2,9 +2,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from ciudadfutura.decorators import staff_required
-from ciudadfutura.mixins import StaffMixin
-from ciudadfutura.apps.auth.models import Person, Tag
-from .forms import LoginForm, PersonForm, TagForm
+from ciudadfutura.apps.auth.models import User, Tag
+from ciudadfutura.utils import paginate
+from .forms import LoginForm, UserForm, TagForm
 
 
 def index(request):
@@ -60,60 +60,60 @@ def admin_dashboard(request):
 
 
 @staff_required
-def admin_person_list(request):
+def admin_user_list(request):
     selected = [
         int(tag_id) for tag_id in request.GET.getlist('tags')
     ]
 
-    results = Person.objects.all()
+    results = User.objects.all()
     if selected:
         results = results.filter(tags__in=selected)
 
-    return render(request, 'mision/admin_person_list.html', {
-        'results': results,
+    return render(request, 'mision/admin_user_list.html', {
+        'results': paginate(request.GET, results),
         'tags': Tag.objects.all(),
         'selected': selected
     })
 
 
 @staff_required
-def admin_person_form(request, person_id=None):
+def admin_user_form(request, user_id=None):
 
-    person = None
+    user = None
 
-    if person_id is not None:
-        person = Person.objects.get(id=person_id)
+    if user_id is not None:
+        user = User.objects.get(id=user_id)
 
     if request.POST:
-        form = PersonForm(request.POST, instance=person)
+        form = UserForm(request.POST, instance=user)
         if form.is_valid():
-            person = form.save()
-            messages.success(request, _('Person successfully saved.'))
-            return redirect('admin-person-list')
+            user = form.save()
+            messages.success(request, _('User successfully saved.'))
+            return redirect('admin-user-list')
     else:
-        form = PersonForm(instance=person)
+        form = UserForm(instance=user)
 
-    return render(request, 'mision/admin_person_form.html', {
+    return render(request, 'mision/admin_user_form.html', {
         'form': form,
     })
 
 
 @staff_required
-def admin_person_details(request, person_id):
-    return render(request, 'mision/admin_person_details.html', {})
+def admin_user_details(request, user_id):
+    return render(request, 'mision/admin_user_details.html', {})
 
 
 @staff_required
-def admin_person_delete(request, person_id):
-    Person.objects.get(id=person_id).delete()
-    messages.success(request, _('Person successfully deleted.'))
-    return redirect('admin-person-list')
+def admin_user_delete(request, user_id):
+    User.objects.get(id=user_id).delete()
+    messages.success(request, _('User successfully deleted.'))
+    return redirect('admin-user-list')
 
 
 @staff_required
 def admin_tag_list(request):
     return render(request, 'mision/admin_tag_list.html', {
-        'results': Tag.objects.all()
+        'results': paginate(request.GET, Tag.objects.all())
     })
 
 

@@ -23,8 +23,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('price', models.FloatField()),
-                ('market_price', models.FloatField()),
+                ('price', models.DecimalField(max_digits=8, decimal_places=2)),
+                ('market_price', models.DecimalField(max_digits=8, decimal_places=2)),
             ],
             options={
                 'ordering': ['-created_at'],
