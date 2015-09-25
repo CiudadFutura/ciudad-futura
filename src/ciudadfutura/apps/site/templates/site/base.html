@@ -1,0 +1,35 @@
+{% extends 'mision/base.html' %}
+{% load i18n %}
+
+{% block header %}
+<style type="text/css">
+  body {
+      padding-top: 70px;
+  }
+</style>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gs-nav">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'ciudadfutura-user-dashboard' %}">
+        {% trans 'Ciudad Futura' %}
+      </a>
+    </div>
+    {% block site_nav %}{% endblock %}
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% block site_content %}{% endblock %}
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% block site_footer %}{% endblock %}
+{% endblock %}
