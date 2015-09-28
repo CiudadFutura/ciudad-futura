@@ -1,5 +1,35 @@
 {% extends 'site/base.html' %}
+{% load i18n %}
 
 {% block site_content %}
-  <h1>Dashboard</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <dl class="dl-horizontal">
+      <dt>{% trans 'Name' %}</dt>
+      <dd>{{ user.name|default:'-' }}</dd>
+
+      <dt>{% trans 'DNI' %}</dt>
+      <dd>{{ user.dni|default:'-' }}</dd>
+
+      <dt>{% trans 'Email' %}</dt>
+      <dd>{{ user.email|default:'-' }}</dd>
+
+      <dt>{% trans 'Birthdate' %}</dt>
+      <dd>{{ user.birthdate|default:'-' }}</dd>
+
+      <dt>{% trans 'City' %}</dt>
+      <dd>{{ user.city|default:'-' }}</dd>
+
+      <dt>{% trans 'Address' %}</dt>
+      <dd>{{ user.address|default:'-' }}</dd>
+
+      <dt>{% trans 'Postal code' %}</dt>
+      <dd>{{ user.postal_code|default:'-' }}</dd>
+    </dl>
+    <div class="text-center">
+      <a class="btn btn-primary" href="{% url 'ciudadfutura-user-profile' %}">{% trans 'Change' %}</a>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

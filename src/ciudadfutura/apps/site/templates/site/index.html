@@ -1,5 +1,8 @@
 {% extends 'site/base.html' %}
+{% load i18n %}
 
 {% block site_content %}
-  <h1>Login</h1>
+  <div class="text-center">
+    <a href="{% url 'ciudadfutura-user-login' %}" class="btn btn-default">{% trans 'Sign in' %}</a>
+  </div>
 {% endblock %}

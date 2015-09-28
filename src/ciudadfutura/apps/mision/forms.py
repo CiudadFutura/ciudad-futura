@@ -51,6 +51,13 @@ class UserForm(forms.ModelForm):
             'tags': forms.CheckboxSelectMultiple,
         }
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email', '').lower()
+        if email and User.objects.filter(email__iexact=email).count():
+            raise forms.ValidationError('Email already exists.')
+        return email
+
+
 
 class TagForm(forms.ModelForm):
     class Meta:

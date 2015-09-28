@@ -1,12 +1,11 @@
 {% extends 'mision/base.html' %}
-{% load i18n %}
+{% load i18n static %}
+
+{% block header_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'site/css/site.css' %}">
+{% endblock %}
 
 {% block header %}
-<style type="text/css">
-  body {
-      padding-top: 70px;
-  }
-</style>
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -19,12 +18,33 @@
         {% trans 'Ciudad Futura' %}
       </a>
     </div>
-    {% block site_nav %}{% endblock %}
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="gs-nav">
+      {% block site_nav %}{% endblock %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'admin-dashboard' %}">{% trans 'Admin' %}</a></li>
+        <li><a href="{% url 'ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
+        <li>
+          <a href="{% url 'ciudadfutura-user-logout' %}">
+            <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
+          </a>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
   </div>
 </nav>
 {% endblock %}
 
 {% block content %}
+  <div class="container">
+  {% for message in messages %}
+    <div class="alert{% if message.tags %} alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
+      {{ message|safe }}
+    </div>
+  {% endfor %}
+  </div>
   <div class="container">
     {% block site_content %}{% endblock %}
   </div>
