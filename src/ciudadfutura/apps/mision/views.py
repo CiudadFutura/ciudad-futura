@@ -5,12 +5,29 @@ from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag
 from ciudadfutura.utils import paginate
 from .forms import LoginForm, UserForm, TagForm
+from braces.views import LoginRequiredMixin, StaffuserRequiredMixin
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView, RedirectView, TemplateView
 
 
-def index(request):
-    return render(request, 'mision/index.html', {
-        'page_title': 'Mision',
-    })
+class IndexView(LoginRequiredMixin, TemplateView):
+    template_name = "mision/index.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(IndexView, self).get_context_data()
+        ctx['page_title'] = 'Mision'
+
+# def index(request):
+#     return render(request, 'mision/index.html', {
+#         'page_title': 'Mision',
+#     })
+
+
+class RegisterView(TemplateView):
+    template_name = "mision/index.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(IndexView, self).get_context_data()
+        ctx['page_title'] = 'Mision'
 
 
 def register(request):

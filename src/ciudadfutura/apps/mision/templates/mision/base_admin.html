@@ -14,20 +14,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'admin-dashboard' %}">
+        <a class="navbar-brand" href="{% url 'mision:admin-dashboard' %}">
           {% trans 'Ciudad Futura' %}
         </a>
       </div>
       {% if user.is_authenticated %}
       <div class="collapse navbar-collapse" id="gs-nav">
         <ul class="nav navbar-nav navbar-left">
-          <li><a href="{% url 'admin-user-list' %}">{% trans 'Users' %}</a></li>
-          <li><a href="{% url 'admin-tag-list' %}">{% trans 'Tags' %}</a></li>
+          <li><a href="{% url 'mision:admin-user-list' %}">{% trans 'Users' %}</a></li>
+          <li><a href="{% url 'mision:admin-tag-list' %}">{% trans 'Tags' %}</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
+          <li><a href="{% url 'site:ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
           <li>
-            <a href="{% url 'admin-logout' %}">
+            <a href="{% url 'mision:admin-logout' %}">
               <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
             </a>
           </li>

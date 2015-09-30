@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 
     # 3rd party apps
     'bootstrap3',
+    'debug_toolbar',
 
     # Project apps
     'ciudadfutura.apps.auth.Config',
