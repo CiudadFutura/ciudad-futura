@@ -18,14 +18,14 @@ def index(request):
 def user_logout(request):
     auth.logout(request)
     messages.success(request, _('You have successfully logged out.'))
-    return redirect('ciudadfutura-home')
+    return redirect('site:ciudadfutura-home')
 
 
 def user_login(request):
     form = None
 
     if request.user.is_authenticated():
-        return redirect('ciudadfutura-user-dashboard')
+        return redirect('site:ciudadfutura-user-dashboard')
 
     if request.POST:
         form = LoginForm(request.POST)
@@ -35,7 +35,7 @@ def user_login(request):
             if user is not None and user.is_active:
                 auth.login(request, user)
                 messages.success(request, _('Authentication succeed.'))
-                return redirect('ciudadfutura-user-dashboard')
+                return redirect('site:ciudadfutura-user-dashboard')
 
         messages.error(request, _('Authentication failed.'))
     else:
@@ -46,14 +46,14 @@ def user_login(request):
     })
 
 
-@user_required(login_url=reverse('ciudadfutura-user-login'))
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
 def user_dashboard(request):
     return render(request, 'site/user_dashboard.html', {
         'user': request.user,
     })
 
 
-@user_required(login_url=reverse('ciudadfutura-user-login'))
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
 def user_profile(request):
 
     user = request.user
@@ -63,7 +63,7 @@ def user_profile(request):
         if form.is_valid():
             user = form.save()
             messages.success(request, _('User successfully saved.'))
-            return redirect('ciudadfutura-user-dashboard')
+            return redirect('site:ciudadfutura-user-dashboard')
     else:
         form = UserProfileForm(instance=user)
 
