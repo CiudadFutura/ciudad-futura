@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # 3rd party apps
     'bootstrap3',
     'debug_toolbar',
+    'crispy_forms',
 
     # Project apps
     'ciudadfutura.apps.auth.Config',
@@ -49,6 +50,7 @@ INSTALLED_APPS = (
     'ciudadfutura.apps.product.Config',
     'ciudadfutura.apps.mision.Config',
     'ciudadfutura.apps.order.Config',
+    'ciudadfutura.apps.admin.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -125,4 +127,4 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
 # Auth
 from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
-LOGIN_URL = reverse_lazy('admin-login')
+LOGIN_URL = reverse_lazy('adminpanel:login')
