@@ -32,6 +32,7 @@ BIRTH_YEAR_CHOICES = [
     now.year - n for n in xrange(MAX_AGE)
 ]
 
+
 class UserForm(forms.ModelForm):
 
     class Meta:
@@ -56,7 +57,6 @@ class UserForm(forms.ModelForm):
         if email and User.objects.filter(email__iexact=email).count():
             raise forms.ValidationError('Email already exists.')
         return email
-
 
 
 class TagForm(forms.ModelForm):

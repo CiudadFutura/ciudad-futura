@@ -76,6 +76,12 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
 
+    # Relationship Ids
+    CIUDADANO = 1
+    MISION = 2
+    D7 = 3
+    AFILIADO = 4
+
     objects = UserManager()
 
     @property

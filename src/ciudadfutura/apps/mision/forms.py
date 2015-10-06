@@ -2,8 +2,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from ciudadfutura.apps.auth.models import User, Tag
+from ciudadfutura.apps.auth.models import User, Tag, MisionMember
+from ciudadfutura.apps.mision.models import Circle, Invite
 from django.utils import timezone
+
+
 
 class LoginForm(forms.Form):
 
@@ -32,24 +35,31 @@ BIRTH_YEAR_CHOICES = [
     now.year - n for n in xrange(MAX_AGE)
 ]
 
+
 class UserForm(forms.ModelForm):
+
+    password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
         exclude = [
-            'created_at',
-            'updated_at',
-            'country',
-            'last_login',
-            'username',
-            'password',
-            'legacy'
+            'created_at', 'updated_at', 'country', 'tags', 'relationships', 'contribution',
+            'legacy', 'last_login', 'is_admin', 'is_staff', 'password'
         ]
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
-            'relationships': forms.CheckboxSelectMultiple,
-            'tags': forms.CheckboxSelectMultiple,
         }
+
+
+    def save(self, commit=True):
+        user = super(UserForm, self).save(commit)
+        user.set_password(self.cleaned_data['password'])
+        user.save(update_fields=['password'])
+        user.relationships.add(User.MISION)
+        # TODO: validate if the user has or not circle or if is coordinador (is_lead) and send the email
+        circle = Circle.objects.create()
+        member = MisionMember.objects.create(user=user, is_lead=True, circle=circle)
+        return member
 
     def clean_email(self):
         email = self.cleaned_data.get('email', '').lower()
@@ -57,6 +67,13 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError('Email already exists.')
         return email
 
+
+class InviteForm(forms.ModelForm):
+    class Meta:
+        model = Invite
+        fields = [
+            'email', 'first_name', 'last_name'
+        ]
 
 
 class TagForm(forms.ModelForm):

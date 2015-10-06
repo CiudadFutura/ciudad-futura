@@ -2,8 +2,8 @@
 
 {% load i18n %}
 
-{% block header %}
-<header>
+{% load static %}
 
-</header>
+{% block header_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mision/css/home.css' %}">
 {% endblock %}

@@ -26,6 +26,7 @@ SECRET_KEY = 'zsf=tfgib&kn=4xjbv(#ej)56=fmj4+w83q9=_v$-9btks2auk'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 # Application definition
@@ -102,7 +103,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'es_AR'
 
 TIME_ZONE = 'UTC'

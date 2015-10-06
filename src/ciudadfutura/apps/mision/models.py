@@ -18,3 +18,12 @@ class ShoppingCycle(models.Model):
     delivery_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Invite(models.Model):
+    email = models.EmailField(null=True, blank=True)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    circle = models.ForeignKey('ciudadfutura_mision.Circle', related_name='invites', null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
