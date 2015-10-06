@@ -19,7 +19,6 @@ def register(request):
     invite_forms = []
 
     if request.POST:
-        form = UserForm(request.POST)
 
         for idx, email in enumerate(request.POST.getlist('invite-email')):
             invite_forms.append(
@@ -29,6 +28,8 @@ def register(request):
                     'invite-last_name': request.POST.getlist('invite-last_name')[idx],
                 }, prefix='invite')
             )
+
+        form = UserForm(request.POST)
 
         if form.is_valid() and all([f.is_valid() for f in invite_forms]):
             member = form.save()
@@ -40,12 +41,17 @@ def register(request):
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-dashboard')
     else:
-        form = UserForm()
+        invite_forms = [InviteForm(), InviteForm()]
+        form = UserForm(initial={
+            'invites': len(invite_forms)
+        })
 
     return render(request, 'mision/register.html', {
         'form': form,
-        'invite_form_tpl': InviteForm(prefix='invite'),
-        'invite_forms': invite_forms
+        'invite': {
+            'tpl': InviteForm(prefix='invite'),
+            'forms': invite_forms,
+        },
     })
 
 

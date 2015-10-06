@@ -40,6 +40,10 @@ class UserForm(forms.ModelForm):
 
     password = forms.CharField(widget=forms.PasswordInput())
 
+    invites = forms.IntegerField(widget=forms.HiddenInput(attrs={
+        'max_count': 5, 'min_count': 2,
+    }), required=False)
+
     class Meta:
         model = User
         exclude = [
@@ -55,6 +59,17 @@ class UserForm(forms.ModelForm):
         js = (
             'mision/js/register.js',
         )
+
+    def clean(self):
+        invites = self.cleaned_data.get('invites', 0)
+        print self.cleaned_data
+        if invites < 2:
+            raise forms.ValidationError({'__all__': 'Minimo 2 miembros.'})
+
+        if invites > 4:
+            raise forms.ValidationError({'__all__': 'Maximo 5 miembros.'})
+
+        return self.cleaned_data
 
     def save(self, commit=True):
         user = super(UserForm, self).save(commit)

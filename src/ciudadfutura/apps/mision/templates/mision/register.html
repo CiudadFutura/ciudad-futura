@@ -119,7 +119,8 @@
           <fieldset>
             <legend>{% trans 'Invites'%}</legend>
             <div id="invites-holder">
-              {% for f in invite_forms %}
+              {% for f in invite.forms %}
+                <h4>Consumidor Colaborativo #<span class="invite-index">{{ forloop.counter }}</span></h4>
                 <div class="invite-form">
                 {% bootstrap_form f %}
                 </div>
@@ -133,7 +134,8 @@
         </form>
         <script id="invite-form-tpl" type="html/template">
           <div class="invite-form">
-          {% bootstrap_form invite_form_tpl %}
+            <h4>Consumidor Colaborativo #<span class="invite-index"></span></h4>
+          {% bootstrap_form invite.tpl %}
           </div>
         </script>
       </div>
