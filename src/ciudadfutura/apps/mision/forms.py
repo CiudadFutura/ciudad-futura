@@ -62,7 +62,6 @@ class UserForm(forms.ModelForm):
 
     def clean(self):
         invites = self.cleaned_data.get('invites', 0)
-        print self.cleaned_data
         if invites < 2:
             raise forms.ValidationError({'__all__': 'Minimo 2 miembros.'})
 
