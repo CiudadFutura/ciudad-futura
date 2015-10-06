@@ -43,22 +43,28 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         exclude = [
-            'created_at', 'updated_at', 'country', 'tags', 'relationships', 'contribution',
-            'legacy', 'last_login', 'is_admin', 'is_staff', 'password'
+            'created_at', 'updated_at', 'country', 'tags', 'relationships',
+            'contribution', 'legacy', 'last_login', 'is_admin', 'is_staff',
+            'password'
         ]
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
         }
 
+    class Media:
+        js = (
+            'mision/js/register.js',
+        )
 
     def save(self, commit=True):
         user = super(UserForm, self).save(commit)
         user.set_password(self.cleaned_data['password'])
         user.save(update_fields=['password'])
         user.relationships.add(User.MISION)
-        # TODO: validate if the user has or not circle or if is coordinador (is_lead) and send the email
         circle = Circle.objects.create()
-        member = MisionMember.objects.create(user=user, is_lead=True, circle=circle)
+        member = MisionMember.objects.create(
+            user=user, is_lead=True, circle=circle
+        )
         return member
 
     def clean_email(self):

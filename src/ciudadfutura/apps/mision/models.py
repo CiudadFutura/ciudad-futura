@@ -21,7 +21,7 @@ class ShoppingCycle(models.Model):
 
 
 class Invite(models.Model):
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=False)
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
     circle = models.ForeignKey('ciudadfutura_mision.Circle', related_name='invites', null=True)

@@ -1,5 +1,5 @@
 {% extends 'mision/base_public.html' %}
-{% load bootstrap3  %}
+{% load bootstrap3 i18n %}
 
 
 {% block content %}
@@ -114,18 +114,33 @@
       <div class="col-sm-6">
         <h3>Consumidor Colaborativo #1 [Coordinador]</h3>
         <p>Todos los campos son <strong>requeridos</strong></p>
-
-        <form method="post">{% csrf_token %}
+        <form method="post" novalidate>{% csrf_token %}
           {% bootstrap_form form %}
-          <button class="btn btn-primary" type="submit"></button>
+          <fieldset>
+            <legend>{% trans 'Invites'%}</legend>
+            <div id="invites-holder">
+              {% for f in invite_forms %}
+                <div class="invite-form">
+                {% bootstrap_form f %}
+                </div>
+              {% endfor %}
+            </div>
+          </fieldset>
+          <button class="btn btn-primary" type="submit">{% trans 'Register' %}</button>
+          <button id="add-invite" class="btn btn-success">
+            <i class="fa fa-plus"></i>&nbsp;{% trans 'Add invite' %}
+           </button>
         </form>
-
         <script id="invite-form-tpl" type="html/template">
-          {% bootstrap_form invite_form %}
+          <div class="invite-form">
+          {% bootstrap_form invite_form_tpl %}
+          </div>
         </script>
-
       </div>
     </div>
   </div>
 
 {% endblock %}
+
+
+{% block footer_js %}{{ form.media }}{% endblock %}

@@ -1,16 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
-from django.contrib import messages, auth
-from ciudadfutura.decorators import staff_required
-from ciudadfutura.apps.auth.models import User, Tag, MisionMember
-from ciudadfutura.apps.mision.models import Invite
-from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, InviteForm
-from braces.views import LoginRequiredMixin, StaffuserRequiredMixin
-from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView, RedirectView, TemplateView
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout
-from crispy_forms.bootstrap import FormActions
+from django.contrib import messages
+from .forms import UserForm, InviteForm
+from django.views.generic import TemplateView
 
 
 class IndexView(TemplateView):
@@ -22,26 +14,29 @@ class IndexView(TemplateView):
         return ctx
 
 
-class RegisterView(CreateView):
-    template_name = "mision/register.html"
-    model = MisionMember
-    form_class = UserForm
-    success_url = 'success'
-
-    def form_valid(self, form):
-        return super(RegisterView, self).form_valid(form, member=self.request.member)
-
-    def get_context_data(self, **kwargs):
-        ctx = super(RegisterView, self).get_context_data(**kwargs)
-        ctx['page_title'] = 'Mision'
-        return ctx
-
-
 def register(request):
+
+    invite_forms = []
+
     if request.POST:
         form = UserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+
+        for idx, email in enumerate(request.POST.getlist('invite-email')):
+            invite_forms.append(
+                InviteForm({
+                    'invite-email': email,
+                    'invite-first_name': request.POST.getlist('invite-first_name')[idx],
+                    'invite-last_name': request.POST.getlist('invite-last_name')[idx],
+                }, prefix='invite')
+            )
+
+        if form.is_valid() and all([f.is_valid() for f in invite_forms]):
+            member = form.save()
+            for f in invite_forms:
+                invite = f.save(commit=False)
+                invite.circle = member.circle
+                invite.save()
+
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-dashboard')
     else:
@@ -49,7 +44,8 @@ def register(request):
 
     return render(request, 'mision/register.html', {
         'form': form,
-        'invite_form': InviteForm()
+        'invite_form_tpl': InviteForm(prefix='invite'),
+        'invite_forms': invite_forms
     })
 
 
