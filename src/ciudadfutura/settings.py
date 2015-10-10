@@ -62,6 +62,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    # Project middleware
+    'ciudadfutura.apps.cart.middleware.CartMiddleware',
 )
 
 ROOT_URLCONF = 'ciudadfutura.urls'

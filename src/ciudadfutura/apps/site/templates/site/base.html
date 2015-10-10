@@ -25,6 +25,11 @@
         {% if user.is_admin %}
         <li><a href="{% url 'admin:dashboard' %}">{% trans 'Admin' %}</a></li>
         {% endif %}
+
+        {% if user.has_relation.MISION %}
+        <li><a href="{% url 'mision:product-list' %}">{% trans 'Mision' %}</a></li>
+        {% endif %}
+
         <li><a href="{% url 'site:ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
         <li>
           <a href="{% url 'site:ciudadfutura-user-logout' %}">

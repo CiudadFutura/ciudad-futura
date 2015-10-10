@@ -1,8 +1,11 @@
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserForm, InviteForm
+from ciudadfutura.utils import paginate
 from django.views.generic import TemplateView
+from ciudadfutura.apps.product.models import Product
+from ciudadfutura.decorators import user_required
+from .forms import UserForm, InviteForm
 
 
 class IndexView(TemplateView):
@@ -41,7 +44,9 @@ def register(request):
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-dashboard')
     else:
-        invite_forms = [InviteForm(prefix='invite'), InviteForm(prefix='invite')]
+        invite_forms = [
+            InviteForm(prefix='invite'), InviteForm(prefix='invite')
+        ]
         form = UserForm(initial={
             'invites': len(invite_forms)
         })
@@ -52,6 +57,13 @@ def register(request):
             'tpl': InviteForm(prefix='invite'),
             'forms': invite_forms,
         },
+    })
+
+
+@user_required
+def product_list(request):
+    return render(request, 'mision/product_list.html', {
+        'results': paginate(request.GET, Product.objects.all()),
     })
 
 
