@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag, MisionMember
+from ciudadfutura.apps.product.models import Product
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm
+from .forms import LoginForm, UserForm, TagForm, ProductForm
 
 
 def admin_logout(request):
@@ -130,3 +131,38 @@ def admin_tag_form(request, tag_id=None):
     return render(request, 'admin/admin_tag_form.html', {
         'form': form,
     })
+
+
+@staff_required
+def admin_product_list(request):
+    return render(request, 'admin/admin_product_list.html', {
+        'results': paginate(request.GET, Product.objects.all())
+    })
+
+
+@staff_required
+def admin_product_form(request, product_id=None):
+    product = None
+
+    if product_id is not None:
+        product = Product.objects.get(id=product_id)
+
+    if request.POST:
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, _('Product successfully saved.'))
+            return redirect('admin:product-list')
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, 'admin/admin_product_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_product_delete(request, product_id):
+    Product.objects.get(id=product_id).delete()
+    messages.success(request, _('Product successfully deleted.'))
+    return redirect('admin:Product-list')

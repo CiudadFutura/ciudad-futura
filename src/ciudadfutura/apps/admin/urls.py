@@ -20,4 +20,10 @@ urlpatterns = [
     url(r'^admin/user/(?P<user_id>\d+)/$', views.admin_user_details, name='user-details'),
     url(r'^admin/user/(?P<user_id>\d+)/edit/$', views.admin_user_form, name='user-edit'),
     url(r'^admin/user/(?P<user_id>\d+)/delete/$', views.admin_user_delete, name='user-delete'),
+
+    # Product urls
+    url(r'^admin/product/$', views.admin_product_list, name='product-list'),
+    url(r'^admin/product/create/$', views.admin_product_form, name='product-create'),
+    url(r'^admin/product/(?P<product_id>\d+)/edit/$', views.admin_product_form, name='product-edit'),
+    url(r'^admin/product/(?P<product_id>\d+)/delete/$', views.admin_product_delete, name='product-delete'),
 ]

@@ -3,7 +3,9 @@ from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User, Tag
+from ciudadfutura.apps.product.models import Product
 from django.utils import timezone
+
 
 class LoginForm(forms.Form):
 
@@ -63,3 +65,10 @@ class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
         exclude = []
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        exclude = []
+
