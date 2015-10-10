@@ -1,11 +1,11 @@
-{% extends 'mision/base_admin.html' %}
+{% extends 'admin/base.html' %}
 {% load i18n site_tags %}
 
 {% block content %}
 
 <div class="container">
   <div class="btn-toolbar">
-    <a class="btn btn-primary" href="{% url 'adminpanel:user-create' %}">
+    <a class="btn btn-primary" href="{% url 'admin:user-create' %}">
        {% trans 'Create' %}
     </a>
   </div>
@@ -46,11 +46,11 @@
                 {% endfor %}
               </td>
               <td>
-                <a href="{% url 'adminpanel:user-delete' result.id %}" class="btn btn-danger btn-xs">
+                <a href="{% url 'admin:user-delete' result.id %}" class="btn btn-danger btn-xs">
                   <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
                 </a>
                 &nbsp;
-                <a href="{% url 'adminpanel:user-edit' result.id %}" class="btn btn-default btn-xs">
+                <a href="{% url 'admin:user-edit' result.id %}" class="btn btn-default btn-xs">
                   <i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
                 </a>
               </td>

@@ -10,7 +10,7 @@ from .forms import LoginForm, UserForm, TagForm
 def admin_logout(request):
     auth.logout(request)
     messages.success(request, _('You have successfully logged out.'))
-    return redirect('adminpanel:login')
+    return redirect('admin:login')
 
 
 def admin_login(request):
@@ -18,7 +18,7 @@ def admin_login(request):
     form = None
 
     if request.user.is_authenticated():
-        return redirect('adminpanel:dashboard')
+        return redirect('admin:dashboard')
 
     if request.POST:
         form = LoginForm(request.POST)
@@ -28,20 +28,20 @@ def admin_login(request):
             if user is not None and user.is_active:
                 auth.login(request, user)
                 messages.success(request, _('Authentication succeed.'))
-                return redirect(request.GET.get('next') or 'adminpanel:dashboard')
+                return redirect(request.GET.get('next') or 'admin:dashboard')
 
         messages.error(request, _('Authentication failed.'))
     else:
         form = LoginForm()
 
-    return render(request, 'mision/admin_login.html', {
+    return render(request, 'admin/admin_login.html', {
         'form': form
     })
 
 
 @staff_required
 def admin_dashboard(request):
-    return render(request, 'mision/admin_dashboard.html', {
+    return render(request, 'admin/admin_dashboard.html', {
 
     })
 
@@ -56,7 +56,7 @@ def admin_user_list(request):
     if selected:
         results = results.filter(tags__in=selected)
 
-    return render(request, 'mision/admin_user_list.html', {
+    return render(request, 'admin/admin_user_list.html', {
         'results': paginate(request.GET, results),
         'tags': Tag.objects.all(),
         'selected': selected
@@ -76,30 +76,30 @@ def admin_user_form(request, user_id=None):
         if form.is_valid():
             user = form.save()
             messages.success(request, _('User successfully saved.'))
-            return redirect('adminpanel:user-list')
+            return redirect('admin:user-list')
     else:
         form = UserForm(instance=user)
 
-    return render(request, 'mision/admin_user_form.html', {
+    return render(request, 'admin/admin_user_form.html', {
         'form': form,
     })
 
 
 @staff_required
 def admin_user_details(request, user_id):
-    return render(request, 'mision/admin_user_details.html', {})
+    return render(request, 'admin/admin_user_details.html', {})
 
 
 @staff_required
 def admin_user_delete(request, user_id):
     User.objects.get(id=user_id).delete()
     messages.success(request, _('User successfully deleted.'))
-    return redirect('adminpanel:user-list')
+    return redirect('admin:user-list')
 
 
 @staff_required
 def admin_tag_list(request):
-    return render(request, 'mision/admin_tag_list.html', {
+    return render(request, 'admin/admin_tag_list.html', {
         'results': paginate(request.GET, Tag.objects.all())
     })
 
@@ -108,7 +108,7 @@ def admin_tag_list(request):
 def admin_tag_delete(request, tag_id):
     Tag.objects.get(id=tag_id).delete()
     messages.success(request, _('Tag successfully deleted.'))
-    return redirect('adminpanel:tag-list')
+    return redirect('admin:tag-list')
 
 
 @staff_required
@@ -123,10 +123,10 @@ def admin_tag_form(request, tag_id=None):
         if form.is_valid():
             tag = form.save()
             messages.success(request, _('Tag successfully saved.'))
-            return redirect('adminpanel:tag-list')
+            return redirect('admin:tag-list')
     else:
         form = TagForm(instance=tag)
 
-    return render(request, 'mision/admin_tag_form.html', {
+    return render(request, 'admin/admin_tag_form.html', {
         'form': form,
     })
