@@ -7,7 +7,6 @@ from ciudadfutura.apps.mision.models import Circle, Invite
 from django.utils import timezone
 
 
-
 class LoginForm(forms.Form):
 
     email = forms.EmailField(widget=forms.TextInput(attrs={

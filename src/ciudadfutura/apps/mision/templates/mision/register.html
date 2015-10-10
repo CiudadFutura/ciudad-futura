@@ -3,115 +3,40 @@
 
 
 {% block content %}
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
-      <h1>{{ page_title }}</h1>
+      <h1>Completá el formulario, y sos parte.</h1>
       <div class="col-sm-6">
-        <div id="lm-slider-form" data-cycle-fx="scrollHorz" data-cycle-timeout="0" data-cycle-slides="> div" data-cycle-prev="#lm-form-prev" data-cycle-next="#lm-form-next">
-          <div id="lm-step-one" class="col-12">
-            <div class="col-6 lm-data-step-one">
-              <h2>Datos del coordinador</h2>
-              <span class="icon-user-add"></span>
-              <h4>Completa con tus datos para ser el coordinador de tu círculo</h4>
-              <p>Se debe designar un coordinador entre los hogares que conforman el círculo, el cual será el vínculo de comunicación más directo entre el círculo y la organización de la Gran Misión. Este coordinador tendrá las siguientes funciones: inscribir el círculo; notificar la apertura del período de compra a los miembros de su círculo; centralizar los pedidos de su círculo y enviar la información a la Gran Misión; garantizar que algún miembro del círculo se encargue de efectuar el pago por el monto total de todas las compras del círculo, incluida la cuota mensual; notificar a la Misión el número de comprobante de pago, el miembro del círculo y el horario en que retirará los pedidos del total del círculo. Todas estas tareas el coordinador las realizará vía web, desde su casa o trabajo.</p>
-            </div>
-          </div>
-          <div id="lm-step-twoo" class="col-12">
-            <div class="divide-4 lm-step-two"><span class="icon-lmstr"></span></div>
-            <div class="col-8 lm-step-two">
-              <p>Cada círculo tiene que estar conformado con al menos 3 hogares y como máximo 5 hogares. La conformación de los círculos es totalmente voluntaria, y decidida por quienes conforman el círculo.</p>
-              <p>Desde la Misión Anti-inflación  recomendamos que a la hora de conformar un círculo, el hogar pueda hacerlo con  vecinos, amigos, familiares, compañeros de trabajo, etc.,  ya que lo importante es organizarnos con personas de confianza con los cuales se puedan coordinar las distintas tareas (pago de los pedidos, retiro de la compra, etc.). </p>
-            </div>
-            <div class="col-12">
-              <ul class="col-6">
-                <li>
-                  <h3>Consumidor Colaborativo #2 [obligatorio]</h3>
-                </li>
-                <li>
-                  <label for="nombre2">Nombre: <span>[requerido]</span></label>
-                  <input id="nombre2" type="text" name="nombre2"  >
-                </li>
-                <li>
-                  <label for="apellido2">Apellido: <span>[requerido]</span></label>
-                  <input id="apellido2" type="text" name="apellido2"   >
-                </li>
-                <li>
-                  <label for="email2">Correo Electrónico: <span>[requerido]</span></label>
-                  <input id="email2" type="email" name="email2"   >
-                  <span class="lm-example">ejemplo: tucorreo@gmail.com</span>
-                </li>
-              </ul>
-              <ul class="col-6">
-                <li>
-                  <h3>Consumidor Colaborativo #3 [obligatorio]</h3>
-                </li>
-                <li>
-                  <label for="nombre3">Nombre: <span>[requerido]</span></label>
-                  <input id="nombre3" type="text" name="nombre3"  >
-                </li>
-                <li>
-                  <label for="apellido3">Apellido: <span>[requerido]</span></label>
-                  <input id="apellido3" type="text" name="apellido3"   >
-                </li>
-                <li>
-                  <label for="email3">Correo Electrónico: <span>[requerido]</span></label>
-                  <input id="email3" type="email" name="email3"   >
-                  <span class="lm-example">ejemplo: tucorreo@gmail.com</span>
-                </li>
-              </ul>
-            </div>
-            <div class="col-12">
-              <ul class="col-6">
-                <li>
-                  <h3>Consumidor Colaborativo #4 [opcional]</h3>
-                </li>
-                <li>
-                  <label for="nombre4">Nombre: <span>[requerido]</span></label>
-                  <input id="nombre4" type="text" name="nombre4"  >
-                </li>
-                <li>
-                  <label for="apellido4">Apellido: <span>[requerido]</span></label>
-                  <input id="apellido4" type="text" name="apellido4"   >
-                </li>
-                <li>
-                  <label for="email4">Correo Electrónico: <span>[requerido]</span></label>
-                  <input id="email4" type="email" name="email4"   >
-                  <span class="lm-example">ejemplo: tucorreo@gmail.com</span>
-                </li>
-              </ul>
-              <ul class="col-6">
-                <li>
-                  <h3>Consumidor Colaborativo #5 [opcional]</h3>
-                </li>
-                <li>
-                  <label for="nombre5">Nombre: <span>[requerido]</span></label>
-                  <input id="nombre5" type="text" name="nombre5"  >
-                </li>
-                <li>
-                  <label for="apellido5">Apellido: <span>[requerido]</span></label>
-                  <input id="apellido5" type="text" name="apellido5"   >
-                </li>
-                <li>
-                  <label for="email5">Correo Electrónico: <span>[requerido]</span></label>
-                  <input id="email5" type="email" name="email5"   >
-                  <span class="lm-example">ejemplo: tucorreo@gmail.com</span>
-                </li>
-              </ul>
-            </div>
-            <div class="col-12">
-              <div class="divide-2">
-                <a href="" id="lm-form-prev" class="lm-form-nav"><span class="icon-arrow-left"></span> Volver</a>
-              </div>
-              <div class="divide-2">
-                <input type="hidden" name="action" value="lm-reg-circ">
-                <input type="submit" value="Enviar Formulario">
-              </div>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <h3>Completa con tus datos para ser miembro de la Gran Misión</h3>
+          <p>Se debe designar un coordinador entre los hogares que conforman el círculo, el cual será el vínculo de
+            comunicación más directo entre el círculo y la organización de la Gran Misión. Este coordinador tendrá
+            las siguientes funciones: inscribir el círculo; notificar la apertura del período de compra a los
+            miembros de su círculo; centralizar los pedidos de su círculo y enviar la información a la Gran Misión;
+            garantizar que algún miembro del círculo se encargue de efectuar el pago por el monto total de todas
+            las compras del círculo, incluida la cuota mensual; notificar a la Misión el número de comprobante de
+            pago, el miembro del círculo y el horario en que retirará los pedidos del total del círculo.
+            Todas estas tareas el coordinador las realizará vía web, desde su casa o trabajo.</p>
+          <p>Se debe designar un coordinador entre los hogares que conforman el círculo, el cual será el vínculo
+            de comunicación más directo entre el círculo y la organización de la Gran Misión. Este coordinador tendrá
+            las siguientes funciones: inscribir el círculo; notificar la apertura del período de compra a los miembros
+            de su círculo; centralizar los pedidos de su círculo y enviar la información a la Gran Misión; garantizar
+            que algún miembro del círculo se encargue de efectuar el pago por el monto total de todas las compras del
+            círculo, incluida la cuota mensual; notificar a la Misión el número de comprobante de pago, el miembro del
+            círculo y el horario en que retirará los pedidos del total del círculo. Todas estas tareas el coordinador
+            las realizará vía web, desde su casa o trabajo.</p>
+          <p>Cada círculo tiene que estar conformado con al menos 3 hogares y como máximo 5 hogares.
+            La conformación de los círculos es totalmente voluntaria, y decidida por quienes conforman el
+            círculo.</p>
+          <p>Desde la Misión Anti-inflación  recomendamos que a la hora de conformar un círculo, el hogar pueda
+            hacerlo con  vecinos, amigos, familiares, compañeros de trabajo, etc.,  ya que lo importante es
+            organizarnos con personas de confianza con los cuales se puedan coordinar las distintas tareas
+            (pago de los pedidos, retiro de la compra, etc.). </p>
         </div>
-        <p>Se debe designar un coordinador entre los hogares que conforman el círculo, el cual será el vínculo de comunicación más directo entre el círculo y la organización de la Gran Misión. Este coordinador tendrá las siguientes funciones: inscribir el círculo; notificar la apertura del período de compra a los miembros de su círculo; centralizar los pedidos de su círculo y enviar la información a la Gran Misión; garantizar que algún miembro del círculo se encargue de efectuar el pago por el monto total de todas las compras del círculo, incluida la cuota mensual; notificar a la Misión el número de comprobante de pago, el miembro del círculo y el horario en que retirará los pedidos del total del círculo. Todas estas tareas el coordinador las realizará vía web, desde su casa o trabajo.</p>
       </div>
       <div class="col-sm-6">
+        <h2>Datos del coordinador</h2>
+        <h4>Completa con tus datos para ser el coordinador de tu círculo</h4>
         <h3>Consumidor Colaborativo #1 [Coordinador]</h3>
         <p>Todos los campos son <strong>requeridos</strong></p>
         <form method="post" novalidate>{% csrf_token %}
@@ -145,4 +70,6 @@
 {% endblock %}
 
 
-{% block footer_js %}{{ form.media }}{% endblock %}
+{% block footer_js %}
+  {{ form.media }}
+{% endblock %}
