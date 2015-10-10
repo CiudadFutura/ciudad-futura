@@ -16,13 +16,6 @@
 },
 {
     "pk": 1,
-    "model": "ciudadfutura_product.Packaging",
-    "fields": {
-        "name": "Example packaging #1"
-    }
-},
-{
-    "pk": 1,
     "model": "ciudadfutura_product.Product",
     "fields": {
         "sku": "SKU1",
