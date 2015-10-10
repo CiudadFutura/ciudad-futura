@@ -48,7 +48,7 @@ class UserForm(forms.ModelForm):
         exclude = [
             'created_at', 'updated_at', 'country', 'tags', 'relationships',
             'contribution', 'legacy', 'last_login', 'is_admin', 'is_staff',
-            'password'
+            'password', 'username'
         ]
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
@@ -60,6 +60,7 @@ class UserForm(forms.ModelForm):
         )
 
     def clean(self):
+
         invites = self.cleaned_data.get('invites', 0)
         if invites < 2:
             raise forms.ValidationError({'__all__': 'Minimo 2 miembros.'})
@@ -82,6 +83,12 @@ class UserForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email', '').lower()
+
+        if not email:
+            raise forms.ValidationError({
+                'email': _('This field is required.')
+            })
+
         if email and User.objects.filter(email__iexact=email).count():
             raise forms.ValidationError('Email already exists.')
         return email

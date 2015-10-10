@@ -129,3 +129,9 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
 from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
 LOGIN_URL = reverse_lazy('adminpanel:login')
+
+
+try:
+    from ciudadfutura.settings_local import *
+except ImportError as e:
+    raise

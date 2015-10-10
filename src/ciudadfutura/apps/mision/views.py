@@ -31,7 +31,7 @@ def register(request):
 
         form = UserForm(request.POST)
 
-        if form.is_valid() and all([f.is_valid() for f in invite_forms]):
+        if all([form.is_valid()] + [f.is_valid() for f in invite_forms]):
             member = form.save()
             for f in invite_forms:
                 invite = f.save(commit=False)
@@ -41,7 +41,7 @@ def register(request):
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-dashboard')
     else:
-        invite_forms = [InviteForm(), InviteForm()]
+        invite_forms = [InviteForm(prefix='invite'), InviteForm(prefix='invite')]
         form = UserForm(initial={
             'invites': len(invite_forms)
         })

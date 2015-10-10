@@ -2,7 +2,7 @@
 {% load i18n static %}
 
 {% block header_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'mision/css/site.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'site/css/site.css' %}">
 {% endblock %}
 
 {% block header %}
@@ -22,7 +22,9 @@
     <div class="collapse navbar-collapse" id="gs-nav">
       {% block site_nav %}{% endblock %}
       <ul class="nav navbar-nav navbar-right">
+        {% if user.is_admin %}
         <li><a href="{% url 'adminpanel:dashboard' %}">{% trans 'Admin' %}</a></li>
+        {% endif %}
         <li><a href="{% url 'site:ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
         <li>
           <a href="{% url 'site:ciudadfutura-user-logout' %}">
