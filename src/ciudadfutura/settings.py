@@ -133,5 +133,5 @@ LOGIN_URL = reverse_lazy('adminpanel:login')
 
 try:
     from ciudadfutura.settings_local import *
-except ImportError as e:
-    raise
+except ImportError:
+    pass
