@@ -45,9 +45,12 @@
             <legend>{% trans 'Invites'%}</legend>
             <div id="invites-holder">
               {% for f in invite.forms %}
-                <h4>Consumidor Colaborativo #<span class="invite-index">{{ forloop.counter }}</span></h4>
                 <div class="invite-form">
-                {% bootstrap_form f %}
+                  <h4>
+                    Consumidor Colaborativo #<span class="invite-index"></span>
+                    <a href="#" class="btn btn-danger remove">{% trans 'Remove' %}</a>
+                  </h4>
+                  {% bootstrap_form f %}
                 </div>
               {% endfor %}
             </div>
@@ -59,8 +62,11 @@
         </form>
         <script id="invite-form-tpl" type="html/template">
           <div class="invite-form">
-            <h4>Consumidor Colaborativo #<span class="invite-index"></span></h4>
-          {% bootstrap_form invite.tpl %}
+            <h4>
+                Consumidor Colaborativo #<span class="invite-index"></span>
+                    <a href="#" class="btn btn-danger remove">{% trans 'Remove' %}</a>
+            </h4>
+            {% bootstrap_form invite.tpl %}
           </div>
         </script>
       </div>
