@@ -34,6 +34,7 @@
         <img src="{{ result.image }}">
         <div class="caption">
           <p>{{ result.price }}</p>
+          <p>{{ result.sku }}</p>
           <p>{{ result.name }}</p>
           <form class="js-add-to-cart" method="post" action="{% url 'cart:add-item' result.id %}">
             <div class="input-group">

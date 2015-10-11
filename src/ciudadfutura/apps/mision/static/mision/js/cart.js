@@ -40,7 +40,6 @@
 
         if (addToCartTimeout) {
             clearTimeout(addToCartTimeout);
-            $('#js-message').hide();
         }
 
         event.preventDefault();
@@ -51,7 +50,9 @@
 
                 addToCartTimeout = setTimeout(function () {
                     $('#js-message').hide();
-                }, 2000);
+                }, 3000);
+
+                $('#js-cart-total-items').html(data.total_items);
             } else {
                 // TODO: display error (validation)...
             }

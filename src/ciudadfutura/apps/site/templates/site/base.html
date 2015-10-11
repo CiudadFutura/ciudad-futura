@@ -29,8 +29,11 @@
         {% if user.has_relation.MISION %}
         <li><a href="{% url 'mision:product-list' %}">{% trans 'Mision' %}</a></li>
         <li>
-          <a href="{% url 'mision:product-list' %}">
-            <i class="fa fa-shopping-cart">({{ request.cart.total_items }})</i>
+          <a href="{% url 'cart:index' %}">
+            <i class="fa fa-shopping-cart"></i>&nbsp;
+            <span id="js-cart-total-items" class="badge">
+              {{ request.cart.total_items }}
+            </span>
           </a>
         </li>
         {% endif %}

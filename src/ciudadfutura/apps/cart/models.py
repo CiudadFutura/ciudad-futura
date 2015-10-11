@@ -35,11 +35,12 @@ class Cart(models.Model):
             item.quantity = int(quantity)
         else:
             item.quantity += int(quantity)
-
         item.save(update_fields=['quantity'])
 
-    def remove_item(self, product_id):
-        pass
+        return item
+
+    def remove_item(self, item_id):
+        print self.items.get(id=item_id).delete()
 
 
 class Item(models.Model):
