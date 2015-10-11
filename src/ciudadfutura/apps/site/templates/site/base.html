@@ -28,6 +28,11 @@
 
         {% if user.has_relation.MISION %}
         <li><a href="{% url 'mision:product-list' %}">{% trans 'Mision' %}</a></li>
+        <li>
+          <a href="{% url 'mision:product-list' %}">
+            <i class="fa fa-shopping-cart">({{ request.cart.total_items }})</i>
+          </a>
+        </li>
         {% endif %}
 
         <li><a href="{% url 'site:ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
