@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from ciudadfutura.apps.auth.models import User, Tag
+from ciudadfutura.apps.auth.models import User, Tag, Supplier
 from ciudadfutura.apps.product.models import Product
 from django.utils import timezone
 
@@ -71,4 +71,25 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = []
+
+
+class SupplierForm(forms.ModelForm):
+
+    # default_zones = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = [
+            'first_name', 'last_name', 'postal_code', 'city', 'telephone', 'cellphone', 'address'
+        ]
+
+    def save(self, commit=True):
+
+        user = super(SupplierForm, self).save(commit)
+        supplier = Supplier.objects.create(
+            user=user
+        )
+        return supplier
+
+
 

@@ -2,10 +2,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from ciudadfutura.decorators import staff_required
-from ciudadfutura.apps.auth.models import User, Tag, MisionMember
+from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
 from ciudadfutura.apps.product.models import Product
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, ProductForm
+from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm
 
 
 def admin_logout(request):
@@ -165,4 +165,40 @@ def admin_product_form(request, product_id=None):
 def admin_product_delete(request, product_id):
     Product.objects.get(id=product_id).delete()
     messages.success(request, _('Product successfully deleted.'))
-    return redirect('admin:Product-list')
+    return redirect('admin:product-list')
+
+
+@staff_required
+def admin_supplier_list(request):
+    return render(request, 'admin/admin_supplier_list.html', {
+        'results': paginate(request.GET, Supplier.objects.select_related    ())
+    })
+
+
+@staff_required
+def admin_supplier_form(request, supplier_id=None):
+
+    user = None
+
+    if supplier_id is not None:
+        user = User.objects.get(supplier__id=supplier_id)
+
+    if request.POST:
+        form = SupplierForm(request.POST, instance=user)
+        if form.is_valid():
+            supplier = form.save()
+            messages.success(request, _('Supplier successfully saved.'))
+            return redirect('admin:supplier-list')
+    else:
+        form = SupplierForm(instance=user)
+
+    return render(request, 'admin/admin_supplier_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_supplier_delete(request, supplier_id):
+    Supplier.objects.get(id=supplier_id).delete()
+    messages.success(request, _('Supplier successfully deleted.'))
+    return redirect('admin:supplier-list')

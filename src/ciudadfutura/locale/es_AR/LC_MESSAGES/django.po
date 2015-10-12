@@ -149,16 +149,16 @@ msgstr "Vinculos"
 
 #: ciudadfutura/apps/mision/forms.py:89
 msgid "This field is required."
-msgstr ""
+msgstr "Este campo es requerido"
 
 #: ciudadfutura/apps/mision/templates/mision/register.html:45
 msgid "Invites"
-msgstr ""
+msgstr "Invitados"
 
 #: ciudadfutura/apps/mision/templates/mision/register.html:51
 #: ciudadfutura/apps/mision/templates/mision/register.html:67
 msgid "Remove"
-msgstr ""
+msgstr "Borrar"
 
 #: ciudadfutura/apps/mision/templates/mision/register.html:58
 msgid "Register"
@@ -166,7 +166,7 @@ msgstr "Registrarse"
 
 #: ciudadfutura/apps/mision/templates/mision/register.html:60
 msgid "Add invite"
-msgstr ""
+msgstr "Agregar Invitado"
 
 #: ciudadfutura/apps/order/models.py:7
 msgid "Canceled"
@@ -197,15 +197,15 @@ msgstr ""
 
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:17
 msgid "Birthdate"
-msgstr ""
+msgstr "Fecha Nacimiento"
 
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:20
 msgid "City"
-msgstr ""
+msgstr "Ciudad"
 
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:26
 msgid "Postal code"
-msgstr ""
+msgstr "Código Postal"
 
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:30
 msgid "Change"

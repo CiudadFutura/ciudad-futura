@@ -26,4 +26,10 @@ urlpatterns = [
     url(r'^admin/product/create/$', views.admin_product_form, name='product-create'),
     url(r'^admin/product/(?P<product_id>\d+)/edit/$', views.admin_product_form, name='product-edit'),
     url(r'^admin/product/(?P<product_id>\d+)/delete/$', views.admin_product_delete, name='product-delete'),
+
+    # Supplier urls
+    url(r'^admin/supplier/$', views.admin_supplier_list, name='supplier-list'),
+    url(r'^admin/supplier/create/$', views.admin_supplier_form, name='supplier-create'),
+    url(r'^admin/supplier/(?P<supplier_id>\d+)/edit/$', views.admin_supplier_form, name='supplier-edit'),
+    url(r'^admin/supplier/(?P<supplier_id>\d+)/delete/$', views.admin_supplier_delete, name='supplier-delete'),
 ]
