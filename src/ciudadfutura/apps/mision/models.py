@@ -25,5 +25,6 @@ class Invite(models.Model):
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
     circle = models.ForeignKey('ciudadfutura_mision.Circle', related_name='invites', null=True)
+    activation_key = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -171,7 +171,7 @@ def admin_product_delete(request, product_id):
 @staff_required
 def admin_supplier_list(request):
     return render(request, 'admin/admin_supplier_list.html', {
-        'results': paginate(request.GET, Supplier.objects.select_related    ())
+        'results': paginate(request.GET, Supplier.objects.select_related())
     })
 
 

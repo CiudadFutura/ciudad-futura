@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -6,6 +7,9 @@ from django.views.generic import TemplateView
 from ciudadfutura.apps.product.models import Product
 from ciudadfutura.decorators import user_required
 from .forms import UserForm, InviteForm
+from django.core.mail import EmailMessage
+from uuid import uuid4
+from hashlib import sha512
 
 
 class IndexView(TemplateView):
@@ -39,7 +43,10 @@ def register(request):
             for f in invite_forms:
                 invite = f.save(commit=False)
                 invite.circle = member.circle
+                salt = uuid4().hex
+                invite.activation_key = sha512(invite.email+salt).hexdigest()
                 invite.save()
+                send_email(request, member, invite)
 
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-dashboard')
@@ -65,6 +72,19 @@ def product_list(request):
     return render(request, 'mision/product_list.html', {
         'results': paginate(request.GET, Product.objects.all()),
     })
+
+
+def send_email(request, member, invite):
+    # Send email with activation key
+    message = "Hola %s, El coordinador %s te invito a ser parte de la Mision y de su circulo. Para aceptar la " \
+            "invitacion tienes que hacer clic en: http://127.0.0.1:8000/accounts/confirm/%s" \
+            % (invite.first_name, member.user.name, invite.activation_key)
+    msg = EmailMessage(subject="Bienvenido - Acepta la Invitacion",
+                       body=message,
+                       from_email='victoriacolectiva@gmail.com',
+                       to=[invite.email])
+
+    msg.send()
 
 
 index = IndexView.as_view()

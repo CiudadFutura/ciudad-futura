@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'bootstrap3',
     'debug_toolbar',
     'crispy_forms',
+    'djrill',
+
 
     # Project apps
     'ciudadfutura.apps.auth.Config',
@@ -126,6 +128,7 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Auth
 from django.core.urlresolvers import reverse_lazy
