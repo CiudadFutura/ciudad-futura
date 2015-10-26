@@ -129,6 +129,7 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_HOST_NAME = 'http://127.0.0.1:8000/'
 
 # Auth
 from django.core.urlresolvers import reverse_lazy

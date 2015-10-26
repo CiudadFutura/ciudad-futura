@@ -12,6 +12,7 @@ from django.core.mail import EmailMessage
 from hashlib import sha1
 from uuid import uuid4
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 
 class IndexView(TemplateView):
@@ -109,9 +110,10 @@ def account_confirm(request, code=None):
 
 def send_email(request, member, invite):
     # Send email with activation key
+    current_site = getattr(settings, 'SITE_HOST_NAME', 'defaulthostname')
     message = "Hola %s, El coordinador %s te invito a ser parte de la Mision y de su circulo. Para aceptar la " \
-            "invitacion tienes que hacer clic en: http://127.0.0.1:8000/mision/confirm/%s" \
-            % (invite.first_name, member.user.name, invite.code)
+            "invitacion tienes que hacer clic en: %s/%s" \
+            % (invite.first_name, member.user.name, current_site, invite.code)
     msg = EmailMessage(subject="Bienvenido - Acepta la Invitacion",
                        body=message,
                        from_email='victoriacolectiva@gmail.com',
