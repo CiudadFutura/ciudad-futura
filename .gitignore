@@ -3,4 +3,5 @@
 .idea
 node_modules/
 .log
-settings_local.py
+/src/ciudadfutura/settings_local.py
+
