@@ -32,4 +32,10 @@ urlpatterns = [
     url(r'^admin/supplier/create/$', views.admin_supplier_form, name='supplier-create'),
     url(r'^admin/supplier/(?P<supplier_id>\d+)/edit/$', views.admin_supplier_form, name='supplier-edit'),
     url(r'^admin/supplier/(?P<supplier_id>\d+)/delete/$', views.admin_supplier_delete, name='supplier-delete'),
+
+    # ShoppingCycle urls
+    url(r'^admin/shopping/$', views.admin_shopping_cycle_list, name='shopping-cycle-list'),
+    url(r'^admin/shopping/create/$', views.admin_shopping_cycle_form, name='shopping-cycle-create'),
+    url(r'^admin/shopping/(?P<shopping_cycle_id>\d+)/edit/$', views.admin_shopping_cycle_form, name='shopping-cycle-edit'),
+    url(r'^admin/shopping/(?P<shopping_cycle_id>\d+)/delete/$', views.admin_shopping_cycle_delete, name='shopping-cycle-delete'),
 ]

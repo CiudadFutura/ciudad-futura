@@ -1,0 +1,34 @@
+{% extends 'mision/base.html' %}
+{% load bootstrap3 i18n %}
+
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>Completá el formulario, y sos parte.</h1>
+      <div class="col-sm-6">
+        <div class="col-sm-10">
+          <h3>Completa con tus datos para ser miembro de la Gran Misión</h3>
+          <p>
+            Completa tus datos y acepta la invitacion al circulo
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h2>Datos</h2>
+        <h4>Completa con tus datos para ser parte del círculo</h4>
+        <h3>Consumidor Colaborativo #1 [Miembro]</h3>
+        <p>Todos los campos son <strong>requeridos</strong></p>
+        <form method="post" novalidate>{% csrf_token %}
+          <h4>{% trans 'Circle' %}</h4>
+          <h2>{{ prueba }}</h2>
+
+
+          {% bootstrap_form form %}
+          <button class="btn btn-primary" type="submit">{% trans 'Register' %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

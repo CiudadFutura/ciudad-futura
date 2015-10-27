@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Circle(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -21,9 +20,15 @@ class ShoppingCycle(models.Model):
 
 
 class Invite(models.Model):
+    code = models.CharField(unique=True, max_length=255)
     email = models.EmailField(null=True, blank=False)
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
     circle = models.ForeignKey('ciudadfutura_mision.Circle', related_name='invites', null=True)
+    activation_key = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+
+

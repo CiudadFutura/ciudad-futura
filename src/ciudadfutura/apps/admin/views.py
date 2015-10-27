@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
+from ciudadfutura.apps.mision.models import ShoppingCycle
 from ciudadfutura.apps.product.models import Product
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm
+from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm
 
 
 def admin_logout(request):
@@ -171,7 +172,7 @@ def admin_product_delete(request, product_id):
 @staff_required
 def admin_supplier_list(request):
     return render(request, 'admin/admin_supplier_list.html', {
-        'results': paginate(request.GET, Supplier.objects.select_related    ())
+        'results': paginate(request.GET, Supplier.objects.select_related())
     })
 
 
@@ -202,3 +203,39 @@ def admin_supplier_delete(request, supplier_id):
     Supplier.objects.get(id=supplier_id).delete()
     messages.success(request, _('Supplier successfully deleted.'))
     return redirect('admin:supplier-list')
+
+
+@staff_required
+def admin_shopping_cycle_list(request):
+    return render(request, 'admin/admin_shopping_cycle_list.html', {
+        'results': paginate(request.GET, ShoppingCycle.objects.all()),
+    })
+
+
+@staff_required
+def admin_shopping_cycle_form(request, shopping_cycle_id=None):
+    shopping_cycle = None
+
+    if shopping_cycle_id is not None:
+        shopping_cycle = ShoppingCycle.objects.get(id=shopping_cycle_id)
+
+    if request.POST:
+        form = ShoppingCycleForm(request.POST, instance=shopping_cycle)
+        if form.is_valid():
+            shopping = form.save()
+            messages.success(request, _('Shopping Cycle successfully saved.'))
+            return redirect('admin:shopping-cycle-list')
+    else:
+        form = ShoppingCycleForm(instance=shopping_cycle)
+
+    return render(request, 'admin/admin_shopping_cycle_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_shopping_cycle_delete(request, shopping_cycle_id):
+    ShoppingCycle.objects.get(id=shopping_cycle_id).delete()
+    messages.success(request, _('Shopping Cycle successfully deleted.'))
+    return redirect('admin:shopping-cycle-list')
+
