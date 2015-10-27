@@ -4,6 +4,7 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User, Tag, Supplier
 from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.mision.models import ShoppingCycle
 from django.utils import timezone
 
 
@@ -71,6 +72,21 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = []
+
+
+class ShoppingCycleForm(forms.ModelForm):
+    class Meta:
+        model = ShoppingCycle
+        exclude = [
+            'created_at',
+            'updated_at',
+        ]
+        widgets = {
+            'start_date': SelectDateWidget(),
+            'end_date': SelectDateWidget(),
+            'end_pay_date': SelectDateWidget(),
+            'delivery_date': SelectDateWidget(),
+        }
 
 
 class SupplierForm(forms.ModelForm):
