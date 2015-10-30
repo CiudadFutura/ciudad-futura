@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'crispy_forms',
     'djrill',
+    'raven.contrib.django.raven_compat',
 
 
     # Project apps
@@ -136,6 +137,9 @@ from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
 LOGIN_URL = reverse_lazy('admin:login')
 
+RAVEN_CONFIG = {
+    'dsn': None
+}
 
 try:
     from ciudadfutura.settings_local import *
