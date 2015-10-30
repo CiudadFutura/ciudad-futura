@@ -2,8 +2,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from ciudadfutura.apps.auth.models import User, Tag
+from ciudadfutura.apps.auth.models import User, Tag, Supplier
+from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.mision.models import ShoppingCycle
 from django.utils import timezone
+
 
 class LoginForm(forms.Form):
 
@@ -32,6 +35,7 @@ BIRTH_YEAR_CHOICES = [
     now.year - n for n in xrange(MAX_AGE)
 ]
 
+
 class UserForm(forms.ModelForm):
 
     class Meta:
@@ -58,8 +62,50 @@ class UserForm(forms.ModelForm):
         return email
 
 
-
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
         exclude = []
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        exclude = []
+
+
+class ShoppingCycleForm(forms.ModelForm):
+    class Meta:
+        model = ShoppingCycle
+        exclude = [
+            'created_at',
+            'updated_at',
+        ]
+        widgets = {
+            'start_date': SelectDateWidget(),
+            'end_date': SelectDateWidget(),
+            'end_pay_date': SelectDateWidget(),
+            'delivery_date': SelectDateWidget(),
+        }
+
+
+class SupplierForm(forms.ModelForm):
+
+    # default_zones = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = [
+            'first_name', 'last_name', 'postal_code', 'city', 'telephone', 'cellphone', 'address'
+        ]
+
+    def save(self, commit=True):
+
+        user = super(SupplierForm, self).save(commit)
+        supplier = Supplier.objects.create(
+            user=user
+        )
+        return supplier
+
+
+

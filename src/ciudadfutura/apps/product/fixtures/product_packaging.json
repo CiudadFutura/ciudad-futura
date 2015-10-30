@@ -1,0 +1,44 @@
+[
+{
+  "pk": 1,
+  "model": "ciudadfutura_product.Packaging",
+  "fields": {
+      "name": "Lata"
+  }
+},
+{
+  "pk": 2,
+  "model": "ciudadfutura_product.Packaging",
+  "fields": {
+      "name": "Botella"
+  }
+},
+{
+  "pk": 3,
+  "model": "ciudadfutura_product.Packaging",
+  "fields": {
+      "name": "Frasco"
+  }
+},
+{
+  "pk": 4,
+  "model": "ciudadfutura_product.Packaging",
+  "fields": {
+      "name": "Sachets y Sobre"
+  }
+},
+{
+  "pk": 5,
+  "model": "ciudadfutura_product.Packaging",
+  "fields": {
+      "name": "Tetrapack"
+  }
+},
+{
+  "pk": 6,
+  "model": "ciudadfutura_product.Packaging",
+  "fields": {
+      "name": "Botella"
+  }
+}
+]

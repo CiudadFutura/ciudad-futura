@@ -26,12 +26,12 @@ SECRET_KEY = 'zsf=tfgib&kn=4xjbv(#ej)56=fmj4+w83q9=_v$-9btks2auk'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'bootstrap3',
     'debug_toolbar',
     'crispy_forms',
+    'djrill',
+
 
     # Project apps
     'ciudadfutura.apps.auth.Config',
@@ -62,6 +64,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    # Project middleware
+    'ciudadfutura.apps.cart.middleware.CartMiddleware',
 )
 
 ROOT_URLCONF = 'ciudadfutura.urls'
@@ -102,7 +107,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'es_AR'
 
 TIME_ZONE = 'UTC'
@@ -123,8 +128,16 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'pub', 'static'))
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_HOST_NAME = 'http://127.0.0.1:8000/'
 
 # Auth
 from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
-LOGIN_URL = reverse_lazy('adminpanel:login')
+LOGIN_URL = reverse_lazy('admin:login')
+
+
+try:
+    from ciudadfutura.settings_local import *
+except ImportError:
+    pass

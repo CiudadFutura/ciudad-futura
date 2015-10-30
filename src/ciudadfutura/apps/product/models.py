@@ -11,6 +11,9 @@ class Zone(models.Model):
 class Packaging(models.Model):
     name = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.name
+
 
 class PriceChange(models.Model):
     product = models.ForeignKey('ciudadfutura_product.Product')

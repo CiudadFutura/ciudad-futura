@@ -76,6 +76,12 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
 
+    # Relationship Ids
+    CIUDADANO = 1
+    MISION = 2
+    D7 = 3
+    AFILIADO = 4
+
     objects = UserManager()
 
     @property
@@ -86,6 +92,18 @@ class User(AbstractBaseUser):
 
     # Alias
     name = full_name
+
+    @property
+    def has_relation(self):
+        relationships = [
+            r.id for r in self.relationships.all()
+        ]
+        return type('Relations', (object, ), {
+            'CIUDADANO': 1 in relationships,
+            'MISION': 2 in relationships,
+            'D7': 3 in relationships,
+            'AFILIADO': 4 in relationships,
+        })()
 
     def has_module_perms(self, module):
         return self.is_admin
@@ -118,13 +136,13 @@ class Profile(models.Model):
 
 
 class Facebook(Profile):
-    user = models.ForeignKey('ciudadfutura_auth.User', related_name='facebook')
+    user = models.OneToOneField('ciudadfutura_auth.User', related_name='facebook')
     email = models.EmailField()
     token = models.TextField()
 
 
 class Supplier(Profile):
-    user = models.ForeignKey('ciudadfutura_auth.User', related_name='supplier')
+    user = models.OneToOneField('ciudadfutura_auth.User', related_name='supplier')
     default_zones = models.ManyToManyField('ciudadfutura_product.Zone')
 
     def __str__(self):
@@ -132,7 +150,7 @@ class Supplier(Profile):
 
 
 class MisionMember(Profile):
-    user = models.ForeignKey('ciudadfutura_auth.User', related_name='member')
+    user = models.OneToOneField('ciudadfutura_auth.User', related_name='member')
     circle = models.ForeignKey(
         'ciudadfutura_mision.Circle',
         null=True,
@@ -140,6 +158,7 @@ class MisionMember(Profile):
         related_name='member'
     )
     is_lead = models.BooleanField(default=False)
+    cart = models.ForeignKey('ciudadfutura_cart.Cart', null=True)
 
 
 def set_username_and_email(sender, instance, **kwargs):

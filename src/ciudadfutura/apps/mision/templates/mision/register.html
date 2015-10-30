@@ -1,8 +1,81 @@
-{% extends 'mision/base_public.html' %}
+{% extends 'mision/base.html' %}
+{% load bootstrap3 i18n %}
+
 
 {% block content %}
-    <h1>{{ page_title }}</h1>
+  <div class="container">
+    <div class="row">
+      <h1>Completá el formulario, y sos parte.</h1>
+      <div class="col-sm-6">
+        <div class="col-sm-10">
+          <h3>Completa con tus datos para ser miembro de la Gran Misión</h3>
+          <p>Se debe designar un coordinador entre los hogares que conforman el círculo, el cual será el vínculo de
+            comunicación más directo entre el círculo y la organización de la Gran Misión. Este coordinador tendrá
+            las siguientes funciones: inscribir el círculo; notificar la apertura del período de compra a los
+            miembros de su círculo; centralizar los pedidos de su círculo y enviar la información a la Gran Misión;
+            garantizar que algún miembro del círculo se encargue de efectuar el pago por el monto total de todas
+            las compras del círculo, incluida la cuota mensual; notificar a la Misión el número de comprobante de
+            pago, el miembro del círculo y el horario en que retirará los pedidos del total del círculo.
+            Todas estas tareas el coordinador las realizará vía web, desde su casa o trabajo.</p>
+          <p>Se debe designar un coordinador entre los hogares que conforman el círculo, el cual será el vínculo
+            de comunicación más directo entre el círculo y la organización de la Gran Misión. Este coordinador tendrá
+            las siguientes funciones: inscribir el círculo; notificar la apertura del período de compra a los miembros
+            de su círculo; centralizar los pedidos de su círculo y enviar la información a la Gran Misión; garantizar
+            que algún miembro del círculo se encargue de efectuar el pago por el monto total de todas las compras del
+            círculo, incluida la cuota mensual; notificar a la Misión el número de comprobante de pago, el miembro del
+            círculo y el horario en que retirará los pedidos del total del círculo. Todas estas tareas el coordinador
+            las realizará vía web, desde su casa o trabajo.</p>
+          <p>Cada círculo tiene que estar conformado con al menos 3 hogares y como máximo 5 hogares.
+            La conformación de los círculos es totalmente voluntaria, y decidida por quienes conforman el
+            círculo.</p>
+          <p>Desde la Misión Anti-inflación  recomendamos que a la hora de conformar un círculo, el hogar pueda
+            hacerlo con  vecinos, amigos, familiares, compañeros de trabajo, etc.,  ya que lo importante es
+            organizarnos con personas de confianza con los cuales se puedan coordinar las distintas tareas
+            (pago de los pedidos, retiro de la compra, etc.). </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h2>Datos del coordinador</h2>
+        <h4>Completa con tus datos para ser el coordinador de tu círculo</h4>
+        <h3>Consumidor Colaborativo #1 [Coordinador]</h3>
+        <p>Todos los campos son <strong>requeridos</strong></p>
+        <form method="post" novalidate>{% csrf_token %}
+          {% bootstrap_form form %}
+          <fieldset>
+            <legend>{% trans 'Invites'%}</legend>
+            <div id="invites-holder">
+              {% for f in invite.forms %}
+                <div class="invite-form">
+                  <h4>
+                    Consumidor Colaborativo #<span class="invite-index"></span>
+                    <a href="#" class="btn btn-danger remove">{% trans 'Remove' %}</a>
+                  </h4>
+                  {% bootstrap_form f %}
+                </div>
+              {% endfor %}
+            </div>
+          </fieldset>
+          <button class="btn btn-primary" type="submit">{% trans 'Register' %}</button>
+          <button id="add-invite" class="btn btn-success">
+            <i class="fa fa-plus"></i>&nbsp;{% trans 'Add invite' %}
+           </button>
+        </form>
+        <script id="invite-form-tpl" type="html/template">
+          <div class="invite-form">
+            <h4>
+                Consumidor Colaborativo #<span class="invite-index"></span>
+                    <a href="#" class="btn btn-danger remove">{% trans 'Remove' %}</a>
+            </h4>
+            {% bootstrap_form invite.tpl %}
+          </div>
+        </script>
+      </div>
+    </div>
+  </div>
 
-  {{ form }}
+{% endblock %}
 
+
+{% block footer_js %}
+  {{ form.media }}
 {% endblock %}

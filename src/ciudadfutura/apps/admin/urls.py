@@ -20,4 +20,22 @@ urlpatterns = [
     url(r'^admin/user/(?P<user_id>\d+)/$', views.admin_user_details, name='user-details'),
     url(r'^admin/user/(?P<user_id>\d+)/edit/$', views.admin_user_form, name='user-edit'),
     url(r'^admin/user/(?P<user_id>\d+)/delete/$', views.admin_user_delete, name='user-delete'),
+
+    # Product urls
+    url(r'^admin/product/$', views.admin_product_list, name='product-list'),
+    url(r'^admin/product/create/$', views.admin_product_form, name='product-create'),
+    url(r'^admin/product/(?P<product_id>\d+)/edit/$', views.admin_product_form, name='product-edit'),
+    url(r'^admin/product/(?P<product_id>\d+)/delete/$', views.admin_product_delete, name='product-delete'),
+
+    # Supplier urls
+    url(r'^admin/supplier/$', views.admin_supplier_list, name='supplier-list'),
+    url(r'^admin/supplier/create/$', views.admin_supplier_form, name='supplier-create'),
+    url(r'^admin/supplier/(?P<supplier_id>\d+)/edit/$', views.admin_supplier_form, name='supplier-edit'),
+    url(r'^admin/supplier/(?P<supplier_id>\d+)/delete/$', views.admin_supplier_delete, name='supplier-delete'),
+
+    # ShoppingCycle urls
+    url(r'^admin/shopping/$', views.admin_shopping_cycle_list, name='shopping-cycle-list'),
+    url(r'^admin/shopping/create/$', views.admin_shopping_cycle_form, name='shopping-cycle-create'),
+    url(r'^admin/shopping/(?P<shopping_cycle_id>\d+)/edit/$', views.admin_shopping_cycle_form, name='shopping-cycle-edit'),
+    url(r'^admin/shopping/(?P<shopping_cycle_id>\d+)/delete/$', views.admin_shopping_cycle_delete, name='shopping-cycle-delete'),
 ]

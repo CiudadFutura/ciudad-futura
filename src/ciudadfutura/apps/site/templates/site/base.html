@@ -2,7 +2,7 @@
 {% load i18n static %}
 
 {% block header_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'mision/css/site.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'site/css/site.css' %}">
 {% endblock %}
 
 {% block header %}
@@ -22,7 +22,22 @@
     <div class="collapse navbar-collapse" id="gs-nav">
       {% block site_nav %}{% endblock %}
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'adminpanel:dashboard' %}">{% trans 'Admin' %}</a></li>
+        {% if user.is_admin %}
+        <li><a href="{% url 'admin:dashboard' %}">{% trans 'Admin' %}</a></li>
+        {% endif %}
+
+        {% if user.has_relation.MISION %}
+        <li><a href="{% url 'mision:product-list' %}">{% trans 'Mision' %}</a></li>
+        <li>
+          <a href="{% url 'cart:index' %}">
+            <i class="fa fa-shopping-cart"></i>&nbsp;
+            <span id="js-cart-total-items" class="badge">
+              {{ request.cart.total_items }}
+            </span>
+          </a>
+        </li>
+        {% endif %}
+
         <li><a href="{% url 'site:ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
         <li>
           <a href="{% url 'site:ciudadfutura-user-logout' %}">

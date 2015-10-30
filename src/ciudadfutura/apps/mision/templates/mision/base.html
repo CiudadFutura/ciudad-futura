@@ -8,6 +8,16 @@
 </head>
 <body class="{{ body_class }}">
     {% block header %}{% endblock %}
+
+    <div class="container">
+    {% for message in messages %}
+      <div class="alert{% if message.tags %} alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
+        {{ message|safe }}
+      </div>
+    {% endfor %}
+    </div>
+
     {% block content %}{% endblock %}
     {% block footer %}{% endblock %}
 
