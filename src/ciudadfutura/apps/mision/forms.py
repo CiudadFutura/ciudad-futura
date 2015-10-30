@@ -85,9 +85,7 @@ class UserForm(forms.ModelForm):
         email = self.cleaned_data.get('email', '').lower()
 
         if not email:
-            raise forms.ValidationError({
-                'email': _('This field is required.')
-            })
+            raise forms.ValidationError(_('This field is required.'))
 
         if email and User.objects.filter(email__iexact=email).count():
             raise forms.ValidationError('Email already exists.')
