@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-30 19:55+0000\n"
+"POT-Creation-Date: 2015-11-01 03:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,16 +27,7 @@ msgstr "Email"
 msgid "Password"
 msgstr "Contraseña"
 
-#: ciudadfutura/apps/admin/templates/admin/admin_login.html:9
-msgid "Login"
-msgstr "Login"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_login.html:12
-#: ciudadfutura/apps/site/templates/site/index.html:6
-#: ciudadfutura/apps/site/templates/site/user_login.html:8
-msgid "Sign in"
-msgstr "Iniciar sesión"
-
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_form.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_product_form.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_form.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_form.html:9
@@ -46,6 +37,7 @@ msgstr "Iniciar sesión"
 msgid "Save"
 msgstr "Guardar"
 
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:9
@@ -53,6 +45,46 @@ msgstr "Guardar"
 #: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:9
 msgid "Create"
 msgstr "Crear"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:16
+msgid "Circle #"
+msgstr "Cŕrculo"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:17
+msgid "Leader #"
+msgstr "Coordinador #"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:28
+#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:28
+#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:36
+#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:35
+#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:28
+#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:50
+msgid "Delete"
+msgstr "Borrar"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:32
+#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:32
+#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:40
+#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:39
+#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:32
+#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:54
+msgid "Edit"
+msgstr "Editar"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:38
+msgid "No circles found."
+msgstr "No se encontraron círculos."
+
+#: ciudadfutura/apps/admin/templates/admin/admin_login.html:9
+msgid "Login"
+msgstr "Login"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_login.html:12
+#: ciudadfutura/apps/site/templates/site/index.html:6
+#: ciudadfutura/apps/site/templates/site/user_login.html:8
+msgid "Sign in"
+msgstr "Iniciar sesión"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:16
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:16
@@ -69,22 +101,6 @@ msgstr "ID"
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:8
 msgid "Name"
 msgstr "Nombre"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:28
-#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:36
-#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:35
-#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:28
-#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:50
-msgid "Delete"
-msgstr "Borrar"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:32
-#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:40
-#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:39
-#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:32
-#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:54
-msgid "Edit"
-msgstr "Editar"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:38
 msgid "No products found."
@@ -108,7 +124,7 @@ msgstr "Fecha de entrega"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:46
 msgid "No Cycles found."
-msgstr "No se encontraron circulos."
+msgstr "No se encontraron Ciclos de compras."
 
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:19
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:20
@@ -160,10 +176,14 @@ msgid "Suppliers"
 msgstr "Proveedores"
 
 #: ciudadfutura/apps/admin/templates/admin/base.html:29
+msgid "Circles"
+msgstr "Círculos"
+
+#: ciudadfutura/apps/admin/templates/admin/base.html:30
 msgid "Cycles"
 msgstr "Ciclos"
 
-#: ciudadfutura/apps/admin/templates/admin/base.html:36
+#: ciudadfutura/apps/admin/templates/admin/base.html:37
 #: ciudadfutura/apps/site/templates/site/base.html:44
 msgid "Logout"
 msgstr "Logout"
@@ -213,13 +233,21 @@ msgstr "El proveedor se guardo exitosamente."
 msgid "Supplier successfully deleted."
 msgstr "El proveedor se eliminó exitosamente"
 
-#: ciudadfutura/apps/admin/views.py:226
+#: ciudadfutura/apps/admin/views.py:229
 msgid "Shopping Cycle successfully saved."
 msgstr "El ciclo se guardo exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:239
+#: ciudadfutura/apps/admin/views.py:242
 msgid "Shopping Cycle successfully deleted."
 msgstr "El ciclo se eliminó exitosamente"
+
+#: ciudadfutura/apps/admin/views.py:265
+msgid "Circle successfully saved."
+msgstr "Eñ círculo se guardó exitosamente."
+
+#: ciudadfutura/apps/admin/views.py:278
+msgid "Circle successfully deleted."
+msgstr "El Círculo se eliminó exitosamente"
 
 #: ciudadfutura/apps/auth/models.py:49
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:23
@@ -238,7 +266,7 @@ msgstr "Vinculos"
 msgid "Item successfully removed."
 msgstr "El item se eliminó exitosamente."
 
-#: ciudadfutura/apps/mision/forms.py:89 ciudadfutura/apps/mision/forms.py:139
+#: ciudadfutura/apps/mision/forms.py:88 ciudadfutura/apps/mision/forms.py:137
 msgid "This field is required."
 msgstr "Este campo es requerido"
 
