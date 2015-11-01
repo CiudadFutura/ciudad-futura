@@ -245,8 +245,9 @@ def admin_shopping_cycle_delete(request, shopping_cycle_id):
 
 @staff_required
 def admin_circle_list(request):
+    object_list = MisionMember.objects.filter(is_lead=True)
     return render(request, 'admin/admin_circle_list.html', {
-        'results': paginate(request.GET, Circle.objects.all())
+        'results': paginate(request.GET, object_list)
     })
 
 

@@ -14,7 +14,7 @@
       <thead>
         <tr>
           <th>{% trans 'Circle #' %}</th>
-          <th>{% trans 'Shopping Cycle' %}</th>
+          <th>{% trans 'Leader #' %}</th>
           <th></th>
         </tr>
       </thead>
@@ -22,7 +22,7 @@
         {% for result in results %}
         <tr>
           <td>{{ result.id }}</td>
-          <td>{{ result.shopping_cycle_id }}</td>
+          <td><a href="{% url 'admin:user-edit' result.user.id %}">{{ result.user.name }}</a></td>
           <td>
             <a href="{% url 'admin:circle-delete' result.id %}" class="btn btn-danger btn-xs">
               <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
