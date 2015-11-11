@@ -4,7 +4,7 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User, Tag, Supplier
 from ciudadfutura.apps.product.models import Product
-from ciudadfutura.apps.mision.models import ShoppingCycle
+from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from django.utils import timezone
 
 
@@ -34,6 +34,9 @@ now = timezone.now()
 BIRTH_YEAR_CHOICES = [
     now.year - n for n in xrange(MAX_AGE)
 ]
+QUANTITIES_CIRCLES = (
+    ('all', 'Todos'),
+)
 
 
 class UserForm(forms.ModelForm):
@@ -75,6 +78,11 @@ class ProductForm(forms.ModelForm):
 
 
 class ShoppingCycleForm(forms.ModelForm):
+
+    circles = forms.MultipleChoiceField(required=False,
+                                        widget=forms.CheckboxSelectMultiple,
+                                        choices=QUANTITIES_CIRCLES)
+
     class Meta:
         model = ShoppingCycle
         exclude = [
@@ -106,6 +114,16 @@ class SupplierForm(forms.ModelForm):
             user=user
         )
         return supplier
+
+
+class CircleForm(forms.ModelForm):
+
+    class Meta:
+        model = Circle
+        exclude = [
+            'created_at',
+            'updated_at',
+        ]
 
 
 

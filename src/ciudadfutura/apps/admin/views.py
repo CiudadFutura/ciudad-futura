@@ -3,10 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
-from ciudadfutura.apps.mision.models import ShoppingCycle
+from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from ciudadfutura.apps.product.models import Product
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm
+from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm
 
 
 def admin_logout(request):
@@ -223,6 +223,9 @@ def admin_shopping_cycle_form(request, shopping_cycle_id=None):
         form = ShoppingCycleForm(request.POST, instance=shopping_cycle)
         if form.is_valid():
             shopping = form.save()
+            for circle in Circle.objects.all():
+                circle.shopping_cycle = shopping
+                circle.save()
             messages.success(request, _('Shopping Cycle successfully saved.'))
             return redirect('admin:shopping-cycle-list')
     else:
@@ -239,3 +242,38 @@ def admin_shopping_cycle_delete(request, shopping_cycle_id):
     messages.success(request, _('Shopping Cycle successfully deleted.'))
     return redirect('admin:shopping-cycle-list')
 
+
+@staff_required
+def admin_circle_list(request):
+    object_list = MisionMember.objects.filter(is_lead=True)
+    return render(request, 'admin/admin_circle_list.html', {
+        'results': paginate(request.GET, object_list)
+    })
+
+
+@staff_required
+def admin_circle_form(request, circle_id=None):
+    circle = None
+
+    if circle_id is not None:
+        circle = Circle.objects.get(id=circle_id)
+
+    if request.POST:
+        form = CircleForm(request.POST, instance=circle)
+        if form.is_valid():
+            circle = form.save()
+            messages.success(request, _('Circle successfully saved.'))
+            return redirect('admin:circle-list')
+    else:
+        form = CircleForm(instance=circle)
+
+    return render(request, 'admin/admin_circle_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_circle_delete(request, circle_id):
+    Circle.objects.get(id=circle_id).delete()
+    messages.success(request, _('Circle successfully deleted.'))
+    return redirect('admin:circle-list')

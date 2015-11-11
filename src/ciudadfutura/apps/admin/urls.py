@@ -33,6 +33,12 @@ urlpatterns = [
     url(r'^admin/supplier/(?P<supplier_id>\d+)/edit/$', views.admin_supplier_form, name='supplier-edit'),
     url(r'^admin/supplier/(?P<supplier_id>\d+)/delete/$', views.admin_supplier_delete, name='supplier-delete'),
 
+    # Circle urls
+    url(r'^admin/circle/$', views.admin_circle_list, name='circle-list'),
+    url(r'^admin/circle/create/$', views.admin_circle_form, name='circle-create'),
+    url(r'^admin/circle/(?P<circle_id>\d+)/edit/$', views.admin_circle_form, name='circle-edit'),
+    url(r'^admin/circle/(?P<circle_id>\d+)/delete/$', views.admin_circle_delete, name='circle-delete'),
+
     # ShoppingCycle urls
     url(r'^admin/shopping/$', views.admin_shopping_cycle_list, name='shopping-cycle-list'),
     url(r'^admin/shopping/create/$', views.admin_shopping_cycle_form, name='shopping-cycle-create'),
