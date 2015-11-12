@@ -44,4 +44,16 @@ urlpatterns = [
     url(r'^admin/shopping/create/$', views.admin_shopping_cycle_form, name='shopping-cycle-create'),
     url(r'^admin/shopping/(?P<shopping_cycle_id>\d+)/edit/$', views.admin_shopping_cycle_form, name='shopping-cycle-edit'),
     url(r'^admin/shopping/(?P<shopping_cycle_id>\d+)/delete/$', views.admin_shopping_cycle_delete, name='shopping-cycle-delete'),
+
+    # Order urls
+    url(r'^admin/order/$', views.admin_order_list, name='order-list'),
+    url(r'^admin/order/create/$', views.admin_order_form, name='order-create'),
+    url(r'^admin/order/(?P<order_id>\d+)/edit/$', views.admin_order_form, name='order-edit'),
+    url(r'^admin/order/(?P<order_id>\d+)/delete/$', views.admin_order_delete, name='order-delete'),
+
+    # OrderItem urls
+    url(r'^admin/order_item/$', views.admin_order_item_list, name='order-item-list'),
+    url(r'^admin/order_item/create/$', views.admin_order_item_form, name='order-item-create'),
+    url(r'^admin/order_item/(?P<order_item_id>\d+)/edit/$', views.admin_order_item_form, name='order-item-edit'),
+    url(r'^admin/order_item/(?P<order_item_id>\d+)/delete/$', views.admin_order_item_delete, name='order-item-delete'),
 ]

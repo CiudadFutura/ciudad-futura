@@ -5,8 +5,10 @@ from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
 from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.order.models import Order, OrderItem
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, UserEditForm
+from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, OrderForm,\
+    OrderItemForm
 
 
 def admin_logout(request):
@@ -299,3 +301,74 @@ def admin_circle_delete(request, circle_id):
     Circle.objects.get(id=circle_id).delete()
     messages.success(request, _('Circle successfully deleted.'))
     return redirect('admin:circle-list')
+
+
+@staff_required
+def admin_order_list(request):
+    return render(request, 'admin/admin_order_list.html', {
+        'results': paginate(request.GET, Order.objects.all())
+    })
+
+
+@staff_required
+def admin_order_form(request, order_id=None):
+    order = None
+
+    if order_id is not None:
+        order = Order.objects.get(id=order_id)
+
+    if request.POST:
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            order = form.save()
+            messages.success(request, _('Order successfully saved.'))
+            return redirect('admin:order-list')
+    else:
+        form = OrderForm(instance=order)
+
+    return render(request, 'admin/admin_order_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_order_delete(request, order_id):
+    Order.objects.get(id=order_id).delete()
+    messages.success(request, _('Order successfully deleted.'))
+    return redirect('admin:order-list')
+
+
+@staff_required
+def admin_order_item_list(request):
+    return render(request, 'admin/admin_order_item_list.html', {
+        'results': paginate(request.GET, OrderItem.objects.all())
+    })
+
+
+@staff_required
+def admin_order_item_form(request, order_item_id=None):
+    order = None
+
+    if order_item_id is not None:
+        order = OrderItem.objects.get(id=order_item_id)
+
+    if request.POST:
+        form = OrderItemForm(request.POST, instance=order)
+        if form.is_valid():
+            order = form.save()
+            messages.success(request, _('Order successfully saved.'))
+            return redirect('admin:order-item-list')
+    else:
+        form = OrderForm(instance=order)
+
+    return render(request, 'admin/admin_order_item_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_order_item_delete(request, order_item_id):
+    Order.objects.get(id=order_item_id).delete()
+    messages.success(request, _('Order successfully deleted.'))
+    return redirect('admin:order-item-list')
+
