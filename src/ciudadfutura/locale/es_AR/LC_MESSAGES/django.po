@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-01 03:34+0000\n"
+"POT-Creation-Date: 2015-11-12 01:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ciudadfutura/apps/admin/forms.py:16
+#: ciudadfutura/apps/admin/forms.py:17
 #: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:32
 #: ciudadfutura/apps/mision/forms.py:15
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:14
 msgid "Email"
 msgstr "Email"
 
-#: ciudadfutura/apps/admin/forms.py:21 ciudadfutura/apps/mision/forms.py:20
+#: ciudadfutura/apps/admin/forms.py:22 ciudadfutura/apps/mision/forms.py:20
 msgid "Password"
 msgstr "Contraseña"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_circle_form.html:9
+#: ciudadfutura/apps/admin/templates/admin/admin_order_form.html:9
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_form.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_product_form.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_form.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_form.html:9
@@ -38,6 +40,8 @@ msgid "Save"
 msgstr "Guardar"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:9
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:9
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:9
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:9
@@ -55,6 +59,8 @@ msgid "Leader #"
 msgstr "Coordinador #"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:28
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:30
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:36
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:28
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:36
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:35
@@ -64,6 +70,8 @@ msgid "Delete"
 msgstr "Borrar"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:32
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:34
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:40
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:32
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:40
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:39
@@ -85,6 +93,33 @@ msgstr "Login"
 #: ciudadfutura/apps/site/templates/site/user_login.html:8
 msgid "Sign in"
 msgstr "Iniciar sesión"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:16
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:16
+msgid "Order #"
+msgstr "Pedido #"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:17
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:17
+msgid "Date"
+msgstr "Fecha"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:18
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:18
+msgid "User"
+msgstr "Usuario"
+
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:40
+msgid "No order items found."
+msgstr "No se encontraron items."
+
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:31
+msgid "Items"
+msgstr ""
+
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:46
+msgid "No orders found."
+msgstr "No se encontraron pedidos."
 
 #: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:16
 #: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:16
@@ -183,71 +218,83 @@ msgstr "Círculos"
 msgid "Cycles"
 msgstr "Ciclos"
 
-#: ciudadfutura/apps/admin/templates/admin/base.html:37
-#: ciudadfutura/apps/site/templates/site/base.html:44
+#: ciudadfutura/apps/admin/templates/admin/base.html:31
+msgid "Orders"
+msgstr ""
+
+#: ciudadfutura/apps/admin/templates/admin/base.html:38
+#: ciudadfutura/apps/site/templates/site/base.html:42
 msgid "Logout"
 msgstr "Logout"
 
-#: ciudadfutura/apps/admin/views.py:14 ciudadfutura/apps/site/views.py:20
+#: ciudadfutura/apps/admin/views.py:16 ciudadfutura/apps/site/views.py:20
 msgid "You have successfully logged out."
 msgstr "Sesión finalizada exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:32 ciudadfutura/apps/site/views.py:37
+#: ciudadfutura/apps/admin/views.py:34 ciudadfutura/apps/site/views.py:37
 msgid "Authentication succeed."
 msgstr "Autenticación exitosa."
 
-#: ciudadfutura/apps/admin/views.py:35 ciudadfutura/apps/site/views.py:40
+#: ciudadfutura/apps/admin/views.py:37 ciudadfutura/apps/site/views.py:40
 msgid "Authentication failed."
 msgstr "Error en la autenticación"
 
-#: ciudadfutura/apps/admin/views.py:80 ciudadfutura/apps/mision/views.py:54
-#: ciudadfutura/apps/site/views.py:65
+#: ciudadfutura/apps/admin/views.py:82 ciudadfutura/apps/admin/views.py:109
+#: ciudadfutura/apps/mision/views.py:54 ciudadfutura/apps/site/views.py:65
 msgid "User successfully saved."
 msgstr "El usuario se guardo exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:98
+#: ciudadfutura/apps/admin/views.py:122
 msgid "User successfully deleted."
 msgstr "El usuario se eliminó exitosamente"
 
-#: ciudadfutura/apps/admin/views.py:112
+#: ciudadfutura/apps/admin/views.py:136
 msgid "Tag successfully deleted."
 msgstr "La etiqueta se eliminó exitosamente"
 
-#: ciudadfutura/apps/admin/views.py:127
+#: ciudadfutura/apps/admin/views.py:151
 msgid "Tag successfully saved."
 msgstr "La etiqueta se guardo exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:155
+#: ciudadfutura/apps/admin/views.py:179
 msgid "Product successfully saved."
 msgstr "El producto se guardo exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:168
+#: ciudadfutura/apps/admin/views.py:192
 msgid "Product successfully deleted."
 msgstr "El producto se eliminó exitosamente"
 
-#: ciudadfutura/apps/admin/views.py:191
+#: ciudadfutura/apps/admin/views.py:215
 msgid "Supplier successfully saved."
 msgstr "El proveedor se guardo exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:204
+#: ciudadfutura/apps/admin/views.py:228
 msgid "Supplier successfully deleted."
 msgstr "El proveedor se eliminó exitosamente"
 
-#: ciudadfutura/apps/admin/views.py:229
+#: ciudadfutura/apps/admin/views.py:253
 msgid "Shopping Cycle successfully saved."
 msgstr "El ciclo se guardo exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:242
+#: ciudadfutura/apps/admin/views.py:266
 msgid "Shopping Cycle successfully deleted."
 msgstr "El ciclo se eliminó exitosamente"
 
-#: ciudadfutura/apps/admin/views.py:265
+#: ciudadfutura/apps/admin/views.py:289
 msgid "Circle successfully saved."
 msgstr "Eñ círculo se guardó exitosamente."
 
-#: ciudadfutura/apps/admin/views.py:278
+#: ciudadfutura/apps/admin/views.py:302
 msgid "Circle successfully deleted."
 msgstr "El Círculo se eliminó exitosamente"
+
+#: ciudadfutura/apps/admin/views.py:324 ciudadfutura/apps/admin/views.py:359
+msgid "Order successfully saved."
+msgstr "El pedido se guardo exitosamente."
+
+#: ciudadfutura/apps/admin/views.py:337 ciudadfutura/apps/admin/views.py:372
+msgid "Order successfully deleted."
+msgstr "El pedido se eliminó exitosamente"
 
 #: ciudadfutura/apps/auth/models.py:49
 #: ciudadfutura/apps/site/templates/site/user_dashboard.html:23
@@ -344,7 +391,7 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: ciudadfutura/apps/site/templates/site/base.html:30
+#: ciudadfutura/apps/site/templates/site/base.html:29
 msgid "Mision"
 msgstr ""
 
