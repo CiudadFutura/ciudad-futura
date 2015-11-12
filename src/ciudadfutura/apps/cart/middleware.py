@@ -18,7 +18,6 @@ class CartMiddleware(object):
 
         request.cart = cart
 
-
-        if user.is_authenticated() and user.has_relation.MISION:
+        if user.is_authenticated() and hasattr(user, 'member'):
             user.member.cart = cart
             user.member.save(update_fields=['cart'])

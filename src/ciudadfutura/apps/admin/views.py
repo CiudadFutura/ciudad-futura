@@ -6,7 +6,7 @@ from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
 from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from ciudadfutura.apps.product.models import Product
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm
+from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, UserEditForm
 
 
 def admin_logout(request):
@@ -90,6 +90,28 @@ def admin_user_form(request, user_id=None):
 @staff_required
 def admin_user_details(request, user_id):
     return render(request, 'admin/admin_user_details.html', {})
+
+
+@staff_required
+def admin_user_edit(request, user_id):
+
+    user = None
+
+    if user_id is not None:
+        user = User.objects.get(id=user_id)
+
+    if request.POST:
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, _('User successfully saved.'))
+            return redirect('admin:user-list')
+    else:
+        form = UserEditForm(instance=user)
+
+    return render(request, 'admin/admin_user_form.html', {
+        'form': form,
+    })
 
 
 @staff_required
