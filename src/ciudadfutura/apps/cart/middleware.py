@@ -1,4 +1,5 @@
 from .models import Cart
+from django.contrib import messages
 
 
 class CartMiddleware(object):
@@ -6,13 +7,18 @@ class CartMiddleware(object):
     def process_view(self, request, view_func, view_args, view_kwargs):
 
         user = request.user
-        if user.is_authenticated() and user.has_relation.MISION:
-            request.cart = user.member.cart or Cart()
 
-            if not request.cart.pk:
-                request.cart.save()
-                user.member.cart = request.cart
-                user.member.save(update_fields=['cart'])
-
+        if 'cart_id' not in request.session:
+            cart = Cart.objects.create()
+            request.session['cart_id'] = cart.id
+            request.session.save()
         else:
-            request.cart = None
+            cart_id = request.session['cart_id']
+            cart = Cart.objects.get(id=cart_id)
+
+        request.cart = cart
+
+
+        if user.is_authenticated() and user.has_relation.MISION:
+            user.member.cart = cart
+            user.member.save(update_fields=['cart'])
