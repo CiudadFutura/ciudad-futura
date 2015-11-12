@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^admin/user/$', views.admin_user_list, name='user-list'),
     url(r'^admin/user/create/$', views.admin_user_form, name='user-create'),
     url(r'^admin/user/(?P<user_id>\d+)/$', views.admin_user_details, name='user-details'),
-    url(r'^admin/user/(?P<user_id>\d+)/edit/$', views.admin_user_form, name='user-edit'),
+    url(r'^admin/user/(?P<user_id>\d+)/edit/$', views.admin_user_edit, name='user-edit'),
     url(r'^admin/user/(?P<user_id>\d+)/delete/$', views.admin_user_delete, name='user-delete'),
 
     # Product urls

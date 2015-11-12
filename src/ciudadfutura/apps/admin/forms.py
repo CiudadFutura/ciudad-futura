@@ -65,6 +65,26 @@ class UserForm(forms.ModelForm):
         return email
 
 
+class UserEditForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        exclude = [
+            'created_at',
+            'updated_at',
+            'country',
+            'last_login',
+            'username',
+            'password',
+            'legacy'
+        ]
+        widgets = {
+            'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
+            'relationships': forms.CheckboxSelectMultiple,
+            'tags': forms.CheckboxSelectMultiple,
+        }
+
+
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
