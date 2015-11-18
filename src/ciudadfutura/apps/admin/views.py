@@ -8,7 +8,7 @@ from ciudadfutura.apps.product.models import Product
 from ciudadfutura.apps.order.models import Order, OrderItem
 from ciudadfutura.utils import paginate
 from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, OrderForm,\
-    OrderItemForm
+    OrderItemForm, UserEditForm
 
 
 def admin_logout(request):
