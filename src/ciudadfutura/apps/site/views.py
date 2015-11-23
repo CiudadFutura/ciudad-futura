@@ -5,6 +5,8 @@ from ciudadfutura.apps.mision.forms import LoginForm
 from django.core.urlresolvers import reverse_lazy as reverse
 from django.contrib import messages
 from django.contrib import auth
+from django.contrib.auth.views import password_reset, password_reset_confirm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 
 from .forms import UserProfileForm
 
@@ -70,3 +72,41 @@ def user_profile(request):
     return render(request, 'site/user_profile.html', {
         'form': form,
     })
+
+
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+def user_change_password(request):
+    user = request.user
+    data = {}
+
+    if request.POST:
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, _('User successfully saved.'))
+            return redirect('site:ciudadfutura-user-profile')
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+    return render(request, 'site/reset_password_form.html', {
+        'form': form,
+    })
+
+
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+def user_reset_confirm(request, uidb36=None, token=None):
+    return password_reset_confirm(request,
+                                  template_name='site/user_reset_confirm.html',
+                                  uidb36=uidb36,
+                                  token=token,
+                                  post_reset_redirect=reverse('site:ciudadfutura-user-login'))
+
+
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+def user_reset(request):
+
+    return password_reset(request,
+                          template_name='site/reset_password_form.html',
+                          email_template_name='site/reset_password_email.html',
+                          subject_template_name='site/reset_password_subject.txt',
+                          post_reset_redirect=reverse('site:ciudadfutura-user-login'))

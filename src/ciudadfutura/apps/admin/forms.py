@@ -7,6 +7,10 @@ from ciudadfutura.apps.product.models import Product
 from ciudadfutura.apps.order.models import Order, OrderItem
 from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.models import Site
+from django.template.loader import render_to_string
 
 
 class LoginForm(forms.Form):
@@ -163,4 +167,52 @@ class OrderItemForm(forms.ModelForm):
             'created_at',
             'updated_at',
         ]
+
+
+class PasswordResetForm(forms.Form):
+    error_messages = {
+        'unknown': "That email address doesn't have an associated user account. Are you sure you've registered?",
+        'unusable': "The user account associated with this email address cannot reset the password"
+        }
+
+    def clean_email(self):
+        model = User
+        email = self.cleaned_data["email"]
+        user = model.filter(email__iexact=email)
+        if not len(user):
+            raise forms.ValidationError(self.error_messages['unknown'])
+        if not any(user):
+            # none of the filtered users are active
+            raise forms.ValidationError(self.error_messages['unknown'])
+        if any((user.password == '')):
+            raise forms.ValidationError(self.error_messages['unusable'])
+        return email
+
+    def save(self, domain_override=None,
+             subject_template_name='registration/password_reset_subject.txt',
+             email_template_name='registration/password_reset_email.html',
+             use_https=False, token_generator=default_token_generator,
+             from_email=None, request=None):
+
+        for user in self.users_cache:
+            if not domain_override:
+                current_site = Site.get_current_site(request)
+                site_name = current_site.name
+                domain = current_site.domain
+            else:
+                site_name = domain = domain_override
+            c = {
+                'email': user.email,
+                'domain': domain,
+                'site_name': site_name,
+                'user': user,
+                'token': token_generator.make_token(user),
+                'protocol': use_https and 'https' or 'http',
+                }
+            subject = render_to_string(subject_template_name, c)
+            # Email subject *must not* contain newlines
+            subject = ''.join(subject.splitlines())
+            email = render_to_string(email_template_name, c)
+            send_mail(subject, email, from_email, [user.email])
+
 
