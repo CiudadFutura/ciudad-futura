@@ -30,3 +30,17 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
         }
+
+
+class UserPublicProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+        ]
+        widgets = {
+            'avatar': forms.ImageField()
+        }
+

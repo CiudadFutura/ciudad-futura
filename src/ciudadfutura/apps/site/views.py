@@ -61,6 +61,7 @@ def user_profile(request):
     user = request.user
 
     if request.POST:
+
         form = UserProfileForm(request.POST, instance=user)
         if form.is_valid():
             user = form.save()
@@ -69,8 +70,9 @@ def user_profile(request):
     else:
         form = UserProfileForm(instance=user)
 
-    return render(request, 'site/user_profile.html', {
+    return render(request, 'site/user_profile_tab.html', {
         'form': form,
+        'active': 'user_profile'
     })
 
 
@@ -86,10 +88,11 @@ def user_change_password(request):
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-profile')
     else:
-        form = PasswordChangeForm(user=request.user)
+        form = PasswordChangeForm(user=user)
 
     return render(request, 'site/reset_password_form.html', {
         'form': form,
+        'active': 'user_change_password'
     })
 
 
