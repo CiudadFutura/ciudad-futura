@@ -25,6 +25,7 @@ class UserProfileForm(forms.ModelForm):
             'city',
             'address',
             'postal_code',
+            'email'
         ]
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),

@@ -55,7 +55,7 @@ def user_dashboard(request):
 
 
 @user_required(login_url=reverse('site:ciudadfutura-user-login'))
-def user_profile(request):
+def user_public_profile(request):
 
     user = request.user
 
@@ -68,9 +68,29 @@ def user_profile(request):
     else:
         form = UserPublicProfileForm(instance=user)
 
-    return render(request, 'site/user_profile_tab.html', {
+    return render(request, 'site/user_public_profile_tab.html', {
         'form': form,
-        'active': 'user_profile'
+        'active': 'user_public_profile'
+    })
+
+
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+def user_private_profile(request):
+
+    user = request.user
+
+    if request.POST:
+        form = UserProfileForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, _('User successfully saved.'))
+            return redirect('site:ciudadfutura-user-private-profile')
+    else:
+        form = UserProfileForm(instance=user)
+
+    return render(request, 'site/user_private_profile_tab.html', {
+        'form': form,
+        'active': 'user_private_profile'
     })
 
 
@@ -84,7 +104,7 @@ def user_change_password(request):
         if form.is_valid():
             user = form.save()
             messages.success(request, _('User successfully saved.'))
-            return redirect('site:ciudadfutura-user-profile')
+            return redirect('site:ciudadfutura-user-change-password')
     else:
         form = PasswordChangeForm(user=user)
 

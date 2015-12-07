@@ -2,19 +2,24 @@
 {% load i18n bootstrap3 %}
 
 {% block site_content %}
-
-  <ul class="nav nav-tabs" role="tablist">
-    <li {% if active == 'user_profile' %} class="active" {% endif %} role="presentation"><a href="{% url 'site:ciudadfutura-user-profile' %}">Profile</a></li>
-    <li {% if active == 'user_change_password' %} class="active" {% endif %} role="presentation"><a href="{% url 'site:ciudadfutura-user-change_password' %}">Change password</a></li>
-    <li {% if active == 'tab3' %} class="active" {% endif %} role="presentation"><a href="{% url 'site:ciudadfutura-user-dashboard' %}">Settings</a></li>
-    {% if user.has_relation.MISION %}
-      <li role="presentation"><a href="#circle" aria-controls="circle" role="tab" data-toggle="tab">
-        {% trans 'Circle' %}</a>
-      </li>
-    {% endif %}
-  </ul>
-  <div class="tab-content">
-    {% block tabs_content %}
-    {% endblock %}
-  </div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li {% if active == 'user_public_profile' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'site:ciudadfutura-user-public-profile' %}">{% trans 'Public Profile' %}</a>
+        </li>
+        <li {% if active == 'user_private_profile' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'site:ciudadfutura-user-private-profile' %}">{% trans 'Private Profile' %}</a>
+        </li>
+        <li {% if active == 'user_change_password' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'site:ciudadfutura-user-change-password' %}">{% trans 'Change Password' %}</a>
+        </li>
+        {% if user.has_relation.MISION %}
+            <li role="presentation"><a href="#circle" aria-controls="circle" role="tab" data-toggle="tab">
+                {% trans 'Circle' %}</a>
+            </li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        {% block tabs_content %}
+        {% endblock %}
+    </div>
 {% endblock %}

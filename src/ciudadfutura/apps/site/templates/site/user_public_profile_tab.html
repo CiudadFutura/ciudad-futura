@@ -1,0 +1,18 @@
+{# image_thumbnail.html #}
+{% extends 'site/user_profile.html' %}
+{% load i18n bootstrap3 %}
+
+{% block tabs_content %}
+    <div class="container">
+        <div class="row">
+            <h3>{% trans 'This information is public' %}</h3>
+            <form enctype="multipart/form-data" class="form-horizontal" action="" method="post"
+                  class="form" novalidate>{% csrf_token %}
+                {% bootstrap_form form layout='horizontal' %}
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" name="save" value="{% trans 'Save' %}" />
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
