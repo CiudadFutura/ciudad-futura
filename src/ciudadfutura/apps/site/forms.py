@@ -1,9 +1,8 @@
-from django.utils.translation import ugettext_lazy as _
-from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User
 from django.utils import timezone
+from floppyforms import ClearableFileInput
 
 MAX_AGE = 150
 
@@ -32,6 +31,10 @@ class UserProfileForm(forms.ModelForm):
         }
 
 
+class ImageThumbnailFileInput(ClearableFileInput):
+    template_name = 'site/image_thumbnail.html'
+
+
 class UserPublicProfileForm(forms.ModelForm):
 
     class Meta:
@@ -39,8 +42,8 @@ class UserPublicProfileForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
+            'avatar'
         ]
         widgets = {
-            'avatar': forms.ImageField()
+            'avatar': ImageThumbnailFileInput
         }
-

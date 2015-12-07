@@ -7,8 +7,7 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.views import password_reset, password_reset_confirm
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
-
-from .forms import UserProfileForm
+from .forms import UserProfileForm, UserPublicProfileForm
 
 
 def index(request):
@@ -61,14 +60,13 @@ def user_profile(request):
     user = request.user
 
     if request.POST:
-
-        form = UserProfileForm(request.POST, instance=user)
+        form = UserPublicProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             user = form.save()
             messages.success(request, _('User successfully saved.'))
             return redirect('site:ciudadfutura-user-dashboard')
     else:
-        form = UserProfileForm(instance=user)
+        form = UserPublicProfileForm(instance=user)
 
     return render(request, 'site/user_profile_tab.html', {
         'form': form,

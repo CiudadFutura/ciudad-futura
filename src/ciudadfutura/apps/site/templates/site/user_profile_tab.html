@@ -1,13 +1,16 @@
+{# image_thumbnail.html #}
 {% extends 'site/user_profile.html' %}
 {% load i18n bootstrap3 %}
 
 {% block tabs_content %}
   <div class="container">
-    <form class="form-horizontal" action="" method="post" class="form" novalidate>{% csrf_token %}
+    <div class="row">
+      <form enctype="multipart/form-data" class="form-horizontal" action="" method="post" class="form" novalidate>{% csrf_token %}
         {% bootstrap_form form layout='horizontal' %}
         <div class="form-group">
           <input type="submit" class="btn btn-primary" name="save" value="{% trans 'Save' %}" />
         </div>
-    </form>
+      </form>
+    </div>
   </div>
 {% endblock %}
