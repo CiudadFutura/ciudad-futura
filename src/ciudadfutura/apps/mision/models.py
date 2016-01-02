@@ -19,6 +19,9 @@ class ShoppingCycle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Invite(models.Model):
     code = models.CharField(unique=True, max_length=255)

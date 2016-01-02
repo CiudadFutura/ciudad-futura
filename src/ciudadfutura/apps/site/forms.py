@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User
+from ciudadfutura.apps.mision.models import Circle
 from django.utils import timezone
 from floppyforms import ClearableFileInput
 
@@ -48,3 +49,10 @@ class UserPublicProfileForm(forms.ModelForm):
         widgets = {
             'avatar': ImageThumbnailFileInput
         }
+
+
+class MyCircleForm(forms.ModelForm):
+
+    class Meta:
+        model = Circle
+        exclude = []

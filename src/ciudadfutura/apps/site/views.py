@@ -6,9 +6,10 @@ from django.core.urlresolvers import reverse_lazy as reverse
 from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.views import password_reset, password_reset_confirm
-from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
-from .forms import UserProfileForm, UserPublicProfileForm
-
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import UserProfileForm, UserPublicProfileForm, MyCircleForm
+from ciudadfutura.apps.auth.models import MisionMember
+from ciudadfutura.utils import paginate
 
 def index(request):
     return render(request, 'site/index.html', {
@@ -131,3 +132,16 @@ def user_reset(request):
                           email_template_name='site/reset_password_email.html',
                           subject_template_name='site/reset_password_subject.txt',
                           post_reset_redirect=reverse('site:ciudadfutura-user-login'))
+
+
+@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+def user_circle(request):
+    circle_members = request.user.member.circle.member.all()
+
+    return render(request, 'site/user_circle_list.html', {
+        'results':  circle_members,
+        'active': 'user_my_circle'
+    })
+
+
+

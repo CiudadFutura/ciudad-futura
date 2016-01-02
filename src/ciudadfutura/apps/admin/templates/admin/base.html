@@ -32,7 +32,7 @@
         </ul>
         {% endif %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'site:ciudadfutura-user-profile' %}">{{ user.email }}</a></li>
+          <li><a href="{% url 'site:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
           <li>
             <a href="{% url 'admin:logout' %}">
               <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}

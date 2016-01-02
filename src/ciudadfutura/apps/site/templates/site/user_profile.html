@@ -13,8 +13,8 @@
             <a href="{% url 'site:ciudadfutura-user-change-password' %}">{% trans 'Change Password' %}</a>
         </li>
         {% if user.has_relation.MISION %}
-            <li role="presentation"><a href="#circle" aria-controls="circle" role="tab" data-toggle="tab">
-                {% trans 'Circle' %}</a>
+            <li {% if active == 'user_my_circle' %} class="active" {% endif %} role="presentation">
+                <a href="{% url 'site:ciudadfutura-user-circle' %}">{% trans 'My Circle' %}</a>
             </li>
         {% endif %}
     </ul>

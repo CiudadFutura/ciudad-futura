@@ -32,4 +32,7 @@ urlpatterns = [
     url(r'^user/change_password/$',
         views.user_change_password,
         name='ciudadfutura-user-change-password'),
+    url(r'^user/circle/$',
+        views.user_circle,
+        name='ciudadfutura-user-circle'),
 ]
