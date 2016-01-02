@@ -10,10 +10,11 @@ urlpatterns = [
     # User urls
     url(r'^user/login/$',
         views.user_login,
-        name='ciudadfutura-user-login'),
+        name='login'),
     url(r'^user/logout/$',
         views.user_logout,
-        name='ciudadfutura-user-logout'),
+        name='logout'),
+
     url(r'^user/$',
         views.user_dashboard,
         name='ciudadfutura-user-dashboard'),

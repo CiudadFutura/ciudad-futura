@@ -1,46 +1,14 @@
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
-from django.contrib import messages, auth
+from django.contrib import messages
 from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
 from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from ciudadfutura.apps.product.models import Product
 from ciudadfutura.apps.order.models import Order, OrderItem
 from ciudadfutura.utils import paginate
-from .forms import LoginForm, UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, OrderForm,\
+from .forms import UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, OrderForm,\
     OrderItemForm, UserEditForm
-
-
-def admin_logout(request):
-    auth.logout(request)
-    messages.success(request, _('You have successfully logged out.'))
-    return redirect('admin:login')
-
-
-def admin_login(request):
-
-    form = None
-
-    if request.user.is_authenticated():
-        return redirect('admin:dashboard')
-
-    if request.POST:
-        form = LoginForm(request.POST)
-
-        if form.is_valid():
-            user = form.save()
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                messages.success(request, _('Authentication succeed.'))
-                return redirect(request.GET.get('next') or 'admin:dashboard')
-
-        messages.error(request, _('Authentication failed.'))
-    else:
-        form = LoginForm()
-
-    return render(request, 'admin/admin_login.html', {
-        'form': form
-    })
 
 
 @staff_required
@@ -371,4 +339,3 @@ def admin_order_item_delete(request, order_item_id):
     Order.objects.get(id=order_item_id).delete()
     messages.success(request, _('Order successfully deleted.'))
     return redirect('admin:order-item-list')
-

@@ -5,8 +5,6 @@ urlpatterns = [
 
     # Admin urls
     url(r'^admin/$', views.admin_dashboard, name='dashboard'),
-    url(r'^admin/login/$', views.admin_login, name='login'),
-    url(r'^admin/logout/$', views.admin_logout, name='logout'),
 
     # Tags urls
     url(r'^admin/tag/$', views.admin_tag_list, name='tag-list'),

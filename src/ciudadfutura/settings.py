@@ -137,7 +137,7 @@ MEDIA_URL = '/media/'
 # Auth
 from django.core.urlresolvers import reverse_lazy
 AUTH_USER_MODEL = 'ciudadfutura_auth.User'
-LOGIN_URL = reverse_lazy('admin:login')
+LOGIN_URL = reverse_lazy('site:login')
 
 RAVEN_CONFIG = {
     'dsn': None

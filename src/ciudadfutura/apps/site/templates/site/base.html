@@ -32,7 +32,7 @@
           {% block site_nav_right %}{% endblock %}
           <li><a href="{% url 'site:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
           <li>
-            <a href="{% url 'site:ciudadfutura-user-logout' %}">
+            <a href="{% url 'site:logout' %}">
               <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
             </a>
           </li>

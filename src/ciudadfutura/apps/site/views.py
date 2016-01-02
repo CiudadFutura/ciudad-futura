@@ -48,14 +48,14 @@ def user_login(request):
     })
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_dashboard(request):
     return render(request, 'site/user_dashboard.html', {
         'user': request.user,
     })
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_public_profile(request):
 
     user = request.user
@@ -75,7 +75,7 @@ def user_public_profile(request):
     })
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_private_profile(request):
 
     user = request.user
@@ -95,7 +95,7 @@ def user_private_profile(request):
     })
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_change_password(request):
     user = request.user
     data = {}
@@ -115,26 +115,26 @@ def user_change_password(request):
     })
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_reset_confirm(request, uidb36=None, token=None):
     return password_reset_confirm(request,
                                   template_name='site/user_reset_confirm.html',
                                   uidb36=uidb36,
                                   token=token,
-                                  post_reset_redirect=reverse('site:ciudadfutura-user-login'))
+                                  post_reset_redirect=reverse('site:login'))
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_reset(request):
 
     return password_reset(request,
                           template_name='site/reset_password_form.html',
                           email_template_name='site/reset_password_email.html',
                           subject_template_name='site/reset_password_subject.txt',
-                          post_reset_redirect=reverse('site:ciudadfutura-user-login'))
+                          post_reset_redirect=reverse('site:login'))
 
 
-@user_required(login_url=reverse('site:ciudadfutura-user-login'))
+@user_required
 def user_circle(request):
     circle_members = request.user.member.circle.member.all()
 
@@ -142,6 +142,3 @@ def user_circle(request):
         'results':  circle_members,
         'active': 'user_my_circle'
     })
-
-
-
