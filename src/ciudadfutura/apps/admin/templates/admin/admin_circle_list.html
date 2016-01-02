@@ -2,47 +2,43 @@
 {% load i18n site_tags %}
 
 {% block content %}
-
-<div class="container">
-  <div class="btn-toolbar">
-    <a class="btn btn-primary" href="{% url 'admin:circle-create' %}">
-       {% trans 'Create' %}
-    </a>
-  </div>
-  <div class="table-responsive">
-    <table class="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th>{% trans 'Circle #' %}</th>
-          <th>{% trans 'Leader #' %}</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for result in results %}
-        <tr>
-          <td>{{ result.id }}</td>
-          <td><a href="{% url 'admin:user-edit' result.user.id %}">{{ result.user.name }}</a></td>
-          <td>
-            <a href="{% url 'admin:circle-delete' result.id %}" class="btn btn-danger btn-xs">
-              <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
-            </a>
-            &nbsp;
-            <a href="{% url 'admin:circle-edit' result.id %}" class="btn btn-default btn-xs">
-              <i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
-            </a>
-          </td>
-        </tr>
-        {% empty %}
-        <tr class="info">
-          <td colspan="3">{% trans 'No circles found.' %}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% pagination results %}
+<div class="btn-toolbar">
+  <a class="btn btn-primary" href="{% url 'admin:circle-create' %}">
+     {% trans 'Create' %}
+  </a>
 </div>
-
+<div class="table-responsive">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>{% trans 'Circle #' %}</th>
+        <th>{% trans 'Leader #' %}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for result in results %}
+      <tr>
+        <td>{{ result.id }}</td>
+        <td><a href="{% url 'admin:user-edit' result.user.id %}">{{ result.user.name }}</a></td>
+        <td>
+          <a href="{% url 'admin:circle-delete' result.id %}" class="btn btn-danger btn-xs">
+            <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
+          </a>
+          &nbsp;
+          <a href="{% url 'admin:circle-edit' result.id %}" class="btn btn-default btn-xs">
+            <i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr class="info">
+        <td colspan="3">{% trans 'No circles found.' %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% pagination results %}
 
 {% endblock %}

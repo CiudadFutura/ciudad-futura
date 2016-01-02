@@ -1,29 +1,16 @@
-{% load static %}<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ page_title }}</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
-    {% block header_css %}{% endblock %}
-</head>
-<body class="{{ body_class }}">
-    {% block header %}{% endblock %}
+{% extends 'site/base.html' %}
 
-    <div class="container">
-    {% for message in messages %}
-      <div class="alert{% if message.tags %} alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
-        {{ message|safe }}
-      </div>
-    {% endfor %}
-    </div>
+{% block site_nav_right %}
+<li>
+  <a href="{% url 'cart:index' %}">
+    <i class="fa fa-shopping-cart"></i>&nbsp;
+    <span id="js-cart-total-items" class="badge">
+      {{ request.cart.total_items }}
+    </span>
+  </a>
+</li>
+{% endblock %}
 
-    {% block content %}{% endblock %}
-    {% block footer %}{% endblock %}
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.js"></script>
-
-    {% block footer_js %}{% endblock %}
-</body>
-</html>
+{% block site_content %}
+  {% block content %}{% endblock %}
+{% endblock %}

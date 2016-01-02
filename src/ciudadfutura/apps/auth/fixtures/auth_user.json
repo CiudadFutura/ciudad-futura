@@ -1,0 +1,18 @@
+[
+
+{
+    "pk": 1,
+    "model": "ciudadfutura_auth.User",
+    "fields": {
+        "email": "user+1@example.com",
+        "is_active": true
+    }
+},
+{
+    "pk": 1,
+    "model": "ciudadfutura_auth.Supplier",
+    "fields": {
+        "user": 1
+    }
+}
+]

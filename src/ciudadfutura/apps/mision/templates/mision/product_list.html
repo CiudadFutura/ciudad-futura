@@ -1,4 +1,4 @@
-{% extends 'site/base.html' %}
+{% extends 'mision/base.html' %}
 {% load i18n site_tags static %}
 
 {% block content %}
@@ -17,7 +17,6 @@
   }
 </style>
 
-
 <div id="js-message" style="display: none;">
   <div class="alert alert-success">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -25,32 +24,30 @@
   </div>
 </div>
 
-
-<div class="container">
-  <div class="row">
-  {% for result in results %}
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <img src="{{ result.image }}">
-        <div class="caption">
-          <p>{{ result.price }}</p>
-          <p>{{ result.sku }}</p>
-          <p>{{ result.name }}</p>
-          <form class="js-add-to-cart" method="post" action="{% url 'cart:add-item' result.id %}">
-            <div class="input-group">
-              <input type="text" class="form-control" name="quantity" value="1">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">{% trans 'Add to cart' %}</button>
-              </span>
-            </div>
-          </form>
-        </div>
+<div class="row">
+{% for result in results %}
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <img src="{{ result.image }}">
+      <div class="caption">
+        <p>{{ result.price }}</p>
+        <p>{{ result.sku }}</p>
+        <p>{{ result.name }}</p>
+        <form class="js-add-to-cart" method="post" action="{% url 'cart:add-item' result.id %}">
+          <div class="input-group">
+            <input type="text" class="form-control" name="quantity" value="1">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">{% trans 'Add to cart' %}</button>
+            </span>
+          </div>
+        </form>
       </div>
     </div>
-  {% endfor %}
   </div>
-  {% pagination results %}
+{% endfor %}
 </div>
+{% pagination results %}
+
 {% endblock %}
 
 {% block footer_js %}

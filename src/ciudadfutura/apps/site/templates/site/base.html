@@ -1,59 +1,49 @@
-{% extends 'mision/base.html' %}
-{% load i18n static %}
-
-{% block header_css %}
+{% load i18n static %}<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{% static 'site/css/site.css' %}">
-{% endblock %}
+    {% block header_css %}{% endblock %}
+</head>
+<body class="{{ body_class }}">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gs-nav">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'site:ciudadfutura-user-dashboard' %}">{% trans 'Ciudad Futura' %}</a>
+      </div>
 
-{% block header %}
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gs-nav">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'site:ciudadfutura-user-dashboard' %}">
-        {% trans 'Ciudad Futura' %}
-      </a>
+      {% if user.is_authenticated %}
+      <div class="collapse navbar-collapse" id="gs-nav">
+        <ul class="nav navbar-nav navbar-left">
+          {% if user.is_admin %}
+          <li><a href="{% url 'admin:dashboard' %}">{% trans 'Admin' %}</a></li>
+          {% endif %}
+          <li><a href="{% url 'mision:product-list' %}">{% trans 'Mision' %}</a></li>
+          {% block site_nav_left %}{% endblock %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% block site_nav_right %}{% endblock %}
+          <li><a href="{% url 'site:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
+          <li>
+            <a href="{% url 'site:ciudadfutura-user-logout' %}">
+              <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
+            </a>
+          </li>
+        </ul>
+      </div>
+      {% endif %}
     </div>
-    {% if user.is_authenticated %}
-    <div class="collapse navbar-collapse" id="gs-nav">
-      {% block site_nav %}{% endblock %}
-      <ul class="nav navbar-nav navbar-right">
-        {% if user.is_admin %}
-        <li><a href="{% url 'admin:dashboard' %}">{% trans 'Admin' %}</a></li>
-        {% endif %}
-
-        <li><a href="{% url 'mision:product-list' %}">{% trans 'Mision' %}</a></li>
-        <li>
-          <a href="{% url 'cart:index' %}">
-            <i class="fa fa-shopping-cart"></i>&nbsp;
-            <span id="js-cart-total-items" class="badge">
-              {{ request.cart.total_items }}
-            </span>
-          </a>
-        </li>
-
-        <li><a href="{% url 'site:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
-        <li>
-          <a href="{% url 'site:ciudadfutura-user-logout' %}">
-            <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
-          </a>
-        </li>
-      </ul>
-    </div>
-    {% endif %}
-  </div>
-</nav>
-{% endblock %}
-
-{% block content %}
+  </nav>
   <div class="container">
   {% for message in messages %}
-    <div class="alert{% if message.tags %}
-    alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
+    <div class="alert{% if message.tags %} alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
       {{ message|safe }}
     </div>
@@ -62,8 +52,9 @@
   <div class="container">
     {% block site_content %}{% endblock %}
   </div>
-{% endblock %}
-
-{% block footer %}
   {% block site_footer %}{% endblock %}
-{% endblock %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.js"></script>
+  {% block footer_js %}{% endblock %}
+</body>
+</html>

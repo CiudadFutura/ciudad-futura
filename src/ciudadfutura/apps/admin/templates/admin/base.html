@@ -1,57 +1,27 @@
-{% extends 'mision/base.html' %}
+{% extends 'site/base.html' %}
 {% load static i18n %}
 
 {% block header_css %}
   <link rel="stylesheet" type="text/css" href="{% static 'mision/css/admin.css' %}">
 {% endblock %}
 
-{% block header %}
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gs-nav">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'admin:dashboard' %}">
-          {% trans 'Ciudad Futura' %}
-        </a>
-      </div>
-      {% if user.is_authenticated %}
-      <div class="collapse navbar-collapse" id="gs-nav">
-        {% if user.is_admin %}
-        <ul class="nav navbar-nav navbar-left">
-          <li><a href="{% url 'admin:user-list' %}">{% trans 'Users' %}</a></li>
-          <li><a href="{% url 'admin:tag-list' %}">{% trans 'Tags' %}</a></li>
-          <li><a href="{% url 'admin:product-list' %}">{% trans 'Products' %}</a></li>
-          <li><a href="{% url 'admin:supplier-list' %}">{% trans 'Suppliers' %}</a></li>
-          <li><a href="{% url 'admin:circle-list' %}">{% trans 'Circles' %}</a></li>
-          <li><a href="{% url 'admin:shopping-cycle-list' %}">{% trans 'Cycles' %}</a></li>
-          <li><a href="{% url 'admin:order-list' %}">{% trans 'Orders' %}</a></li>
-        </ul>
-        {% endif %}
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'site:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
-          <li>
-            <a href="{% url 'admin:logout' %}">
-              <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
-            </a>
-          </li>
-        </ul>
-      </div>
+{% block site_content %}
+  <div class="row">
+    <div class="col-sm-3">
+      {% if user.is_admin %}
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="{% url 'admin:user-list' %}">{% trans 'Users' %}</a></li>
+        <li><a href="{% url 'admin:tag-list' %}">{% trans 'Tags' %}</a></li>
+        <li><a href="{% url 'admin:product-list' %}">{% trans 'Products' %}</a></li>
+        <li><a href="{% url 'admin:supplier-list' %}">{% trans 'Suppliers' %}</a></li>
+        <li><a href="{% url 'admin:circle-list' %}">{% trans 'Circles' %}</a></li>
+        <li><a href="{% url 'admin:shopping-cycle-list' %}">{% trans 'Cycles' %}</a></li>
+        <li><a href="{% url 'admin:order-list' %}">{% trans 'Orders' %}</a></li>
+      </ul>
       {% endif %}
+
+      {% block sidebar %}{% endblock %}
     </div>
-  </nav>
-  <div class="container">
-
-    {% if user.is_authenticated %}
-    <ul class="nav nav-pills">
-
-    </ul>
-    {% endif %}
-
+    <div class="col-sm-9">{% block content %}{% endblock %}</div>
   </div>
-
-
 {% endblock %}

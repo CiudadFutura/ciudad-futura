@@ -15,13 +15,10 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 
 
-class IndexView(TemplateView):
-    template_name = "mision/index.html"
-
-    def get_context_data(self, **kwargs):
-        ctx = super(IndexView, self).get_context_data()
-        ctx['page_title'] = 'Mision'
-        return ctx
+def index(request):
+    return render(request, 'mision/index.html', {
+        'page_title': 'Mision'
+    })
 
 
 def register(request):
@@ -120,6 +117,3 @@ def send_email(request, member, invite):
                        to=[invite.email])
 
     msg.send()
-
-
-index = IndexView.as_view()
