@@ -44,7 +44,6 @@ INSTALLED_APPS = (
     'crispy_forms',
     'djrill',
     'raven.contrib.django.raven_compat',
-    'floppyforms',
 
 
     # Project apps

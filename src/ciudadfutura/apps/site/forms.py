@@ -1,9 +1,9 @@
 from django import forms
+
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User
 from ciudadfutura.apps.mision.models import Circle
 from django.utils import timezone
-from floppyforms import ClearableFileInput
 
 MAX_AGE = 150
 
@@ -33,10 +33,6 @@ class UserProfileForm(forms.ModelForm):
         }
 
 
-class ImageThumbnailFileInput(ClearableFileInput):
-    template_name = 'site/image_thumbnail.html'
-
-
 class UserPublicProfileForm(forms.ModelForm):
 
     class Meta:
@@ -46,9 +42,6 @@ class UserPublicProfileForm(forms.ModelForm):
             'last_name',
             'avatar'
         ]
-        widgets = {
-            'avatar': ImageThumbnailFileInput
-        }
 
 
 class MyCircleForm(forms.ModelForm):

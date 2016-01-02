@@ -45,7 +45,12 @@ class User(AbstractBaseUser):
     cellphone = models.CharField(max_length=32, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     country = models.CharField(max_length=255, default='AR')
-    avatar = models.ImageField('profile picture', upload_to='user/avatars', null=True, blank=True)
+    avatar = models.ImageField(
+        upload_to='user/avatars',
+        verbose_name=_('Profile picture'),
+        null=True,
+        blank=True
+    )
     address = models.CharField(
         max_length=255, verbose_name=_('Address'), null=True, blank=True
     )
