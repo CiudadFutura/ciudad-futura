@@ -2,10 +2,24 @@
 {% load i18n bootstrap3 %}
 
 {% block site_content %}
-<form class="form-horizontal" action="" method="post" class="form" novalidate>{% csrf_token %}
-  {% bootstrap_form form layout='horizontal' %}
-  <div class="form-group">
-    <input type="submit" class="btn btn-primary" name="save" value="{% trans 'Save' %}" />
-  </div>
-</form>
+    <ul class="nav nav-tabs" role="tablist">
+        <li {% if active == 'user_public_profile' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'site:ciudadfutura-user-public-profile' %}">{% trans 'Public Profile' %}</a>
+        </li>
+        <li {% if active == 'user_private_profile' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'site:ciudadfutura-user-private-profile' %}">{% trans 'Private Profile' %}</a>
+        </li>
+        <li {% if active == 'user_change_password' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'site:ciudadfutura-user-change-password' %}">{% trans 'Change Password' %}</a>
+        </li>
+        {% if user.has_relation.MISION %}
+            <li {% if active == 'user_my_circle' %} class="active" {% endif %} role="presentation">
+                <a href="{% url 'site:ciudadfutura-user-circle' %}">{% trans 'My Circle' %}</a>
+            </li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        {% block tabs_content %}
+        {% endblock %}
+    </div>
 {% endblock %}

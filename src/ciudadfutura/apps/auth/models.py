@@ -45,6 +45,12 @@ class User(AbstractBaseUser):
     cellphone = models.CharField(max_length=32, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     country = models.CharField(max_length=255, default='AR')
+    avatar = models.ImageField(
+        upload_to='user/avatars',
+        verbose_name=_('Profile picture'),
+        null=True,
+        blank=True
+    )
     address = models.CharField(
         max_length=255, verbose_name=_('Address'), null=True, blank=True
     )
@@ -66,6 +72,7 @@ class User(AbstractBaseUser):
     username = models.CharField(unique=True, max_length=255)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
 
     # Changes tracking
     created_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -113,6 +120,11 @@ class User(AbstractBaseUser):
 
     def get_short_name(self):
         return self.first_name or self.email
+
+    def set_avatar(self):
+        _avatar = self.avatar
+        if not _avatar:
+            self.avatar="avatar.png"
 
 
 class Tag(models.Model):

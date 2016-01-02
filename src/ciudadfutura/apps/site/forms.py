@@ -1,8 +1,8 @@
-from django.utils.translation import ugettext_lazy as _
-from django.contrib import auth
 from django import forms
+
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User
+from ciudadfutura.apps.mision.models import Circle
 from django.utils import timezone
 
 MAX_AGE = 150
@@ -26,7 +26,26 @@ class UserProfileForm(forms.ModelForm):
             'city',
             'address',
             'postal_code',
+            'email'
         ]
         widgets = {
             'birthdate': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
         }
+
+
+class UserPublicProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'avatar'
+        ]
+
+
+class MyCircleForm(forms.ModelForm):
+
+    class Meta:
+        model = Circle
+        exclude = []
