@@ -9,3 +9,4 @@ django-braces==1.8.1
 django-crispy-forms==1.5.2
 djrill==1.4.0
 raven==3.6.1
+Pillow==3.0.0
