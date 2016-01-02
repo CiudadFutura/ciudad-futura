@@ -16,7 +16,7 @@
             {% for result in results %}
             <tr>
               <td>{{ result.id }}</td>
-              <td><a href="{% url 'admin:user-edit' result.user.id %}">{{ result.user.name }}</a></td>
+              <td><a href="{% url 'admin:user-edit' result.user.id %}">{{ result.user.name|default:result.user.email }}</a></td>
               <td>
                 <a href="{% url 'admin:circle-delete' result.id %}" class="btn btn-danger btn-xs">
                   <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}

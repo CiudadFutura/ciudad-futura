@@ -2,7 +2,8 @@ from uuid import uuid1 as generate_unique_username
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils.translation import ugettext as _
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
+from ciudadfutura.apps.mision.models import Circle
 
 
 class UserManager(BaseUserManager):
@@ -37,13 +38,37 @@ class User(AbstractBaseUser):
     # General info
     dni = models.IntegerField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    first_name = models.CharField(max_length=255, null=True, blank=True)
-    last_name = models.CharField(max_length=255, null=True, blank=True)
-    birthdate = models.DateField(null=True, blank=True)
-    postal_code = models.CharField(max_length=9, null=True, blank=True)
+    first_name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('First name')
+    )
+    last_name = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('Last name')
+    )
+    birthdate = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name=_('Birthdate')
+    )
+    postal_code = models.CharField(
+        max_length=9,
+        null=True,
+        blank=True,
+        verbose_name=_('Postal code')
+    )
     telephone = models.CharField(max_length=32, null=True, blank=True)
     cellphone = models.CharField(max_length=32, null=True, blank=True)
-    city = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name=_('City')
+    )
     country = models.CharField(max_length=255, default='AR')
     avatar = models.ImageField(
         upload_to='user/avatars',
@@ -188,5 +213,13 @@ def set_username_and_email(sender, instance, **kwargs):
         instance.username = generate_unique_username()
 
 
+def set_default_circle(sender, instance, **kwargs):
+    if instance.has_relation.MISION and not hasattr(instance, 'member'):
+        MisionMember.objects.create(
+            is_lead=True, user=instance, circle=Circle.objects.create()
+        )
+
+
 # Attach signals
 pre_save.connect(set_username_and_email, sender='ciudadfutura_auth.User')
+post_save.connect(set_default_circle, sender='ciudadfutura_auth.User')
