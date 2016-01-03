@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     # Project apps
     'ciudadfutura.apps.auth.Config',
     'ciudadfutura.apps.site.Config',
+    'ciudadfutura.apps.account.Config',
     'ciudadfutura.apps.cart.Config',
     'ciudadfutura.apps.product.Config',
     'ciudadfutura.apps.mision.Config',

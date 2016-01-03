@@ -16,12 +16,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'site:ciudadfutura-user-dashboard' %}">{% trans 'Ciudad Futura' %}</a>
+        <a class="navbar-brand" href="{% url 'site:index' %}">{% trans 'Ciudad Futura' %}</a>
       </div>
 
-      {% if user.is_authenticated %}
+
       <div class="collapse navbar-collapse" id="gs-nav">
         <ul class="nav navbar-nav navbar-left">
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'account:ciudadfutura-user-public-profile' %}">{% trans 'My account' %}</a></li>
+          {% endif %}
+
           {% if user.is_admin %}
           <li><a href="{% url 'admin:dashboard' %}">{% trans 'Admin' %}</a></li>
           {% endif %}
@@ -30,15 +34,24 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% block site_nav_right %}{% endblock %}
-          <li><a href="{% url 'site:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
+
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'account:ciudadfutura-user-public-profile' %}">{{ user.email }}</a></li>
           <li>
             <a href="{% url 'site:logout' %}">
               <i class="fa fa-sign-out"></i>&nbsp;{% trans 'Logout' %}
             </a>
           </li>
+          {% else %}
+          <li>
+            <a href="{% url 'site:login' %}">
+              <i class="fa fa-sign-in"></i>&nbsp;{% trans 'Login' %}
+            </a>
+          </li>
+          {% endif %}
         </ul>
       </div>
-      {% endif %}
+
     </div>
   </nav>
   <div class="container">

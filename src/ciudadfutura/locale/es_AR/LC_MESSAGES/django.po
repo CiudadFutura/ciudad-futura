@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 23:27+0000\n"
+"POT-Creation-Date: 2016-01-03 00:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,17 +16,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ciudadfutura/apps/admin/forms.py:21
-#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:29
-#: ciudadfutura/apps/mision/forms.py:15
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:14
-msgid "Email"
-msgstr "Email"
+#: ciudadfutura/apps/account/templates/account/base.html:9
+#: ciudadfutura/apps/account/templates/account/user_profile.html:7
+msgid "Public profile"
+msgstr "Perfil público"
 
-#: ciudadfutura/apps/admin/forms.py:26 ciudadfutura/apps/mision/forms.py:20
-msgid "Password"
-msgstr "Contraseña"
+#: ciudadfutura/apps/account/templates/account/base.html:12
+#: ciudadfutura/apps/account/templates/account/user_profile.html:10
+msgid "Private profile"
+msgstr "Perfil privado"
 
+#: ciudadfutura/apps/account/templates/account/base.html:15
+#: ciudadfutura/apps/account/templates/account/user_profile.html:13
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: ciudadfutura/apps/account/templates/account/base.html:19
+#: ciudadfutura/apps/account/templates/account/user_profile.html:17
+msgid "My circle"
+msgstr "Mi círculo"
+
+#: ciudadfutura/apps/account/templates/account/reset_password_form.html:6
+msgid "Change current user password"
+msgstr "Cambiar contraseña"
+
+#: ciudadfutura/apps/account/templates/account/reset_password_form.html:11
+#: ciudadfutura/apps/account/templates/account/user_private_profile_tab.html:12
+#: ciudadfutura/apps/account/templates/account/user_public_profile_tab.html:12
 #: ciudadfutura/apps/admin/templates/admin/admin_circle_form.html:8
 #: ciudadfutura/apps/admin/templates/admin/admin_order_form.html:8
 #: ciudadfutura/apps/admin/templates/admin/admin_order_item_form.html:8
@@ -35,11 +51,71 @@ msgstr "Contraseña"
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_form.html:8
 #: ciudadfutura/apps/admin/templates/admin/admin_tag_form.html:8
 #: ciudadfutura/apps/admin/templates/admin/admin_user_form.html:8
-#: ciudadfutura/apps/site/templates/site/reset_password_form.html:11
-#: ciudadfutura/apps/site/templates/site/user_private_profile_tab.html:12
-#: ciudadfutura/apps/site/templates/site/user_public_profile_tab.html:12
 msgid "Save"
 msgstr "Guardar"
+
+#: ciudadfutura/apps/account/templates/account/user_circle_list.html:10
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:14
+msgid "Circle #"
+msgstr "Círculo"
+
+#: ciudadfutura/apps/account/templates/account/user_circle_list.html:11
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:15
+msgid "Leader #"
+msgstr "Coordinador #"
+
+#: ciudadfutura/apps/account/templates/account/user_circle_list.html:22
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:26
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:28
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:34
+#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:26
+#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:34
+#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:33
+#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:26
+#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:47
+msgid "Delete"
+msgstr "Borrar"
+
+#: ciudadfutura/apps/account/templates/account/user_circle_list.html:26
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:30
+#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:32
+#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:38
+#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:30
+#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:38
+#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:37
+#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:30
+#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:51
+msgid "Edit"
+msgstr "Editar"
+
+#: ciudadfutura/apps/account/templates/account/user_circle_list.html:32
+#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:36
+msgid "No circles found."
+msgstr "No se encontraron círculos."
+
+#: ciudadfutura/apps/account/templates/account/user_private_profile_tab.html:7
+msgid "This information is private"
+msgstr "Esta información es privada"
+
+#: ciudadfutura/apps/account/templates/account/user_public_profile_tab.html:7
+msgid "This information is public"
+msgstr "Esta información es pública"
+
+#: ciudadfutura/apps/account/views.py:28 ciudadfutura/apps/account/views.py:48
+#: ciudadfutura/apps/account/views.py:68 ciudadfutura/apps/admin/views.py:50
+#: ciudadfutura/apps/admin/views.py:77 ciudadfutura/apps/mision/views.py:54
+msgid "User successfully saved."
+msgstr "El usuario se guardo exitosamente."
+
+#: ciudadfutura/apps/admin/forms.py:21
+#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:29
+#: ciudadfutura/apps/mision/forms.py:15
+msgid "Email"
+msgstr "Email"
+
+#: ciudadfutura/apps/admin/forms.py:26 ciudadfutura/apps/mision/forms.py:20
+msgid "Password"
+msgstr "Contraseña"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:7
 #: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:7
@@ -51,45 +127,6 @@ msgstr "Guardar"
 #: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:20
 msgid "Create"
 msgstr "Crear"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:14
-#: ciudadfutura/apps/site/templates/site/user_circle_list.html:10
-msgid "Circle #"
-msgstr "Círculo"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:15
-#: ciudadfutura/apps/site/templates/site/user_circle_list.html:11
-msgid "Leader #"
-msgstr "Coordinador #"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:26
-#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:28
-#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:34
-#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:26
-#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:34
-#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:33
-#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:26
-#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:47
-#: ciudadfutura/apps/site/templates/site/user_circle_list.html:22
-msgid "Delete"
-msgstr "Borrar"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:30
-#: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:32
-#: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:38
-#: ciudadfutura/apps/admin/templates/admin/admin_product_list.html:30
-#: ciudadfutura/apps/admin/templates/admin/admin_shopping_cycle_list.html:38
-#: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:37
-#: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:30
-#: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:51
-#: ciudadfutura/apps/site/templates/site/user_circle_list.html:26
-msgid "Edit"
-msgstr "Editar"
-
-#: ciudadfutura/apps/admin/templates/admin/admin_circle_list.html:36
-#: ciudadfutura/apps/site/templates/site/user_circle_list.html:32
-msgid "No circles found."
-msgstr "No se encontraron círculos."
 
 #: ciudadfutura/apps/admin/templates/admin/admin_order_item_list.html:14
 #: ciudadfutura/apps/admin/templates/admin/admin_order_list.html:14
@@ -130,7 +167,6 @@ msgstr "ID"
 #: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:15
 #: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:28
 #: ciudadfutura/apps/mision/templates/mision/cart.html:10
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:8
 msgid "Name"
 msgstr "Nombre"
 
@@ -160,7 +196,6 @@ msgstr "No se encontraron Ciclos de compras."
 
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:17
 #: ciudadfutura/apps/auth/models.py:70
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:20
 msgid "City"
 msgstr "Ciudad"
 
@@ -177,7 +212,6 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:27
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:11
 msgid "DNI"
 msgstr "DNI"
 
@@ -214,12 +248,6 @@ msgstr "Ciclos"
 #: ciudadfutura/apps/admin/templates/admin/base.html:19
 msgid "Orders"
 msgstr "Ordenes"
-
-#: ciudadfutura/apps/admin/views.py:50 ciudadfutura/apps/admin/views.py:77
-#: ciudadfutura/apps/mision/views.py:51 ciudadfutura/apps/site/views.py:67
-#: ciudadfutura/apps/site/views.py:87 ciudadfutura/apps/site/views.py:107
-msgid "User successfully saved."
-msgstr "El usuario se guardo exitosamente."
 
 #: ciudadfutura/apps/admin/views.py:90
 msgid "User successfully deleted."
@@ -282,12 +310,10 @@ msgid "Last name"
 msgstr "Apellido"
 
 #: ciudadfutura/apps/auth/models.py:56
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:17
 msgid "Birthdate"
 msgstr "Fecha Nacimiento"
 
 #: ciudadfutura/apps/auth/models.py:62
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:26
 msgid "Postal code"
 msgstr "Código Postal"
 
@@ -296,7 +322,6 @@ msgid "Profile picture"
 msgstr "Foto de perfil"
 
 #: ciudadfutura/apps/auth/models.py:80
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:23
 msgid "Address"
 msgstr "Dirección"
 
@@ -355,11 +380,11 @@ msgstr "Invitados"
 msgid "Add invite"
 msgstr "Agregar Invitado"
 
-#: ciudadfutura/apps/mision/views.py:88
+#: ciudadfutura/apps/mision/views.py:90
 msgid "Invite successfully saved."
 msgstr "La invitacion se guardo exitosamente."
 
-#: ciudadfutura/apps/mision/views.py:100
+#: ciudadfutura/apps/mision/views.py:102
 msgid "The code does not exist."
 msgstr "El codigo no extiste."
 
@@ -391,62 +416,40 @@ msgid "Ciudad Futura"
 msgstr "Ciudad Futura"
 
 #: ciudadfutura/apps/site/templates/site/base.html:26
+msgid "My account"
+msgstr "Mi cuenta"
+
+#: ciudadfutura/apps/site/templates/site/base.html:30
 msgid "Admin"
 msgstr "Admin"
 
-#: ciudadfutura/apps/site/templates/site/base.html:28
+#: ciudadfutura/apps/site/templates/site/base.html:32
 msgid "Mision"
 msgstr "Mision"
 
-#: ciudadfutura/apps/site/templates/site/base.html:36
+#: ciudadfutura/apps/site/templates/site/base.html:42
 msgid "Logout"
-msgstr "Logout"
+msgstr "Finalizar sesión"
 
-#: ciudadfutura/apps/site/templates/site/index.html:6
+#: ciudadfutura/apps/site/templates/site/base.html:48
+msgid "Login"
+msgstr "Iniciar sesión"
+
 #: ciudadfutura/apps/site/templates/site/user_login.html:8
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
-#: ciudadfutura/apps/site/templates/site/reset_password_form.html:6
-msgid "Change current user password"
-msgstr "Cambiar contraseña"
-
-#: ciudadfutura/apps/site/templates/site/user_dashboard.html:30
-msgid "Change"
-msgstr "Cambiar"
-
-#: ciudadfutura/apps/site/templates/site/user_private_profile_tab.html:7
-msgid "This information is private"
-msgstr "Esta información es privada"
-
-#: ciudadfutura/apps/site/templates/site/user_profile.html:7
-msgid "Public profile"
-msgstr "Perfil público"
-
-#: ciudadfutura/apps/site/templates/site/user_profile.html:10
-msgid "Private profile"
-msgstr "Perfil privado"
-
-#: ciudadfutura/apps/site/templates/site/user_profile.html:13
-msgid "Change password"
-msgstr "Cambiar contraseña"
-
-#: ciudadfutura/apps/site/templates/site/user_profile.html:17
-msgid "My circle"
-msgstr "Mi círculo"
-
-#: ciudadfutura/apps/site/templates/site/user_public_profile_tab.html:7
-msgid "This information is public"
-msgstr "Esta información es pública"
-
-#: ciudadfutura/apps/site/views.py:22
+#: ciudadfutura/apps/site/views.py:16
 msgid "You have successfully logged out."
 msgstr "Sesión finalizada exitosamente."
 
-#: ciudadfutura/apps/site/views.py:39
+#: ciudadfutura/apps/site/views.py:33
 msgid "Authentication succeed."
 msgstr "Autenticación exitosa."
 
-#: ciudadfutura/apps/site/views.py:42
+#: ciudadfutura/apps/site/views.py:36
 msgid "Authentication failed."
 msgstr "Error en la autenticación"
+
+#~ msgid "Change"
+#~ msgstr "Cambiar"

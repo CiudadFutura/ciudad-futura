@@ -23,6 +23,9 @@ def index(request):
 
 def register(request):
 
+    if request.user.is_authenticated():
+        return redirect('mision:product-list')
+
     invite_forms = []
 
     if request.POST:
@@ -49,7 +52,7 @@ def register(request):
                 send_email(request, member, invite)
 
             messages.success(request, _('User successfully saved.'))
-            return redirect('site:ciudadfutura-user-dashboard')
+            return redirect('account:ciudadfutura-user-dashboard')
     else:
         invite_forms = [
             InviteForm(prefix='invite'), InviteForm(prefix='invite')
@@ -67,7 +70,6 @@ def register(request):
     })
 
 
-@user_required
 def product_list(request):
     return render(request, 'mision/product_list.html', {
         'results': paginate(request.GET, Product.objects.all()),
@@ -86,7 +88,7 @@ def account_confirm(request, code=None):
         if form.is_valid():
             user = form.save()
             messages.success(request, _('Invite successfully saved.'))
-            return redirect('site:ciudadfutura-user-dashboard')
+            return redirect('account:ciudadfutura-user-dashboard')
     else:
         invite = Invite.objects.get(code=code)
         if invite:
