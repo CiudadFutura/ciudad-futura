@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-03 00:12+0000\n"
+"POT-Creation-Date: 2016-01-03 01:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,8 +101,8 @@ msgstr "Esta información es privada"
 msgid "This information is public"
 msgstr "Esta información es pública"
 
-#: ciudadfutura/apps/account/views.py:28 ciudadfutura/apps/account/views.py:48
-#: ciudadfutura/apps/account/views.py:68 ciudadfutura/apps/admin/views.py:50
+#: ciudadfutura/apps/account/views.py:27 ciudadfutura/apps/account/views.py:47
+#: ciudadfutura/apps/account/views.py:66 ciudadfutura/apps/admin/views.py:50
 #: ciudadfutura/apps/admin/views.py:77 ciudadfutura/apps/mision/views.py:54
 msgid "User successfully saved."
 msgstr "El usuario se guardo exitosamente."
@@ -166,7 +166,8 @@ msgstr "ID"
 #: ciudadfutura/apps/admin/templates/admin/admin_supplier_list.html:16
 #: ciudadfutura/apps/admin/templates/admin/admin_tag_list.html:15
 #: ciudadfutura/apps/admin/templates/admin/admin_user_list.html:28
-#: ciudadfutura/apps/mision/templates/mision/cart.html:10
+#: ciudadfutura/apps/mision/templates/mision/cart.html:11
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:11
 msgid "Name"
 msgstr "Nombre"
 
@@ -333,7 +334,7 @@ msgstr "Aporte a ciudad futura"
 msgid "Relationships"
 msgstr "Vinculos"
 
-#: ciudadfutura/apps/cart/views.py:38
+#: ciudadfutura/apps/cart/views.py:44
 msgid "Item successfully removed."
 msgstr "El item se eliminó exitosamente."
 
@@ -341,23 +342,50 @@ msgstr "El item se eliminó exitosamente."
 msgid "This field is required."
 msgstr "Este campo es requerido"
 
-#: ciudadfutura/apps/mision/templates/mision/cart.html:9
+#: ciudadfutura/apps/mision/templates/mision/cart.html:5
+msgid "My cart"
+msgstr "Mi carro"
+
+#: ciudadfutura/apps/mision/templates/mision/cart.html:10
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:10
 msgid "SKU"
 msgstr "Codigo"
 
-#: ciudadfutura/apps/mision/templates/mision/cart.html:11
+#: ciudadfutura/apps/mision/templates/mision/cart.html:12
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:12
 msgid "Quantity"
 msgstr "Cantidad"
 
-#: ciudadfutura/apps/mision/templates/mision/cart.html:23
+#: ciudadfutura/apps/mision/templates/mision/cart.html:24
 #: ciudadfutura/apps/mision/templates/mision/register.html:49
 #: ciudadfutura/apps/mision/templates/mision/register.html:65
 msgid "Remove"
 msgstr "Borrar"
 
-#: ciudadfutura/apps/mision/templates/mision/cart.html:29
+#: ciudadfutura/apps/mision/templates/mision/cart.html:30
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:24
 msgid "No items found."
 msgstr "No se encontraron items."
+
+#: ciudadfutura/apps/mision/templates/mision/cart.html:36
+msgid "Keep shopping"
+msgstr "Continuar comprando"
+
+#: ciudadfutura/apps/mision/templates/mision/cart.html:37
+msgid "Proceed to checkout"
+msgstr "Revisar pedido"
+
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:5
+msgid "Checkout"
+msgstr "Mi pedido"
+
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:30
+msgid "Back to cart"
+msgstr "Volver al carro"
+
+#: ciudadfutura/apps/mision/templates/mision/checkout.html:31
+msgid "Place order"
+msgstr "Confirmar pedido"
 
 #: ciudadfutura/apps/mision/templates/mision/invite_register.html:23
 msgid "Circle"

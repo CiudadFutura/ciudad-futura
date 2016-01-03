@@ -2,7 +2,7 @@
 
 {% block site_nav_right %}
 <li>
-  <a href="{% url 'cart:index' %}">
+  <a href="{% url 'mision:cart' %}">
     <i class="fa fa-shopping-cart"></i>&nbsp;
     <span id="js-cart-total-items" class="badge">
       {{ request.cart.total_items }}

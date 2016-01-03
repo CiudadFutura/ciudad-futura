@@ -4,14 +4,20 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 
-def index(request):
-    results = []
-    if request.cart:
-        results = request.cart.items.all()
+def index(template):
 
-    return render(request, 'mision/cart.html', {
-        'results': results
-    })
+    def actual_view(request):
+        items = []
+        if request.cart:
+            items = request.cart.items.all()
+
+        return render(request, template, {
+            'items': items
+        })
+
+    actual_view.__name__ = 'cart_index'
+
+    return actual_view
 
 
 def add_item(request, product_id):
@@ -37,4 +43,4 @@ def remove_item(request, item_id):
         request.cart.remove_item(item_id)
         messages.success(request, _('Item successfully removed.'))
 
-    return redirect('cart:index')
+    return redirect('mision-cart')
