@@ -1,12 +1,17 @@
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from ciudadfutura.apps.product.models import Product
 
 
 STATUS_CHOICES = (
+    ('new', _('New order')),
     ('canceled', _('Canceled')),
-    ('STATUS2', _('Status #2')),
-    ('STATUS3', _('Status #1')),
+    ('on_hold', _('On hold')),
+    ('pending_payment', _('Pending payment')),
+    ('pending_received', _('Pending received')),
+    ('shipped', _('Order shipped')),
+    ('paid', _('Paid')),
+    ('closed', _('Closed')),
 )
 
 
@@ -16,11 +21,54 @@ class Order(models.Model):
     status = models.CharField(
         max_length=32,
         choices=STATUS_CHOICES,
-        default='open'
+        default='new'
     )
 
+    def is_empty(self):
+        return not bool(self.items.count())
+
+    @property
+    def total(self):
+        return self.sub_total
+
+    @property
+    def total_items(self):
+        return sum([
+            i.quantity for i in self.items.all()
+        ])
+
+    @property
+    def sub_total(self):
+        return sum([
+            item.total for item in self.items.all()
+        ])
+
+    def add_item(self, product_sku, quantity, price, market_price):
+        product = Product.objects.get(sku=product_sku)
+        item, created = OrderItem.objects.get_or_create(
+            product_sku=product.sku,
+            order=self,
+            product_price=price,
+            product_market_price=market_price,
+            product_name=product.name,
+            product_real_price=price,
+            product=product,
+            product_description=product.description,
+            qty=quantity
+        )
+        if created:
+            item.qty = int(quantity)
+        else:
+            item.qty += int(quantity)
+        item.save(update_fields=['qty'])
+
+        return item
+
+    def remove_item(self, item_id):
+        print self.items.get(id=item_id).delete()
+
     reference = models.CharField(max_length=9)
-    total = models.DecimalField(max_digits=8, decimal_places=2)
+    total = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     user = models.ForeignKey('ciudadfutura_auth.User', related_name='orders')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
