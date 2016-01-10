@@ -24,4 +24,10 @@ urlpatterns = [
     url(r'^account/circle/$',
         views.user_circle,
         name='ciudadfutura-user-circle'),
+    url(r'^account/orders/$',
+        views.user_orders,
+        name='ciudadfutura-user-orders'),
+     url(r'^account/order/details/(?P<order_id>\d+)/$',
+        views.user_order_details,
+        name='ciudadfutura-user-order-details'),
 ]

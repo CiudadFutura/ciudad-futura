@@ -17,6 +17,9 @@
                 <a href="{% url 'account:ciudadfutura-user-circle' %}">{% trans 'My circle' %}</a>
             </li>
         {% endif %}
+        <li {% if active == 'user_my_orders' %} class="active" {% endif %} role="presentation">
+            <a href="{% url 'account:ciudadfutura-user-orders' %}">{% trans 'My orders' %}</a>
+        </li>
     </ul>
     <div class="tab-content">
         {% block tabs_content %}
