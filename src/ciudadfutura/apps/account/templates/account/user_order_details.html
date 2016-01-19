@@ -2,7 +2,7 @@
 {% load site_tags i18n bootstrap3 %}
 
 {% block tabs_content %}
-    <h1>{% trans 'Order' %}</h1>
+    <h1>{% trans 'Order' %} {{ order.total }}</h1>
     <div class="text-right">
         <a href="{% url 'account:ciudadfutura-user-orders' %}">{% trans 'Return to orders' %}</a>
     </div>
@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for item in items %}
+          {% for item in order.items.all %}
           <tr>
             <td>{{ item.product_sku }}</td>
             <td>{{ item.product_name }}</td>
@@ -31,6 +31,11 @@
           </tr>
           {% endfor %}
         </tbody>
+        <tfoot>
+            <tr>
+
+            </tr>
+        </tfoot>
       </table>
     </div>
 {% endblock %}

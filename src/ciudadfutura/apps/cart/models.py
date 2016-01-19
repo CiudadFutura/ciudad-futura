@@ -23,13 +23,24 @@ class Cart(models.Model):
             item.total for item in self.items.all()
         ])
 
+    @property
+    def market_sub_total(self):
+        return sum([
+            item.total_market for item in self.items.all()
+        ])
+
+    @property
+    def purchase_saving(self):
+        return float((self.sub_total / self.market_sub_total)*100)
+
     def add_item(self, product_id, quantity):
         product = Product.objects.get(id=product_id)
         item, created = Item.objects.get_or_create(
             sku=product.sku, cart=self,
             price=product.price,
             market_price=product.market_price,
-            name=product.name
+            name=product.name,
+            description=product.description
         )
         if created:
             item.quantity = int(quantity)
@@ -51,7 +62,12 @@ class Item(models.Model):
     market_price = models.DecimalField(max_digits=8, decimal_places=2)
     cart = models.ForeignKey('ciudadfutura_cart.Cart', related_name='items')
     quantity = models.IntegerField(default=0)
+    description = models.TextField()
 
     @property
     def total(self):
         return self.quantity * self.price
+
+    @property
+    def total_market(self):
+        return self.quantity * self.market_price

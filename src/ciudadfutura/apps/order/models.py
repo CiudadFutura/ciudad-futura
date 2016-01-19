@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.cart.models import Cart
 
 
 STATUS_CHOICES = (
@@ -12,6 +12,11 @@ STATUS_CHOICES = (
     ('shipped', _('Order shipped')),
     ('paid', _('Paid')),
     ('closed', _('Closed')),
+)
+
+STATUS_ITEMS_CHOICES = (
+    ('added', _('Added')),
+    ('deleted', _('Deleted'))
 )
 
 
@@ -34,7 +39,7 @@ class Order(models.Model):
     @property
     def total_items(self):
         return sum([
-            i.quantity for i in self.items.all()
+            i.qty for i in self.items.all()
         ])
 
     @property
@@ -43,23 +48,22 @@ class Order(models.Model):
             item.total for item in self.items.all()
         ])
 
-    def add_item(self, product_sku, quantity, price, market_price):
-        product = Product.objects.get(sku=product_sku)
+    def add_item(self, cart_id):
+        cart = Cart.objects.get(id=cart_id)
         item, created = OrderItem.objects.get_or_create(
-            product_sku=product.sku,
+            product_sku=cart.items.sku,
             order=self,
-            product_price=price,
-            product_market_price=market_price,
-            product_name=product.name,
-            product_real_price=price,
-            product=product,
-            product_description=product.description,
-            qty=quantity
+            product_price=cart.items.price,
+            product_market_price=cart.items.market_price,
+            product_name=cart.items.name,
+            product_real_price=cart.items.price,
+            product_description=cart.items.description,
+            qty=cart.items.quantity
         )
         if created:
-            item.qty = int(quantity)
+            item.qty = int(cart.items.quantity)
         else:
-            item.qty += int(quantity)
+            item.qty += int(cart.items.quantity)
         item.save(update_fields=['qty'])
 
         return item
@@ -68,8 +72,8 @@ class Order(models.Model):
         print self.items.get(id=item_id).delete()
 
     reference = models.CharField(max_length=9)
-    total = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     user = models.ForeignKey('ciudadfutura_auth.User', related_name='orders')
+    shopping_cycle = models.ForeignKey('ciudadfutura_mision.ShoppingCycle', related_name='cycles', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -77,12 +81,18 @@ class Order(models.Model):
 class OrderItem(models.Model):
 
     @property
-    def row_total(self):
+    def total(self):
         return self.qty * self.product_price
 
-    order = models.ForeignKey('ciudadfutura_order.Order', related_name='items')
+    STATUS_CHOICES = STATUS_ITEMS_CHOICES
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS_CHOICES,
+        default='added'
+    )
 
-    product = models.ForeignKey('ciudadfutura_product.Product', related_name='orders_items')
+    order = models.ForeignKey('ciudadfutura_order.Order', related_name='items')
+    order = models.ForeignKey('ciudadfutura_order.Order', related_name='suppliers')
     product_name = models.CharField(max_length=255)
     product_sku = models.CharField(max_length=255)
     product_description = models.TextField()
@@ -95,6 +105,14 @@ class OrderItem(models.Model):
 
 
 class Invoice(models.Model):
+
+    STATUS_CHOICES = STATUS_CHOICES
+
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS_CHOICES,
+        default='new'
+    )
 
     number = models.CharField(max_length=255)
     total = models.DecimalField(max_digits=8, decimal_places=2)
@@ -113,7 +131,7 @@ class Invoice(models.Model):
 class InvoiceItem(models.Model):
 
     @property
-    def row_total(self):
+    def total(self):
         return self.qty * self.product_price
 
     invoice = models.ForeignKey('ciudadfutura_order.Invoice', related_name='items')

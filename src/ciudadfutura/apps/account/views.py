@@ -116,8 +116,8 @@ def user_orders(request):
 
 
 def user_order_details(request, order_id):
-    items = OrderItem.objects.filter(order_id=order_id)
+    order = Order.objects.get(id=order_id)
     return render(request, 'account/user_order_details.html', {
-        'items': items,
+        'order': order,
         'active': 'user_my_orders'
     })
