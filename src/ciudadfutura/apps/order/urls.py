@@ -10,7 +10,7 @@ def order_urls(prefix, template):
         url(r'^{prefix}/confirm_checkout/$'.format(prefix=prefix),
             views.checkout,
             name='confirm-checkout'),
-        url(r'^{prefix}/success'.format(prefix=prefix),
+        url(r'^{prefix}/success/(?P<code>\w+)/'.format(prefix=prefix),
             views.success,
             name='success-checkout'),
 

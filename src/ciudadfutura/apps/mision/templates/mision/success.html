@@ -1,9 +1,9 @@
 {% extends 'mision/base.html' %}
-{% load i18n bootstrap3 %}
+{% load i18n bootstrap3 humanize %}
 
 {% block content %}
-    <h1>{% trans "Success." %}</h1>
+    <h1>{% trans "The order was created success." %}</h1>
     <p>
-        {% trans "The payment was a success." %}
+        {% trans "Orde number " %}#{{ order.id|stringformat:"09d" }}
     </p>
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'mision/base.html' %}
-{% load i18n %}
+{% load i18n humanize %}
+
 
 {% block content %}
 <h1>{% trans 'My cart' %}</h1>
@@ -10,6 +11,9 @@
         <th>{% trans 'SKU' %}</th>
         <th>{% trans 'Name' %}</th>
         <th>{% trans 'Quantity' %}</th>
+        <th>{% trans 'Price' %}</th>
+        <th>{% trans 'Subtotal Market' %}</th>
+        <th>{% trans 'Subtotal' %}</th>
         <th></th>
       </tr>
     </thead>
@@ -19,6 +23,9 @@
         <td>{{ item.sku }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.quantity }}</td>
+        <td>${{ item.price|floatformat:2|intcomma }}</td>
+        <td>${{ item.total_market|floatformat:2|intcomma }}</td>
+        <td>${{ item.total|floatformat:2|intcomma }}</td>
         <td>
           <a href="{% url 'mision:cart-remove-item' item.id %}" class="btn btn-danger btn-xs">
             <i class="fa fa-trash"></i>&nbsp;{% trans 'Remove' %}
@@ -31,6 +38,22 @@
       </tr>
       {% endfor %}
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" rowspan="3"></td>
+            <td colspan="3" class="text-right">{% trans 'Market Total' %}</td>
+            <td colspan="2" class="text-right">${{ cart.market_sub_total|floatformat:2|intcomma }}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right">{% trans 'Saving' %}</td>
+            <td colspan="2" class="text-right">% {{ cart.purchase_saving|floatformat:2|intcomma }}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right">{% trans 'Total' %}</td>
+            <td colspan="2" class="text-right">${{ cart.total|floatformat:2|intcomma }}</td>
+        </tr>
+    </tfoot>
+
   </table>
 </div>
 <a class="btn btn-default" href="{% url 'mision:product-list' %}">{% trans 'Keep shopping' %}</a>

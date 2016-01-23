@@ -31,7 +31,7 @@ class Cart(models.Model):
 
     @property
     def purchase_saving(self):
-        return float((self.sub_total / self.market_sub_total)*100)
+        return (1 - self.sub_total / self.market_sub_total) * 100
 
     def add_item(self, product_id, quantity):
         product = Product.objects.get(id=product_id)

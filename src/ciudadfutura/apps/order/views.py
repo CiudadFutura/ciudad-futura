@@ -31,27 +31,22 @@ def checkout(request):
     if request.POST and request.POST['cartId']:
         if request.user.is_authenticated():
             order = Order.objects.create(user_id=request.user.id)
-            cart = Cart.objects.get(id=request.POST['cartId'])
-            items = cart.items
-
-            for item in items.all():
-                order.add_item(item.sku, item.quantity, item.price, item.market_price)
+            order.add_item(cart_id=request.POST['cartId'])
 
             messages.success(request, _('Order successfully created.'))
 
-            return redirect('mision:success-checkout')
+            return redirect('mision:success-checkout', order.id)
         else:
             messages.error(request, 'You should be logged to confirm the order.')
             return redirect('site:login')
     else:
-        form = CheckoutForm()
+        return render(request, 'mision:cart')
 
-    return render(request, 'mision/invite_register.html', {
-        'form': form,
+
+def success(request, code=None):
+    order = Order.objects.get(id=code)
+    return render(request, 'mision/success.html', {
+        'order': order,
     })
-
-
-def success(request):
-    return render(request, 'mision/success.html')
 
 

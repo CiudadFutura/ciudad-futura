@@ -12,6 +12,7 @@ def index(template):
             items = request.cart.items.all()
 
         return render(request, template, {
+            'cart': request.cart,
             'items': items
         })
 

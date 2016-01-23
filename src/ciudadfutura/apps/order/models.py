@@ -48,23 +48,34 @@ class Order(models.Model):
             item.total for item in self.items.all()
         ])
 
+    @property
+    def market_sub_total(self):
+        return sum([
+            item.total_market for item in self.items.all()
+        ])
+
+    @property
+    def purchase_saving(self):
+        return (1 - self.sub_total / self.market_sub_total) * 100
+
     def add_item(self, cart_id):
         cart = Cart.objects.get(id=cart_id)
-        item, created = OrderItem.objects.get_or_create(
-            product_sku=cart.items.sku,
-            order=self,
-            product_price=cart.items.price,
-            product_market_price=cart.items.market_price,
-            product_name=cart.items.name,
-            product_real_price=cart.items.price,
-            product_description=cart.items.description,
-            qty=cart.items.quantity
-        )
-        if created:
-            item.qty = int(cart.items.quantity)
-        else:
-            item.qty += int(cart.items.quantity)
-        item.save(update_fields=['qty'])
+        for i in cart.items.all():
+            item, created = OrderItem.objects.get_or_create(
+                product_sku=i.sku,
+                order=self,
+                product_price=i.price,
+                product_market_price=i.market_price,
+                product_name=i.name,
+                product_real_price=i.price,
+                product_description=i.description,
+                qty=i.quantity
+            )
+            if created:
+                item.qty = int(i.quantity)
+            else:
+                item.qty += int(i.quantity)
+            item.save(update_fields=['qty'])
 
         return item
 
@@ -84,6 +95,10 @@ class OrderItem(models.Model):
     def total(self):
         return self.qty * self.product_price
 
+    @property
+    def total_market(self):
+        return self.qty * self.product_market_price
+
     STATUS_CHOICES = STATUS_ITEMS_CHOICES
     status = models.CharField(
         max_length=32,
@@ -92,7 +107,7 @@ class OrderItem(models.Model):
     )
 
     order = models.ForeignKey('ciudadfutura_order.Order', related_name='items')
-    order = models.ForeignKey('ciudadfutura_order.Order', related_name='suppliers')
+    supplier = models.ForeignKey('ciudadfutura_auth.Supplier', related_name='suppliers', null=True)
     product_name = models.CharField(max_length=255)
     product_sku = models.CharField(max_length=255)
     product_description = models.TextField()
@@ -133,6 +148,10 @@ class InvoiceItem(models.Model):
     @property
     def total(self):
         return self.qty * self.product_price
+
+    @property
+    def total_market(self):
+        return self.quantity * self.product_market_price
 
     invoice = models.ForeignKey('ciudadfutura_order.Invoice', related_name='items')
     product = models.ForeignKey('ciudadfutura_product.Product', related_name='invoices_items')
