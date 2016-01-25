@@ -33,7 +33,7 @@ def checkout(request):
             order = Order.objects.create(user_id=request.user.id)
             order.add_item(cart_id=request.POST['cartId'])
 
-            messages.success(request, _('Order successfully created.'))
+            del request.session['cart_id']
 
             return redirect('mision:success-checkout', order.id)
         else:
