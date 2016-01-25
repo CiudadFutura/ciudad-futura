@@ -307,9 +307,10 @@ def admin_order_delete(request, order_id):
 
 
 @staff_required
-def admin_order_item_list(request):
+def admin_order_details(request, order_id):
+    order = Order.objects.get(id=order_id)
     return render(request, 'admin/admin_order_item_list.html', {
-        'results': paginate(request.GET, OrderItem.objects.all())
+        'results': order
     })
 
 

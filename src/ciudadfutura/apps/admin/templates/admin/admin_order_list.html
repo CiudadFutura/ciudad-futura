@@ -25,7 +25,7 @@
         <td>{{ result.created_at }}</td>
         <td>{{ result.user.name }}</td>
         <td>
-          <a href="{% url 'admin:order-item-list' %}" class="btn btn-default btn-xs">
+          <a href="{% url 'admin:order-details' result.id %}" class="btn btn-default btn-xs">
             <i class="fa fa-edit"></i>&nbsp;{% trans 'Items' %}
           </a>
         </td>
