@@ -4,11 +4,11 @@ from django.contrib import messages
 from ciudadfutura.decorators import staff_required
 from ciudadfutura.apps.auth.models import User, Tag, MisionMember, Supplier
 from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
-from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.product.models import Product, Category
 from ciudadfutura.apps.order.models import Order, OrderItem
 from ciudadfutura.utils import paginate
 from .forms import UserForm, TagForm, ProductForm, SupplierForm, ShoppingCycleForm, CircleForm, OrderForm,\
-    OrderItemForm, UserEditForm
+    OrderItemForm, UserEditForm, CategoryForm
 
 
 @staff_required
@@ -159,6 +159,41 @@ def admin_product_delete(request, product_id):
     Product.objects.get(id=product_id).delete()
     messages.success(request, _('Product successfully deleted.'))
     return redirect('admin:product-list')
+
+
+@staff_required
+def admin_category_list(request):
+    return render(request, 'admin/admin_category_list.html', {
+        'results': paginate(request.GET, Category.objects.all())
+    })
+
+
+@staff_required
+def admin_category_form(request, category_id=None):
+    category = None
+
+    if category_id is not None:
+        category = Category.objects.get(id=category_id)
+
+    if request.POST:
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            category = form.save()
+            messages.success(request, _('Category successfully saved.'))
+            return redirect('admin:category-list')
+    else:
+        form = CategoryForm(instance=category)
+
+    return render(request, 'admin/admin_category_form.html', {
+        'form': form,
+    })
+
+
+@staff_required
+def admin_category_delete(request, category_id):
+    Category.objects.get(id=category_id).delete()
+    messages.success(request, _('Category successfully deleted.'))
+    return redirect('admin:category-list')
 
 
 @staff_required

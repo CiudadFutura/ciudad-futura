@@ -3,7 +3,7 @@ from django.contrib import auth
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from ciudadfutura.apps.auth.models import User, Tag, Supplier
-from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.product.models import Product, Category
 from ciudadfutura.apps.order.models import Order, OrderItem
 from ciudadfutura.apps.mision.models import ShoppingCycle, Circle
 from django.utils import timezone
@@ -99,6 +99,12 @@ class TagForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
+        exclude = []
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
         exclude = []
 
 
