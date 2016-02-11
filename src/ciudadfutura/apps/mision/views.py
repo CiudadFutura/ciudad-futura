@@ -70,15 +70,18 @@ def register(request):
     })
 
 
-def product_list(request):
+def product_list(request, code=None):
 
-    selected = [
-        int(category_id) for category_id in request.GET.getlist('categories')
-    ]
+    selected = None
 
+    if code:
+        selected = [
+            int(parent_id) for parent_id in code
+        ]
+    print(code)
     results = Product.objects.all()
     if selected:
-        results = results.filter(parent__in=selected)
+        results = results.filter(category__in=selected)
 
     return render(request, 'mision/product_list.html', {
         'results': paginate(request.GET, results),
