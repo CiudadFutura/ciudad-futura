@@ -78,7 +78,7 @@ def product_list(request, code=None):
         selected = [
             int(parent_id) for parent_id in code
         ]
-    print(code)
+
     results = Product.objects.all()
     if selected:
         results = results.filter(category__in=selected)

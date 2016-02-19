@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, timedelta, time
 
 
 class Circle(models.Model):
@@ -6,6 +7,30 @@ class Circle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     shopping_cycle = models.ForeignKey('ciudadfutura_mision.ShoppingCycle', related_name='circles', null=True)
+
+
+class ShoppingCycleQuerySet(models.QuerySet):
+
+    def current_cycle(self):
+        today = datetime.now().date()
+        return self.filter(start_date__lte=today,
+                           delivery_date__gte=today
+                           )
+
+    def active(self):
+        today = datetime.now().date()
+        return self.filter(start_date__lte=today,
+                           end_date__gte=today
+                           )
+
+
+class ShoppingCycleManager(models.Manager):
+
+    def get_queryset(self):
+        return ShoppingCycleQuerySet(self.model, using=self._db)
+
+    def current_cycle(self):
+        return self.get_queryset().current_cycle()
 
 
 class ShoppingCycle(models.Model):
@@ -19,7 +44,9 @@ class ShoppingCycle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    objects = ShoppingCycleManager()
+
+    def __str__(self):
         return self.name
 
 
