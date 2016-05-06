@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from ciudadfutura.utils import paginate
 from django.views.generic import TemplateView
-from ciudadfutura.apps.product.models import Product
+from ciudadfutura.apps.product.models import Product, Category
 from ciudadfutura.apps.mision.models import Invite
 from ciudadfutura.decorators import user_required
 from .forms import UserForm, InviteForm, InviteRegisterForm
@@ -70,9 +70,23 @@ def register(request):
     })
 
 
-def product_list(request):
+def product_list(request, code=None):
+
+    selected = None
+
+    if code:
+        selected = [
+            int(parent_id) for parent_id in code
+        ]
+
+    results = Product.objects.all()
+    if selected:
+        results = results.filter(category__in=selected)
+
     return render(request, 'mision/product_list.html', {
-        'results': paginate(request.GET, Product.objects.all()),
+        'results': paginate(request.GET, results),
+        'categories': Category.objects.filter(parent__isnull=True),
+        'selected': selected
     })
 
 

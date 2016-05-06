@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext as _
 
 
 class Zone(models.Model):
@@ -38,4 +39,23 @@ class Product(models.Model):
     supplier = models.ForeignKey('ciudadfutura_auth.Supplier')
     saleable = models.BooleanField(default=True)
     packaging = models.ForeignKey('ciudadfutura_product.Packaging')
-    zones = models.ManyToManyField('ciudadfutura_product.Zone')
+    zones = models.ManyToManyField('ciudadfutura_product.Zone', blank=True)
+    category = models.ManyToManyField('ciudadfutura_product.Category', verbose_name=_('Category'), blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def get_products(self):
+        return Product.objects.filter(category=self)
+

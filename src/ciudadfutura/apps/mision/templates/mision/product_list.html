@@ -25,26 +25,29 @@
 </div>
 
 <div class="row">
-{% for result in results %}
-  <div class="col-md-4">
-    <div class="thumbnail">
-      <img src="{{ result.image }}">
-      <div class="caption">
-        <p>{{ result.price }}</p>
-        <p>{{ result.sku }}</p>
-        <p>{{ result.name }}</p>
-        <form class="js-add-to-cart" method="post" action="{% url 'mision:cart-add-item' result.id %}">
-          <div class="input-group">
-            <input type="text" class="form-control" name="quantity" value="1">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="submit">{% trans 'Add to cart' %}</button>
-            </span>
+    {% if results %}
+        {% for result in results %}
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <img src="{{ result.image }}">
+              <div class="caption">
+                <p>{{ result.price }}</p>
+                <p>{{ result.sku }}</p>
+                <p>{{ result.name }}</p>
+                <p>{{ result.supplier }}</p>
+                <form class="js-add-to-cart" method="post" action="{% url 'mision:cart-add-item' result.id %}">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="quantity" value="1">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">{% trans 'Add to cart' %}</button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-{% endfor %}
+        {% endfor %}
+    {% endif %}
 </div>
 {% pagination results %}
 

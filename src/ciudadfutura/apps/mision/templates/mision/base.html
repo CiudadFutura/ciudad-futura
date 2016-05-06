@@ -1,4 +1,5 @@
 {% extends 'site/base.html' %}
+{% load static i18n %}
 
 {% block site_nav_right %}
 <li>
@@ -10,7 +11,38 @@
   </a>
 </li>
 {% endblock %}
+<form method="get">
+  <ul class="list-group">
+    <input  class="btn btn-success btn-block" type="submit" value="{% trans 'Filter' %}">
+    {% for tag in tags %}
+    <li class="list-group-item">
+      <input {% if tag.id in selected %}checked="checked"{% endif %} type="checkbox" name="tags" value="{{ tag.id }}">&nbsp;{{ tag.name }}
+    </li>
+    {% endfor %}
+  </ul>
+</form>
 
 {% block site_content %}
-  {% block content %}{% endblock %}
+    <div class="col-sm-3">
+        {% block sidebar %}
+            <h3>{%  trans 'Categories'  %}</h3>
+            <ul class="nav nav-pills nav-stacked">
+                {% for category in categories %}
+                    {% if category.children.count %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ category.name }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for child in category.children.all %}
+                                    <li><a href="{% url 'mision:product-list-category' child.id %}">{{ child.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'mision:product-list-category' category.id %}">{{ category.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    </div>
+    <div class="col-sm-9"> {% block content %}{% endblock %}</div>
 {% endblock %}
