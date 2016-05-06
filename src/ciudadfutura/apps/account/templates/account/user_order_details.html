@@ -1,0 +1,52 @@
+{% extends 'account/base.html' %}
+{% load site_tags i18n bootstrap3 humanize %}
+
+
+{% block tabs_content %}
+    <h1>{% trans 'Order' %} {{ order.total }}</h1>
+    <div class="text-right">
+        <a href="{% url 'account:ciudadfutura-user-orders' %}">{% trans 'Return to orders' %}</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>{% trans 'SKU' %}</th>
+                <th>{% trans 'Name' %}</th>
+                <th>{% trans 'Quantity' %}</th>
+                <th>{% trans 'Price' %}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in order.items.all %}
+              <tr>
+                <td>{{ item.product_sku }}</td>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.qty }}</td>
+                <td>${{ item.product_price }}</td>
+                <td>
+                </td>
+              </tr>
+              {% empty %}
+              <tr class="info">
+                <td colspan="4">{% trans 'No items found.' %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" rowspan="2"></td>
+                    <td colspan="2" class="text-right">
+                        {% trans 'Saving' %}
+                    </td>
+                    <td colspan="2" class="text-right">% {{ order.purchase_saving|floatformat:2|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right">{% trans 'Total' %}</td>
+                    <td colspan="2" class="text-right">${{ order.total|floatformat:2|intcomma }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

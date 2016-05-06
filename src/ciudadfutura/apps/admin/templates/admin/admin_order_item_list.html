@@ -1,46 +1,63 @@
 {% extends 'admin/base.html' %}
-{% load i18n site_tags %}
+{% load i18n site_tags humanize %}
 
 {% block content %}
-<div class="btn-toolbar">
-  <a class="btn btn-primary" href="{% url 'admin:order-item-create' %}">
-     {% trans 'Create' %}
-  </a>
-</div>
-<div class="table-responsive">
-  <table class="table table-hover table-striped">
-    <thead>
-      <tr>
-        <th>{% trans 'Order #' %}</th>
-        <th>{% trans 'Date' %}</th>
-        <th>{% trans 'User' %}</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for result in results %}
-      <tr>
-        <td>{{ result.id }}</td>
-        <td>{{ result.created_at }}</td>
-        <td>{{ result.user.name }}</td>
-        <td>
-          <a href="{% url 'admin:order-item-delete' result.id %}" class="btn btn-danger btn-xs">
-            <i class="fa fa-trash"></i>&nbsp;{% trans 'Delete' %}
-          </a>
-          &nbsp;
-          <a href="{% url 'admin:order-item-edit' result.id %}" class="btn btn-default btn-xs">
-            <i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
-          </a>
-        </td>
-      </tr>
-      {% empty %}
-      <tr class="info">
-        <td colspan="3">{% trans 'No order items found.' %}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+    <div class="btn-toolbar">
+      <a class="btn btn-primary" href="{% url 'admin:order-list' %}">
+         {% trans 'Return' %}
+      </a>
+    </div>
+    <div class="row">
+        <h4>{% trans 'Order' %} <strong>#{{ results.id|stringformat:"09d" }}</strong></h4>
+        <p>{% trans 'User' %} <strong>{{ results.user.name}}</strong></p>
+        <p>{% trans 'Date' %} <strong>{{ results.created_at|date:"d F Y f" }}</strong></p>
+        <p>{% trans 'Amount' %} <strong>${{ results.total }}</strong></p>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>{% trans 'SKU' %}</th>
+                <th>{% trans 'Name' %}</th>
+                <th>{% trans 'Quantity' %}</th>
+                <th>{% trans 'Price' %}</th>
+                <th>{% trans 'Subtotal Market' %}</th>
+                <th>{% trans 'Subtotal' %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in results.items.all %}
+              <tr>
+                <td>{{ item.product_sku }}</td>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.qty }}</td>
+                <td>${{ item.product_price|floatformat:2|intcomma }}</td>
+                <td>${{ item.total_market|floatformat:2|intcomma }}</td>
+                <td>${{ item.total|floatformat:2|intcomma }}</td>
+              </tr>
+              {% empty %}
+              <tr class="info">
+                <td colspan="4">{% trans 'No items found.' %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" rowspan="3"></td>
+                    <td colspan="3" class="text-right">{% trans 'Market Total' %}</td>
+                    <td colspan="1" class="text-right">${{ results.market_sub_total|floatformat:2|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">{% trans 'Saving' %}</td>
+                    <td colspan="1" class="text-right">% {{ results.purchase_saving|floatformat:2|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">{% trans 'Total' %}</td>
+                    <td colspan="1" class="text-right">${{ results.total|floatformat:2|intcomma }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 {% pagination results %}
 
 {% endblock %}

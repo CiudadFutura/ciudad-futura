@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.views import password_reset, password_reset_confirm
 from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserProfileForm, UserPublicProfileForm
+from ciudadfutura.apps.order.models import Order, OrderItem
 
 
 @user_required
@@ -101,4 +102,22 @@ def user_circle(request):
     return render(request, 'account/user_circle_list.html', {
         'results':  circle_members,
         'active': 'user_my_circle'
+    })
+
+
+@user_required
+def user_orders(request):
+    orders = request.user.orders.all()
+
+    return render(request, 'account/user_orders_list.html', {
+        'results':  orders,
+        'active': 'user_my_orders'
+    })
+
+
+def user_order_details(request, order_id):
+    order = Order.objects.get(id=order_id)
+    return render(request, 'account/user_order_details.html', {
+        'order': order,
+        'active': 'user_my_orders'
     })
